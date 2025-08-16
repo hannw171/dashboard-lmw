@@ -25,6 +25,7 @@
     <!-- BEGIN PLUGINS STYLES -->
     <link href="../dist/css/tabler-vendors.css" rel="stylesheet" />
     <link href="../dist/css/tabler-themes.css" rel="stylesheet" />
+    <link href="../dist/css/litepicker.css" rel="stylesheet" />
     <!-- END PLUGINS STYLES -->
     <!-- BEGIN DEMO STYLES -->
     <link href="../dist/css/demo.css" rel="stylesheet" />
@@ -589,175 +590,6 @@
         <!-- END PAGE BODY -->
 
         <!-- BEGIN PAGE MODALS -->
-        <div class="modal modal-blur fade" id="modal-input-laporan" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <!-- HEADER sticky -->
-              <div class="modal-header sticky-top bg-body z-3 border-bottom">
-                <h5 class="modal-title sticky-top">Tambah Pengaduan Baru</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <form>
-                <div class="modal-body">
-                  <div class="row row-cols-2 g-4">
-                    <div>
-                      <label class="form-label">Nama Lengkap<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Nama Lengkap" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">NIK<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Nomor NIK" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">Sumber Pengaduan<span class="text-danger">*</span></label>
-                      <div>
-                        <select class="form-select">
-                          <option>Tatap Muka</option>
-                          <option>WhatsApp</option>
-                          <option>Email</option>
-                          <option>Surat</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div>
-                      <label class="form-label">Jenis Kelamin<span class="text-danger">*</span></label>
-                      <div>
-                        <select class="form-select">
-                          <option>Laki-laki</option>
-                          <option>Perempuan</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div>
-                      <label class="form-label">Email Pengadu</label>
-                      <input type="email" placeholder="Masukkan Email" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">Nomor HP Pengadu</label>
-                      <input type="number" placeholder="Masukkan Nomor HP" class="form-control" />
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label">Alamat Lengkap<span class="text-danger">*</span></label>
-                      <textarea placeholder="Masukkan Alamat" rows="3" class="form-control"></textarea>
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label">Judul Laporan<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Judul Laporan" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">Lokasi Kejadian<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Lokasi Kejadian" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">Tanggal Kejadian</label>
-                      <div>
-                        <div class="input-icon">
-                          <input class="form-control" placeholder="mm/dd/yyyy" id="datepicker-tgl-kejadian" value="" />
-                          <span class="input-icon-addon"
-                            ><!-- Download SVG icon from http://tabler.io/icons/icon/calendar -->
-                            <i class="icon ti ti-calendar"></i
-                          ></span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-12" id="field-kategori">
-                      <label class="form-label">Kategori<span class="text-danger">*</span></label>
-                      <select id="select-optgroups" class="form-select" placeholder="Pilih Kategori">
-                        <option value="" selected disabled hidden>Pilih Kategori</option>
-                        <optgroup
-                          label="Deputi Bidang Dukungan Kebijakan Perekonomian, Pariwisata dan Transformasi Digital"
-                        >
-                          <option value="Ekonomi dan Keuangan">Ekonomi dan Keuangan</option>
-                          <option value="Lingkungan Hidup dan Kehutanan">Lingkungan Hidup dan Kehutanan</option>
-                          <option value="Pekerjaan Umum dan Penataan Ruang">Pekerjaan Umum dan Penataan Ruang</option>
-                          <option value="Pertanian dan Peternakan">Pertanian dan Peternakan</option>
-                          <option value="Pemulihan Ekonomi Nasional">Pemulihan Ekonomi Nasional</option>
-                          <option value="Energi dan Sumber Daya Alam">Energi dan Sumber Daya Alam</option>
-                          <option value="Mudik">Mudik</option>
-                          <option value="Perairan">Perairan</option>
-                          <option value="Perhubungan">Perhubungan</option>
-                          <option value="Teknologi Informasi dan Komunikasi">Teknologi Informasi dan Komunikasi</option>
-                          <option value="Perlindungan Konsumen">Perlindungan Konsumen</option>
-                          <option value="Pariwisata dan Ekonomi Kreatif">Pariwisata dan Ekonomi Kreatif</option>
-                          <option value="Industri dan Perdagangan">Industri dan Perdagangan</option>
-                          <option value="Perumahan">Perumahan</option>
-                          <option value="Perpajakan">Perpajakan</option>
-                          <option value="Infrastruktur">Infrastruktur</option>
-                          <option value="Pembangunan Kewilayahan">Pembangunan Kewilayahan</option>
-                        </optgroup>
-                        <optgroup
-                          label="Deputi Bidang Dukungan Kebijakan Peningkatan Kesejahteraan dan Pembangunan Sumber Daya Manusia"
-                        >
-                          <option value="Agama">Agama</option>
-                          <option value="Corona Virus">Corona Virus</option>
-                          <option value="Kesehatan">Kesehatan</option>
-                          <option value="Kesetaraan Gender dan Sosial Inklusif">
-                            Kesetaraan Gender dan Sosial Inklusif
-                          </option>
-                          <option value="Pembangunan Desa, Daerah Tertinggal, dan Transmigrasi">
-                            Pembangunan Desa, Daerah Tertinggal, dan Transmigrasi
-                          </option>
-                          <option value="Pendidikan dan Kebudayaan">Pendidikan dan Kebudayaan</option>
-                          <option value="Sosial dan Kesejahteraan">Sosial dan Kesejahteraan</option>
-                          <option value="Kekerasan di Satuan Pendidikan (Sekolah, Kampus, Lembaga Khusus)">
-                            Kekerasan di Satuan Pendidikan (Sekolah, Kampus, Lembaga Khusus)
-                          </option>
-                          <option value="Penanggulangan Bencana">Penanggulangan Bencana</option>
-                          <option value="Ketenagakerjaan">Ketenagakerjaan</option>
-                          <option value="Pemberdayaan Masyarakat, Koperasi, dan UMKM">
-                            Pemberdayaan Masyarakat, Koperasi, dan UMKM
-                          </option>
-                          <option value="Kepemudaan dan Olahraga">Kepemudaan dan Olahraga</option>
-                          <option value="Keluarga Berencana">Keluarga Berencana</option>
-                          <option value="Pembangunan Keluarga">Pembangunan Keluarga</option>
-                        </optgroup>
-                        <optgroup label="Deputi Bidang Dukungan Kebijakan Pemerintahan dan Pemerataan Pembangunan">
-                          <option value="Ketentraman, Ketertiban Umum, dan Perlindungan Masyarakat">
-                            Ketentraman, Ketertiban Umum, dan Perlindungan Masyarakat
-                          </option>
-                          <option value="Politik dan Hukum">Politik dan Hukum</option>
-                          <option value="Politisasi ASN">Politisasi ASN</option>
-                          <option value="SP4N Lapor">SP4N Lapor</option>
-                          <option value="Netralitas ASN">Netralitas ASN</option>
-                          <option
-                            value="Pencegahan dan Pemberantasan Penyalahgunaan dan Peredaran Gelap Narkotika dan Prekursor Narkotika (P4GN)"
-                          >
-                            Pencegahan dan Pemberantasan Penyalahgunaan dan Peredaran Gelap Narkotika dan Prekursor
-                            Narkotika (P4GN)
-                          </option>
-                          <option value="Manajemen ASN">Manajemen ASN</option>
-                          <option value="Luar Negeri">Luar Negeri</option>
-                          <option value="Pertanahan">Pertanahan</option>
-                          <option value="Daerah Perbatasan">Daerah Perbatasan</option>
-                          <option value="Pelayanan Publik">Pelayanan Publik</option>
-                          <option value="TNI">TNI</option>
-                          <option value="Polri">Polri</option>
-                          <option value="Kependudukan">Kependudukan</option>
-                        </optgroup>
-                        <optgroup label="Deputi Bidang Administrasi">
-                          <option value="Topik Khusus">Topik Khusus</option>
-                          <option value="Topik Lainnya">Topik Lainnya</option>
-                          <option value="Bantuan Masyarakat">Bantuan Masyarakat</option>
-                        </optgroup>
-                      </select>
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label">Detail Laporan<span class="text-danger">*</span></label>
-                      <textarea placeholder="Isi Detail Laporan" rows="6" class="form-control"></textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <div class="text-end">
-                    <a href="#" class="btn btn-1"> Cancel </a>
-                    <a href="#" class="btn btn-primary btn-2"> Save Changes </a>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
         <!-- Modal Filter -->
         <div class="modal fade" id="modal-filter-laporan" tabindex="-1" aria-hidden="true">
           <div class="modal-dialog modal-lg">
@@ -858,6 +690,174 @@
                 <button class="btn btn-link link-secondary" data-bs-dismiss="modal">Batal</button>
                 <button class="btn btn-danger" id="btn-confirm-delete" data-bs-dismiss="modal">Ya, hapus</button>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal VIEW -->
+        <div class="modal fade" id="modal-view-laporan" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div>
+                  <h5 class="modal-title">Detail Data Pengaduan</h5>
+                  <div class="small text-secondary">
+                    Waktu Pengaduan : <span id="vw-waktu">-</span>
+                    <span class="badge bg-blue text-blue-fg ms-2" id="vw-sumber">-</span>
+                  </div>
+                </div>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <dl class="row">
+                      <dt class="col-5">Nomor Tiket:</dt>
+                      <dd class="col-7" id="vw-tiket">-</dd>
+                      <dt class="col-5">NIK:</dt>
+                      <dd class="col-7" id="vw-nik">Tidak diisi</dd>
+                      <dt class="col-5">Email:</dt>
+                      <dd class="col-7" id="vw-email">Tidak diisi</dd>
+                      <dt class="col-5">Kategori & Judul:</dt>
+                      <dd class="col-7">
+                        <span class="badge bg-purple-lt" id="vw-kategori">-</span>
+                        <div id="vw-judul" class="mt-1">-</div>
+                      </dd>
+                      <dt class="col-5">Alamat Lengkap:</dt>
+                      <dd class="col-7" id="vw-alamat">-</dd>
+                      <dt class="col-5">Status Laporan:</dt>
+                      <dd class="col-7"><span class="badge" id="vw-status">-</span></dd>
+                      <dt class="col-5">Diposisi dari:</dt>
+                      <dd class="col-7" id="vw-distribusi">-</dd>
+                      <dt class="col-5">Status Analisis:</dt>
+                      <dd class="col-7"><span class="badge" id="vw-status-analisis">Pending</span></dd>
+                    </dl>
+                  </div>
+                  <div class="col-md-6">
+                    <dl class="row">
+                      <dt class="col-5">Nama Lengkap:</dt>
+                      <dd class="col-7" id="vw-nama">-</dd>
+                      <dt class="col-5">Nomor Pengadu:</dt>
+                      <dd class="col-7" id="vw-nohp">-</dd>
+                      <dt class="col-5">Tanggal Kejadian:</dt>
+                      <dd class="col-7" id="vw-tgl-kejadian">Tidak diisi</dd>
+                      <dt class="col-12">Detail Laporan:</dt>
+                      <dd class="col-12" id="vw-detail">-</dd>
+                      <dt class="col-12">Dokumen Pendukung:</dt>
+                      <dd class="col-12" id="vw-dokumen">-</dd>
+                      <dt class="col-12">Tanggapan:</dt>
+                      <dd class="col-12" id="vw-tanggapan">-</dd>
+                      <dt class="col-12">Catatan Disposisi:</dt>
+                      <dd class="col-12" id="vw-catatan">-</dd>
+                      <dt class="col-12">Analisis dari JF:</dt>
+                      <dd class="col-12" id="vw-analisis">-</dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn" data-bs-dismiss="modal">Tutup</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal EDIT -->
+        <div class="modal fade" id="modal-edit-laporan" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Perbarui Pengaduan</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <form id="form-edit-laporan">
+                <div class="modal-body">
+                  <div class="row g-4">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label">Nomor Tiket</label>
+                        <input type="text" id="ed-tiket" class="form-control" readonly />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Nama Lengkap</label>
+                        <input type="text" id="ed-nama" class="form-control" />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Nomor Pengadu</label>
+                        <input type="text" id="ed-nohp" class="form-control" />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Judul Pengaduan</label>
+                        <input type="text" id="ed-judul" class="form-control" />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Alamat Lengkap</label>
+                        <textarea id="ed-alamat" class="form-control" rows="3"></textarea>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Tanggal Kejadian</label>
+                        <input type="text" id="ed-tgl-kejadian" class="form-control" placeholder="DD/MM/YYYY" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label">Kategori</label>
+                        <select id="ed-kategori" class="form-select">
+                          <option>Pekerjaan Umum dan Penataan</option>
+                          <option>Politik dan Hukum</option>
+                          <option>Sosial dan Kesejahteraan</option>
+                          <option>Pertanahan</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Distribusi</label>
+                        <select id="ed-distribusi" class="form-select">
+                          <option>deputi_1</option>
+                          <option>deputi_2</option>
+                          <option>deputi_3</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Disposisi</label>
+                        <select id="ed-disposisi" class="form-select">
+                          <option>Belum terdisposisi</option>
+                          <option>Sudah terdisposisi</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Sumber</label>
+                        <select id="ed-sumber" class="form-select">
+                          <option>TM</option>
+                          <option>Web</option>
+                          <option>Email</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select id="ed-status" class="form-select">
+                          <option>Proses verifikasi dan telaah</option>
+                          <option>Selesai</option>
+                          <option>Ditolak</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Detail Laporan</label>
+                        <textarea id="ed-detail" class="form-control" rows="5"></textarea>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Tanggapan</label>
+                        <textarea id="ed-tanggapan" class="form-control" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn" type="button" data-bs-dismiss="modal">Batal</button>
+                  <button class="btn btn-primary" id="btn-save-edit" type="submit" data-bs-dismiss="modal">
+                    Simpan
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -1205,6 +1205,7 @@
     <script src="/dist/js/chart-data/chart-pie-deputi.js" defer></script>
     <script src="/dist/js/log-login.js" defer></script>
     <script src="/dist/js/table-laporan-data.js" defer></script>
+    <script src="/dist/js/dummy/dummy-data-kelola-laporan.js" defer></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const toggle = document.getElementById("edit-toggle");

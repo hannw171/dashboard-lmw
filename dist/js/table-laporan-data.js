@@ -184,8 +184,16 @@ function renderTicketRows(rows) {
       <td class="sort-dikirim">${r.dikirim}</td>
       <td>
         <div class="btn-list flex-nowrap">
-            <button class="btn btn-icon btn-outline-secondary"><i class="ti ti-eye"></i></button>
-            <button class="btn btn-icon btn-outline-secondary"><i class="ti ti-pencil"></i></button>
+          <button class="btn btn-icon btn-outline-secondary btn-view"
+                  data-bs-toggle="modal" data-bs-target="#modal-view-laporan"
+                  data-ticket="${r.tiket}" title="Lihat">
+            <i class="ti ti-eye"></i>
+          </button>
+          <button class="btn btn-icon btn-outline-secondary btn-edit"
+                  data-bs-toggle="modal" data-bs-target="#modal-edit-laporan"
+                  data-ticket="${r.tiket}" title="Edit">
+            <i class="ti ti-pencil"></i>
+          </button>
             <button class="btn btn-icon btn-outline-danger btn-delete"
                 data-bs-toggle="modal"
                 data-bs-target="#modal-confirm-delete"

@@ -58,3 +58,34 @@
 #advanced-table-laporan .table-responsive {
   overflow-x: auto; /* biarkan auto; dengan aturan di atas, tidak akan muncul X */
 }
+
+/* Perjelas tombol prev/next Litepicker */
+.litepicker .button-previous-month,
+.litepicker .button-next-month{
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  color: var(--tblr-body-color, #1f2937); /* warna ikon */
+  opacity: 1;                              /* jangan transparan */
+}
+
+/* pakai karakter ‹ › agar tidak tergantung background SVG */
+.litepicker .button-previous-month::before,
+.litepicker .button-next-month::before{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.125rem; /* ~18px */
+  line-height: 1;
+}
+
+.litepicker .button-previous-month::before{ content: "‹"; }
+.litepicker .button-next-month::before{ content: "›"; }
+
+/* kalau ikon ganda muncul (dari SVG bawaannya), bisa disembunyikan */
+.litepicker .button-previous-month svg,
+.litepicker .button-next-month svg{ display: none; }
+
+.litepicker .button-previous-month:hover,
+.litepicker .button-next-month:hover{ color: var(--tblr-heading-color, #0f172a); }
