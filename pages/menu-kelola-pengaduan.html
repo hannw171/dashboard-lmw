@@ -710,48 +710,70 @@
               </div>
               <div class="modal-body">
                 <div class="row g-4">
-                  <div class="col-md-6">
+                  <div class="col-lg-7">
                     <dl class="row">
-                      <dt class="col-5">Nomor Tiket:</dt>
-                      <dd class="col-7" id="vw-tiket">-</dd>
-                      <dt class="col-5">NIK:</dt>
-                      <dd class="col-7" id="vw-nik">Tidak diisi</dd>
-                      <dt class="col-5">Email:</dt>
-                      <dd class="col-7" id="vw-email">Tidak diisi</dd>
-                      <dt class="col-5">Kategori & Judul:</dt>
-                      <dd class="col-7">
+                      <dt class="col-3">Nomor Tiket:</dt>
+                      <dd class="col-9" id="vw-tiket">-</dd>
+                      <dt class="col-3">NIK:</dt>
+                      <dd class="col-9" id="vw-nik">Tidak diisi</dd>
+                      <dt class="col-3">Email:</dt>
+                      <dd class="col-9" id="vw-email">Tidak diisi</dd>
+                      <dt class="col-3">Kategori & Judul:</dt>
+                      <dd class="col-9">
                         <span class="badge bg-purple-lt" id="vw-kategori">-</span>
                         <div id="vw-judul" class="mt-1">-</div>
                       </dd>
-                      <dt class="col-5">Alamat Lengkap:</dt>
-                      <dd class="col-7" id="vw-alamat">-</dd>
-                      <dt class="col-5">Status Laporan:</dt>
-                      <dd class="col-7"><span class="badge" id="vw-status">-</span></dd>
-                      <dt class="col-5">Diposisi dari:</dt>
-                      <dd class="col-7" id="vw-distribusi">-</dd>
-                      <dt class="col-5">Status Analisis:</dt>
-                      <dd class="col-7"><span class="badge" id="vw-status-analisis">Pending</span></dd>
+                      <dt class="col-3">Alamat Lengkap:</dt>
+                      <dd class="col-9" id="vw-alamat">-</dd>
+                      <dt class="col-3">Status Laporan:</dt>
+                      <dd class="col-9"><span class="badge" id="vw-status">-</span></dd>
+                      <dt class="col-3">Diposisi dari:</dt>
+                      <dd class="col-9" id="vw-distribusi">-</dd>
+                      <dt class="col-3">Status Analisis:</dt>
+                      <dd class="col-9"><span class="badge" id="vw-status-analisis">Pending</span></dd>
+                    </dl>
+                    <dl class="row">
+                      <dt class="col-3">Nama Lengkap:</dt>
+                      <dd class="col-9" id="vw-nama">-</dd>
+                      <dt class="col-3">Nomor Pengadu:</dt>
+                      <dd class="col-9" id="vw-nohp">-</dd>
+                      <dt class="col-3">Tanggal Kejadian:</dt>
+                      <dd class="col-9" id="vw-tgl-kejadian">Tidak diisi</dd>
+                      <dt class="col-3">Detail Laporan:</dt>
+                      <dd class="col-9" id="vw-detail">-</dd>
+                      <dt class="col-3">Dokumen Pendukung:</dt>
+                      <dd class="col-9" id="vw-dokumen">-</dd>
+                      <dt class="col-3">Tanggapan:</dt>
+                      <dd class="col-9" id="vw-tanggapan">-</dd>
+                      <dt class="col-3">Catatan Disposisi:</dt>
+                      <dd class="col-9" id="vw-catatan">-</dd>
+                      <dt class="col-3">Analisis dari JF:</dt>
+                      <dd class="col-9" id="vw-analisis">-</dd>
                     </dl>
                   </div>
-                  <div class="col-md-6">
-                    <dl class="row">
-                      <dt class="col-5">Nama Lengkap:</dt>
-                      <dd class="col-7" id="vw-nama">-</dd>
-                      <dt class="col-5">Nomor Pengadu:</dt>
-                      <dd class="col-7" id="vw-nohp">-</dd>
-                      <dt class="col-5">Tanggal Kejadian:</dt>
-                      <dd class="col-7" id="vw-tgl-kejadian">Tidak diisi</dd>
-                      <dt class="col-12">Detail Laporan:</dt>
-                      <dd class="col-12" id="vw-detail">-</dd>
-                      <dt class="col-12">Dokumen Pendukung:</dt>
-                      <dd class="col-12" id="vw-dokumen">-</dd>
-                      <dt class="col-12">Tanggapan:</dt>
-                      <dd class="col-12" id="vw-tanggapan">-</dd>
-                      <dt class="col-12">Catatan Disposisi:</dt>
-                      <dd class="col-12" id="vw-catatan">-</dd>
-                      <dt class="col-12">Analisis dari JF:</dt>
-                      <dd class="col-12" id="vw-analisis">-</dd>
-                    </dl>
+                  <!-- LOG (KANAN) -->
+                  <div class="col-lg-5">
+                    <div class="card h-100">
+                      <div class="card-header">
+                        <strong>Aktivitas terkait</strong>
+                      </div>
+                      <div class="card-body p-0">
+                        <div class="table-responsive" style="max-height: 65vh; overflow: auto">
+                          <table class="table table-sm mb-0 table-logs">
+                            <thead class="sticky-top bg-body">
+                              <tr>
+                                <th style="width: 120px;">Tanggal</th>
+                                <th>Aktivitas</th>
+                                <th style="width: 120px">Pengguna</th>
+                              </tr>
+                            </thead>
+                            <tbody id="vw-log-body">
+                              <!-- diisi via JS -->
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -853,8 +875,62 @@
                 </div>
                 <div class="modal-footer">
                   <button class="btn" type="button" data-bs-dismiss="modal">Batal</button>
+
+                  <!-- TOMBOL BARU -->
+                  <button
+                    class="btn btn-success"
+                    id="btn-forward-open"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-forward-instansi"
+                  >
+                    Teruskan ke Instansi
+                  </button>
+
                   <button class="btn btn-primary" id="btn-save-edit" type="submit" data-bs-dismiss="modal">
                     Simpan
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Teruskan ke Instansi -->
+        <div class="modal fade" id="modal-forward-instansi" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Teruskan ke Instansi</h5>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <form id="form-forward-instansi">
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label class="form-label">Pilih Instansi Tujuan</label>
+                    <select id="fw-instansi" class="form-select">
+                      <option value="" selected disabled>Pilih Instansi</option>
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Keterangan untuk Instansi Tujuan (opsional)</label>
+                    <textarea id="fw-keterangan" class="form-control" rows="4"></textarea>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="fw-anon" />
+                    <label class="form-check-label" for="fw-anon">
+                      Kirim sebagai Anonim (tanpa data identitas pengadu)
+                    </label>
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button class="btn" type="button" data-bs-dismiss="modal">Batal</button>
+                  <button class="btn btn-success" id="btn-forward-send" type="submit" data-bs-dismiss="modal">
+                    Kirim ke Instansi
                   </button>
                 </div>
               </form>
@@ -1193,6 +1269,7 @@
     <script src="../dist/libs/list.js/dist/list.min.js" defer></script>
     <script src="../dist/libs/litepicker/dist/litepicker.js" defer></script>
     <script src="../dist/libs/tom-select/dist/js/tom-select.base.min.js" defer></script>
+    <script src="/dist/js/toast-trial.js" defer></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
     <!-- BEGIN DEMO SCRIPTS -->
     <script src="../dist/js/demo.js" defer></script>
@@ -1257,6 +1334,9 @@
         if (tbl) tbl.classList.remove("text-nowrap");
       });
     </script>
+
+    <!-- Toast container -->
+    <div id="toast-placement" class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1080"></div>
 
     <!-- END PAGE SCRIPTS -->
   </body>

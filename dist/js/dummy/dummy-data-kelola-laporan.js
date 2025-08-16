@@ -27,6 +27,66 @@ const ticketDetails = Object.fromEntries(
   ])
 );
 
+// ===== Dummy log per tiket (ganti ke data API bila siap) =====
+window.activityLogs = {
+  1974732: [
+    { ts: "2025-03-18 15:16:38", user: "Superadmin", text: "Disposisi Analis dihapus" },
+    { ts: "2025-02-18 02:06:04", user: "Superadmin", text: "Perubahan disposisi analis" },
+    {
+      ts: "2025-02-05 21:33:19",
+      user: "Analis Deputi 1",
+      text: "Kategori diperbarui menjadi Mudik, disposisi terbaru diperbarui menjadi deputi_1",
+    },
+    { ts: "2025-02-05 21:12:44", user: "Superadmin", text: "Laporan ditugaskan ke analis Deputi 1" },
+    { ts: "2025-02-05 20:58:13", user: "Superadmin", text: "Laporan dilimpahkan ke Deputi Bidang Administrasi" },
+    { ts: "2025-02-01 22:12:41", user: "Superadmin", text: "Kategori diperbarui menjadi Bantuan Masyarakat" },
+    { ts: "2025-02-01 22:12:41", user: "Superadmin", text: "Kategori diperbarui menjadi Bantuan Masyarakat" },
+    { ts: "2025-02-01 22:12:41", user: "Superadmin", text: "Kategori diperbarui menjadi Bantuan Masyarakat" },
+    { ts: "2025-02-01 22:12:41", user: "Superadmin", text: "Kategori diperbarui menjadi Bantuan Masyarakat" },
+    { ts: "2025-02-01 22:12:41", user: "Superadmin", text: "Kategori diperbarui menjadi Bantuan Masyarakat" },
+    { ts: "2025-02-01 22:12:41", user: "Superadmin", text: "Kategori diperbarui menjadi Bantuan Masyarakat" },
+    { ts: "2025-02-01 22:12:41", user: "Superadmin", text: "Kategori diperbarui menjadi Bantuan Masyarakat" },
+  ],
+  // tiket lain menyusul...
+};
+
+// ===== Helper aman =====
+function escapeHtml(s) {
+  return String(s ?? "").replace(
+    /[&<>"']/g,
+    (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m])
+  );
+}
+
+// (opsional) ubah format tanggal; default biarkan apa adanya
+function formatTs(ts) {
+  return ts;
+}
+
+// ===== Render log ke modal view =====
+function renderActivityLog(tiket) {
+  const tbody = document.getElementById("vw-log-body");
+  if (!tbody) return;
+
+  const logs = (window.activityLogs && window.activityLogs[tiket]) || [];
+  if (!logs.length) {
+    tbody.innerHTML = `<tr><td colspan="3" class="text-secondary text-center py-4">Tidak ada log aktivitas.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = logs
+    .map(
+      (l) => `
+    <tr>
+      <td class="text-muted">${escapeHtml(formatTs(l.ts))}</td>
+      <td>${escapeHtml(l.text)}</td>
+      <td class="text-muted">${escapeHtml(l.user)}</td>
+    </tr>
+  `
+    )
+    .join("");
+}
+
 // --- daftar kelas bg yang mungkin dipakai, untuk dibersihkan sebelum set baru
 const BADGE_BG_CLASSES = [
   "bg-primary",
@@ -129,6 +189,8 @@ function fillViewModal(tiket) {
   setText("vw-tanggapan", d.tanggapan || "-");
   setText("vw-catatan", d.catatanDisposisi || "-");
   setText("vw-analisis", d.analisisJF || "-");
+
+  renderActivityLog(tiket);
 }
 
 // ===== Binding tombol View (panggil saat DOM ready) =====

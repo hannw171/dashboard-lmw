@@ -89,3 +89,17 @@
 
 .litepicker .button-previous-month:hover,
 .litepicker .button-next-month:hover{ color: var(--tblr-heading-color, #0f172a); }
+
+/* Indent kolom pertama di panel log pada modal view */
+#modal-view-laporan .table-logs th:first-child,
+#modal-view-laporan .table-logs td:first-child{
+  padding-left: 0.75rem;   /* atau 1rem kalau mau lebih dalam */
+}
+
+/* (opsional) hanya di layar ≥ md */
+@media (min-width: 768px){
+  #modal-view-laporan .table-logs th:first-child,
+  #modal-view-laporan .table-logs td:first-child{
+    padding-left: 1rem;
+  }
+}

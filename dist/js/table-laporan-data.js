@@ -406,9 +406,117 @@ function updateFilterBadge() {
   console.log(n);
 }
 
+// util close aman (pakai Bootstrap kalau ada, kalau tidak fallback)
+function closeModalSafe(modalId, focusEl) {
+  const modalEl = document.getElementById(modalId);
+  if (!modalEl) return;
+  if (window.bootstrap && window.bootstrap.Modal) {
+    bootstrap.Modal.getOrCreateInstance(modalEl).hide();
+  } else {
+    // fallback manual
+    if (focusEl && focusEl.focus) focusEl.focus({ preventScroll: true });
+    modalEl.classList.remove("show");
+    modalEl.setAttribute("aria-hidden", "true");
+    modalEl.style.display = "none";
+    document.body.classList.remove("modal-open");
+    document.querySelectorAll(".modal-backdrop").forEach((el) => el.remove());
+  }
+}
+
 /* =======================
    INIT
    ======================= */
+
+// -- Aksi teruskan Pengaduan ke instansi --
+document.addEventListener("DOMContentLoaded", function () {
+  const btnOpenForward = document.getElementById("btn-forward-open");
+
+  // Buka modal forward: sinkron opsi & default dari form Edit
+  btnOpenForward?.addEventListener("click", () => {
+    const edDistribusi = document.getElementById("ed-distribusi"); // select di modal edit
+    const fwInstansi = document.getElementById("fw-instansi");
+    const fwKet = document.getElementById("fw-keterangan");
+    const fwAnon = document.getElementById("fw-anon");
+
+    // isi pilihan instansi: salin dari ed-distribusi kalau ada, else fallback
+    if (fwInstansi) {
+      if (edDistribusi) {
+        fwInstansi.innerHTML = '<option value="" selected disabled>Pilih Instansi</option>' + edDistribusi.innerHTML;
+        fwInstansi.value = edDistribusi.value || "";
+      } else {
+        const fallback = ["deputi_1", "deputi_2", "deputi_3"];
+        fwInstansi.innerHTML =
+          '<option value="" selected disabled>Pilih Instansi</option>' +
+          fallback.map((v) => `<option value="${v}">${v}</option>`).join("");
+      }
+    }
+    if (fwKet) fwKet.value = "";
+    if (fwAnon) fwAnon.checked = false;
+  });
+
+  // Submit "Kirim ke Instansi"
+  document.getElementById("form-forward-instansi")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const tiket = document.getElementById("ed-tiket")?.value || ""; // ambil dari form edit
+    const instansi = document.getElementById("fw-instansi")?.value || "";
+    const ket = document.getElementById("fw-keterangan")?.value?.trim() || "";
+    const anonim = document.getElementById("fw-anon")?.checked || false;
+
+    if (!tiket || !instansi) {
+      console.warn("Tiket/instansi kosong");
+      closeModalSafe("modal-forward-instansi", document.getElementById("btn-forward-open"));
+      return;
+    }
+
+    // --- payload "yang akan dikirim" (simulasi) ---
+    const d = window.ticketDetails && window.ticketDetails[tiket] ? { ...window.ticketDetails[tiket] } : null;
+    let payload = { tiket, instansi, keterangan: ket, anonim, data: d };
+
+    // jika anonim, kosongkan identitas di payload
+    if (anonim && payload.data) {
+      ["nama", "nik", "nohp", "email", "alamat"].forEach((k) => (payload.data[k] = ""));
+    }
+    console.log("FORWARD PAYLOAD →", payload);
+
+    // --- update store + tabel ---
+    if (window.ticketDetails && window.ticketDetails[tiket]) {
+      window.ticketDetails[tiket].distribusi = instansi;
+      window.ticketDetails[tiket].disposisi = "Sudah terdisposisi";
+      if (ket) window.ticketDetails[tiket].catatanDisposisi = ket + (anonim ? " (anonim)" : "");
+    }
+
+    const list = window.tabler_list?.["advanced-table-laporan"];
+    const btnInRow =
+      document.querySelector(`.btn-edit[data-ticket="${tiket}"]`) ||
+      document.querySelector(`.btn-view[data-ticket="${tiket}"]`) ||
+      document.querySelector(`.btn-delete[data-ticket="${tiket}"]`);
+    const tr = btnInRow ? btnInRow.closest("tr") : null;
+    if (tr) {
+      const c1 = tr.querySelector(".sort-distribusi");
+      if (c1) c1.textContent = instansi;
+      const c2 = tr.querySelector(".sort-disposisi");
+      if (c2) {
+        c2.textContent = "Sudah terdisposisi";
+        c2.classList.remove("text-danger");
+      }
+    }
+    if (list) {
+      list.reIndex();
+      list.update();
+    }
+
+    toastTabler({
+      title: "Diteruskan",
+      message: `Tiket ${tiket} berhasil diteruskan ke ${instansi}${anonim ? " (anonim)" : ""}.`,
+      variant: "success",
+      delay: 3200,
+    });
+
+    // tutup modal aman
+    closeModalSafe("modal-forward-instansi", document.getElementById("btn-forward-open"));
+  });
+});
+
 // -- isi modal saat tombol hapus diklik --
 document.getElementById("advanced-table-laporan")?.addEventListener("click", (e) => {
   const btn = e.target.closest('.btn-delete[data-bs-target="#modal-confirm-delete"]');
