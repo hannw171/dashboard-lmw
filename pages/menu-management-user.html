@@ -20,9 +20,12 @@
     <link href="../dist/css/tabler.css" rel="stylesheet" />
     <link href="../dist/css/addon-css.css" rel="stylesheet" />
     <link href="../dist/css/tabler-icons.min.css" rel="stylesheet" />
+    <link href="../dist/libs/tom-select/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet" />
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PLUGINS STYLES -->
+    <link href="../dist/css/tabler-vendors.css" rel="stylesheet" />
     <link href="../dist/css/tabler-themes.css" rel="stylesheet" />
+    <link href="../dist/css/litepicker.css" rel="stylesheet" />
     <!-- END PLUGINS STYLES -->
     <!-- BEGIN DEMO STYLES -->
     <link href="../dist/css/demo.css" rel="stylesheet" />
@@ -371,7 +374,7 @@
                   </a>
                 </li>
                 <!-- Menu Profile -->
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a class="nav-link" href="../pages/menu-profile.html">
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                       <i class="ti ti-user-circle"></i>
@@ -384,26 +387,7 @@
                   <a class="nav-link" href="../pages/menu-daftar-pengadu.html">
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                       <!-- Download SVG icon from http://tabler.io/icons/icon/list -->
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-list"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M9 6l11 0" />
-                        <path d="M9 12l11 0" />
-                        <path d="M9 18l11 0" />
-                        <path d="M5 6l0 .01" />
-                        <path d="M5 12l0 .01" />
-                        <path d="M5 18l0 .01" />
-                      </svg>
+                      <i class="ti ti-list"></i>
                     </span>
                     <span class="nav-link-title">Daftar Pengadu</span>
                   </a>
@@ -419,7 +403,7 @@
                   </a>
                 </li>
                 <!-- Menu Management User -->
-                <li class="nav-item">
+                <li class="nav-item active">
                   <a class="nav-link" href="../pages/menu-management-user.html">
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                       <!-- Download SVG icon from http://tabler.io/icons/icon/list -->
@@ -439,10 +423,8 @@
         <!-- BEGIN PAGE HEADER -->
         <div class="page-header d-print-none" aria-label="Page header">
           <div class="container-xl">
-            <div class="row g-2 align-items-center">
-              <div class="col">
-                <h2 class="page-title">Account Settings</h2>
-              </div>
+            <div class="d-flex g-2 align-items-center justify-content-between">
+              <h2 class="page-title">Manajemen User</h2>
             </div>
           </div>
         </div>
@@ -451,242 +433,112 @@
         <div class="page-body">
           <div class="container-xl">
             <div class="card">
-              <div class="row g-0">
-                <div class="col-12 col-md-3 border-end">
-                  <div class="card-body">
-                    <div class="list-group list-group-transparent mx-0" id="settings-tab" role="tablist">
-                      <div class="subheader my-2">Profile Detail</div>
-                      <a
-                        class="list-group-item list-group-item-action active"
-                        data-bs-toggle="list"
-                        data-bs-target="#pane-account"
-                        id="tab-account"
-                        role="button"
-                        >My Account</a
-                      >
-                      <a
-                        class="list-group-item list-group-item-action"
-                        data-bs-toggle="list"
-                        data-bs-target="#pane-notifications"
-                        id="tab-notifications"
-                        role="button"
-                        >My Notifications</a
-                      >
-                      <a
-                        class="list-group-item list-group-item-action"
-                        data-bs-toggle="list"
-                        data-bs-target="#pane-log"
-                        role="button"
-                        id="tab-log"
-                        >Log Login Terbaru</a
-                      >
-
-                      <div class="subheader my-2 mt-4">Profile Setting</div>
-                      <a
-                        class="list-group-item list-group-item-action"
-                        data-bs-toggle="list"
-                        data-bs-target="#pane-reset-password"
-                        role="button"
-                        id="tab-reset-password"
-                        >Reset Password</a
-                      >
+              <div class="card-table">
+                <div class="card-header">
+                  <div class="row w-full align-items-center">
+                    <div class="col">
+                      <button id="btn-add-user" class="btn btn-primary">
+                        <i class="ti ti-user-plus me-1"></i> Tambah User
+                      </button>
+                    </div>
+                    <div class="col">
+                      <div class="input-group input-group-flat">
+                        <span class="input-group-text"><i class="ti ti-search"></i></span>
+                        <input
+                          id="advanced-table-manage-user-search"
+                          type="text"
+                          class="form-control"
+                          placeholder="Cari user (nama, email, role, jabatan, unit)"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="col-12 col-md-9 d-flex flex-column">
-                  <div class="card-body">
-                    <div class="tab-content" id="settings-tabContent">
-                      <div
-                        class="tab-pane fade show active"
-                        id="pane-account"
-                        role="tabpanel"
-                        aria-labelledby="tab-account"
-                      >
-                        <!-- Konten My Account -->
-                        <h2 class="mb-4">My Account</h2>
-                        <div class="row justify-content-between">
-                          <div class="col">
-                            <h3 class="card-title">Profile Details</h3>
-                          </div>
-                          <div class="col-auto">
-                            <label class="form-check form-switch form-switch-lg">
-                              <input id="edit-toggle" class="form-check-input" type="checkbox" />
-                              <span class="form-check-label form-check-label-on">Edit</span>
-                              <span class="form-check-label form-check-label-off">Edit</span>
-                            </label>
-                          </div>
-                        </div>
-                        <div class="col align-items-start">
-                          <!-- Avatar -->
-                          <div class="row-auto">
-                            <span class="avatar avatar-xl" style="background-image: url(../dist/img/avatars/000m.jpg)">
-                            </span>
-                          </div>
+                <div id="advanced-table-user">
+                  <div class="table-responsive" style="min-height: 50vh; max-height: 58vh; overflow-y: auto">
+                    <table class="table card-table table-vcenter datatable">
+                      <colgroup>
+                        <col style="width: 4%" />
+                        <col style="width: 18%" />
+                        <col style="width: 22%" />
+                        <col style="width: 12%" />
+                        <col style="width: 24%" />
+                        <col style="width: 12%" />
+                        <col style="width: 8%" />
+                      </colgroup>
+                      <thead class="sticky-top bg-white">
+                        <tr>
+                          <th class="w-1">
+                            <button class="table-sort d-flex justify-content-between" data-sort="sort-no">#</button>
+                          </th>
+                          <th>
+                            <button class="table-sort d-flex justify-content-between" data-sort="sort-nama">
+                              Nama
+                            </button>
+                          </th>
+                          <th>
+                            <button class="table-sort d-flex justify-content-between" data-sort="sort-email">
+                              Email
+                            </button>
+                          </th>
+                          <th>
+                            <button class="table-sort d-flex justify-content-between" data-sort="sort-role">
+                              Role
+                            </button>
+                          </th>
+                          <th>
+                            <button class="table-sort d-flex justify-content-between" data-sort="sort-jabatan">
+                              Jabatan
+                            </button>
+                          </th>
+                          <th>
+                            <button class="table-sort d-flex justify-content-between" data-sort="sort-unit">
+                              Unit
+                            </button>
+                          </th>
+                          <th class="w-1">Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-tbody" id="tbl-user-tbody"></tbody>
+                    </table>
+                  </div>
 
-                          <!-- Form fields -->
-                          <form id="profile-form" class="row">
-                            <div class="row g-3">
-                              <div class="col-md-6">
-                                <div class="form-label">Nama Lengkap</div>
-                                <input type="text" class="form-control" value="Deputi 1" />
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-label">Email</div>
-                                <input type="text" class="form-control" value="deputi1@gmail.com" />
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-label">Jabatan</div>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  value="Deputi Bidang Dukungan Kebijakan Perekonomian, Pariwisata, dan Transformasi Digital"
-                                />
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-label">Unit</div>
-                                <input type="text" class="form-control" value="Unit -" />
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-label">Deputi</div>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  value="Deputi Bidang Dukungan Kebijakan Perekonomian, Pariwisata, dan Transformasi Digital"
-                                />
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-
-                        <div class="card-footer bg-transparent mt-4 d-none ps-0" id="form-footer">
-                          <div class="btn-list justify-content-start">
-                            <a href="#" class="btn btn-1">Cancel</a>
-                            <button type="submit" href="#" class="btn btn-primary btn-2">Submit</button>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div
-                        class="tab-pane fade"
-                        id="pane-notifications"
-                        role="tabpanel"
-                        aria-labelledby="tab-notifications"
-                      >
-                        <!-- Konten My Notifications -->
-                        <div class="list-group list-group-flush list-group-hoverable">
-                          <div class="list-group-item">
-                            <div class="row align-items-center">
-                              <div class="col-auto">
-                                <span class="status-dot status-dot-animated bg-red d-block"></span>
-                              </div>
-                              <div class="col text-truncate row-gap-1 d-flex flex-column">
-                                <a href="#" class="text-reset d-block">Mallory Hulme</a>
-                                <div class="d-block text-secondary text-truncate mt-n1">
-                                  Update change-version.js (#29736)
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="list-group-item">
-                            <div class="row align-items-center">
-                              <div class="col-auto"><span class="badge bg-red"></span></div>
-                              <div class="col text-truncate row-gap-1 d-flex flex-column">
-                                <a href="#" class="text-reset d-block">Paweł Kuna</a>
-                                <div class="d-block text-secondary text-truncate mt-n1">
-                                  Change deprecated html tags to text decoration classes (#29604)
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="list-group-item">
-                            <div class="row align-items-center">
-                              <div class="col-auto"><span class="badge bg-yellow"></span></div>
-                              <div class="col text-truncate row-gap-1 d-flex flex-column">
-                                <a href="#" class="text-reset d-block">Jeffie Lewzey</a>
-                                <div class="d-block text-secondary text-truncate mt-n1">
-                                  justify-content:between ⇒ justify-content:space-between (#29734)
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="list-group-item">
-                            <div class="row align-items-center">
-                              <div class="col-auto"><span class="badge bg-green"></span></div>
-                              <div class="col text-truncate row-gap-1 d-flex flex-column">
-                                <a href="#" class="text-reset d-block">Dunn Slane</a>
-                                <div class="d-block text-secondary text-truncate mt-n1">
-                                  Regenerate package-lock.json (#29730)
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="list-group-item">
-                            <div class="row align-items-center">
-                              <div class="col-auto"><span class="badge bg-green"></span></div>
-                              <div class="col text-truncate row-gap-1 d-flex flex-column">
-                                <a href="#" class="text-reset d-block">Emmy Levet</a>
-                                <div class="d-block text-secondary text-truncate mt-n1">Some minor text tweaks</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="list-group-item">
-                            <div class="row align-items-center">
-                              <div class="col-auto"><span class="badge bg-yellow"></span></div>
-                              <div class="col text-truncate row-gap-1 d-flex flex-column">
-                                <a href="#" class="text-reset d-block">Maryjo Lebarree</a>
-                                <div class="d-block text-secondary text-truncate mt-n1">Link to versioned docs</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="list-group-item">
-                            <div class="row align-items-center">
-                              <div class="col-auto"><span class="badge bg-green"></span></div>
-                              <div class="col text-truncate row-gap-1 d-flex flex-column">
-                                <a href="#" class="text-reset d-block">Egan Poetz</a>
-                                <div class="d-block text-secondary text-truncate mt-n1">Copywriting edits</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="list-group-item">
-                            <div class="row align-items-center">
-                              <div class="col-auto"><span class="badge bg-yellow"></span></div>
-                              <div class="col text-truncate row-gap-1 d-flex flex-column">
-                                <a href="#" class="text-reset d-block">Kellie Skingley</a>
-                                <div class="d-block text-secondary text-truncate mt-n1">
-                                  Enable RFS for font resizing
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="tab-pane fade" id="pane-log" role="tabpanel" aria-labelledby="tab-log">
-                        <!-- Konten Log Login -->
-                        <div
-                          id="log-container"
-                          class="list-group list-group-flush overflow-auto"
-                          style="max-height: 35rem"
-                        ></div>
-                      </div>
-
-                      <div
-                        class="tab-pane fade"
-                        id="pane-reset-password"
-                        role="tabpanel"
-                        aria-labelledby="tab-reset-password"
-                      >
-                        <!-- Konten Reset Password -->
-                        <h3 class="card-title">Password</h3>
-                        <p class="card-subtitle">
-                          You can set a permanent password if you don't want to use temporary login codes.
-                        </p>
-                        <div>
-                          <a href="#" class="btn btn-1"> Set new password </a>
-                        </div>
+                  <div class="card-footer d-flex align-items-center">
+                    <div class="dropdown">
+                      <a class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                        <span id="user-page-count" class="me-1">20</span> <span>records</span>
+                      </a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" onclick="setUserPageSize(event)" data-value="10">10 records</a>
+                        <a class="dropdown-item" onclick="setUserPageSize(event)" data-value="20">20 records</a>
+                        <a class="dropdown-item" onclick="setUserPageSize(event)" data-value="50">50 records</a>
+                        <a class="dropdown-item" onclick="setUserPageSize(event)" data-value="100">100 records</a>
                       </div>
                     </div>
+
+                    <ul class="pagination m-0 ms-auto">
+                      <!-- PREV (tetap, tidak dihapus List.js) -->
+                      <ul class="pagination m-0" id="user-pagination-prev">
+                        <li class="page-item">
+                          <a class="page-link" href="#" aria-label="Previous">
+                            <i class="ti ti-chevron-left"></i>
+                          </a>
+                        </li>
+                      </ul>
+
+                      <!-- NUMBERS (ini yang diisi List.js) -->
+                      <ul class="pagination m-0 pagination-numbers"></ul>
+
+                      <!-- NEXT (tetap, tidak dihapus List.js) -->
+                      <ul class="pagination m-0" id="user-pagination-next">
+                        <li class="page-item">
+                          <a class="page-link" href="#" aria-label="Next">
+                            <i class="ti ti-chevron-right"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -694,6 +546,126 @@
           </div>
         </div>
         <!-- END PAGE BODY -->
+
+        <!-- BEGIN PAGE MODALS -->
+        <!-- Modal EDIT / TAMBAH -->
+        <div class="modal fade" id="modal-edit-user" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="edit-user-title">Edit User</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <form id="form-edit-user">
+                <div class="modal-body">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Nama</label>
+                      <input type="text" id="ed-nama" class="form-control" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Email</label>
+                      <input type="email" id="ed-email" class="form-control" required />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label"
+                        >Password <span class="text-secondary small">(kosongkan jika tidak mengubah)</span></label
+                      >
+                      <input type="password" id="ed-pass" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Konfirmasi Password</label>
+                      <input type="password" id="ed-pass2" class="form-control" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Role</label>
+                      <select id="ed-role" class="form-select">
+                        <option>superadmin</option>
+                        <option>deputi_1</option>
+                        <option>deputi_2</option>
+                        <option>deputi_3</option>
+                        <option>deputi_4</option>
+                        <option>asdep</option>
+                        <option>analis</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Jabatan</label>
+                      <input type="text" id="ed-jabatan" class="form-control" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Deputi</label>
+                      <select id="ed-deputi" class="form-select">
+                        <option>Admin</option>
+                        <option>
+                          Deputi Bidang Dukungan Kebijakan Perekonomian, Pariwisata, dan Transformasi Digital
+                        </option>
+                        <option>
+                          Deputi Bidang Dukungan Kebijakan Peningkatan Kesejahteraan Dan Pembangunan Sumber Daya Manusia
+                        </option>
+                        <option>Deputi Bidang Dukungan Kebijakan Pemerintahan dan Pemerataan Pembangunan</option>
+                        <option>Deputi Bidang Administrasi</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Unit</label>
+                      <select id="ed-unit" class="form-select">
+                        <option>Admin</option>
+                        <option>Asisten Deputi Ekonomi, Keuangan, dan Transformasi Digital</option>
+                        <option>Asisten Deputi Industri, Perdagangan, Pariwisata, dan Ekonomi Kreatif</option>
+                        <option>Asisten Deputi Infrastruktur, Sumber Daya Alam, dan Pembangunan Kewilayahan</option>
+                        <option>Asisten Deputi Pengentasan Kemiskinan dan Pembangunan Desa</option>
+                        <option>Asisten Deputi Kesehatan, Gizi, dan Pembangunan Keluarga</option>
+                        <option>Asisten Deputi Pemberdayaan Masyarakat dan Penanggulangan Bencana</option>
+                        <option>Asisten Deputi Pendidikan, Agama, Kebudayaan, Pemuda, dan Olahraga</option>
+                        <option>Asisten Deputi Hubungan Luar Negeri dan Pertahanan</option>
+                        <option>Asisten Deputi Politik, Keamanan, Hukum, dan Hak Asasi Manusia</option>
+                        <option>Asisten Deputi Tata Kelola Pemerintahan dan Percepatan Pembangunan Daerah</option>
+                        <option>Biro Tata Usaha dan Sumber Daya Manusia</option>
+                        <option>Biro Perencanaan dan Keuangan</option>
+                        <option>Biro Umum</option>
+                        <option>Biro Protokol dan Kerumahtanggaan</option>
+                        <option>Biro Pers, Media, dan Informasi</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn" type="button" data-bs-dismiss="modal">Batal</button>
+                  <button class="btn btn-primary" id="btn-save-user" type="submit">Simpan</button>
+                </div>
+                <input type="hidden" id="ed-id" />
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal DANGER: Hapus -->
+        <div class="modal fade" id="modal-delete-user" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-status bg-danger"></div>
+              <div class="modal-header">
+                <h5 class="modal-title">Hapus user?</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center py-4">
+                <i class="ti ti-alert-circle text-danger" style="font-size: 2rem"></i>
+                <div class="mt-2">Apakah yakin ingin menghapus <strong id="del-name">—</strong>?</div>
+                <div class="text-secondary small" id="del-email">—</div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-link link-secondary" data-bs-dismiss="modal">Batal</button>
+                <button class="btn btn-danger" id="btn-confirm-del" data-bs-dismiss="modal">Ya, hapus</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END PAGE MODALS -->
+
         <!--  BEGIN FOOTER  -->
         <footer class="footer footer-transparent d-print-none">
           <div class="container-xl">
@@ -1013,54 +985,19 @@
       </form>
     </div>
     <!-- BEGIN PAGE LIBRARIES -->
-    <script src="../dist/libs/apexcharts/dist/apexcharts.min.js?1753892832" defer></script>
-    <script src="../dist/libs/jsvectormap/dist/jsvectormap.min.js?1753892832" defer></script>
-    <script src="../dist/libs/jsvectormap/dist/maps/world.js?1753892832" defer></script>
-    <script src="../dist/libs/jsvectormap/dist/maps/world-merc.js?1753892832" defer></script>
     <!-- END PAGE LIBRARIES -->
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script src="../dist/js/tabler.min.js" defer></script>
     <script src="../dist/libs/list.js/dist/list.min.js" defer></script>
+    <script src="/dist/js/toast-trial.js" defer></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
     <!-- BEGIN DEMO SCRIPTS -->
     <script src="../dist/js/demo.js" defer></script>
     <!-- END DEMO SCRIPTS -->
     <!-- BEGIN PAGE SCRIPTS -->
-    <script src="/dist/js/chart-data/chart-data-laporan.js" defer></script>
-    <script src="/dist/js/chart-data/chart-data-laporan-per-kategori.js" defer></script>
-    <script src="/dist/js/chart-data/chart-data-laporan-per-judul-deputi.js" defer></script>
-    <script src="/dist/js/chart-data/chart-map-data.js" defer></script>
-    <script src="/dist/js/chart-data/chart-pie-deputi.js" defer></script>
-    <script src="/dist/js/log-login.js" defer></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const toggle = document.getElementById("edit-toggle");
-        const footer = document.getElementById("form-footer");
-        const form = document.getElementById("profile-form");
+    <script src="../dist/js/dummy/management-user-dummy-data.js" defer></script>
+    <script src="../dist/js/table-management-user-data.js" defer></script>
 
-        // Semua kontrol yang ingin dikunci saat non-edit
-        const controls = form.querySelectorAll(
-          "input.form-control, textarea.form-control, select.form-select, .form-check-input"
-        );
-
-        function applyEditState(editing) {
-          // tampil/hidden tombol
-          footer.classList.toggle("d-none", !editing);
-
-          // enable/disable semua kontrol (kecuali toggle)
-          controls.forEach((el) => {
-            if (el === toggle) return; // jangan nonaktifkan toggle sendiri
-            el.disabled = !editing; // kunci saat bukan mode edit
-          });
-        }
-
-        // set kondisi awal
-        applyEditState(toggle.checked);
-
-        // update saat toggle berubah
-        toggle.addEventListener("change", () => applyEditState(toggle.checked));
-      });
-    </script>
     <!-- END PAGE SCRIPTS -->
   </body>
 </html>

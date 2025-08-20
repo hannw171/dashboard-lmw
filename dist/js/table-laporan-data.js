@@ -1,9 +1,12 @@
-// ====== KONFIG (disesuaikan ke kolom dummyTickets) ======
-const advancedTable = {
+/* =======================
+   TABEL LAPORAN (List.js)
+   ======================= */
+
+const laporanTableConfig = {
   headers: [
-    { "data-sort": "sort-nomor", name: "#" },
-    { "data-sort": "sort-nomor-tiket", name: "Nomor Tiket" },
-    { "data-sort": "sort-nama-lengkap", name: "Nama Lengkap" },
+    { "data-sort": "sort-no", name: "#" },
+    { "data-sort": "sort-tiket", name: "Nomor Tiket" },
+    { "data-sort": "sort-nama", name: "Nama Lengkap" },
     { "data-sort": "sort-judul", name: "Judul Pengaduan" },
     { "data-sort": "sort-kategori", name: "Kategori" },
     { "data-sort": "sort-distribusi", name: "Distribusi" },
@@ -14,173 +17,49 @@ const advancedTable = {
   ],
 };
 
-const setPageListItems = (e) => {
-  window.tabler_list["advanced-table-laporan"].page = parseInt(e.target.dataset.value, 10);
-  window.tabler_list["advanced-table-laporan"].update();
-  document.querySelector("#page-count").innerHTML = e.target.dataset.value;
-};
-
-window.tabler_list = window.tabler_list || {};
-
-// helper: update state tombol prev/next
-function updateChevronState(list) {
-  const pageSize = list.page || 1;
-  const total = list.matchingItems.length || 0;
-  const totalPages = Math.max(1, Math.ceil(total / pageSize));
-  const currentPage = Math.floor(list.i / pageSize) + 1;
-
-  const prevLi = document.querySelector("#pagination-prev .page-item");
-  const nextLi = document.querySelector("#pagination-next .page-item");
-
-  if (prevLi) prevLi.classList.toggle("disabled", currentPage <= 1);
-  if (nextLi) nextLi.classList.toggle("disabled", currentPage >= totalPages);
+function setLaporanPageSize(e) {
+  const l = window.tabler_list["advanced-table-laporan"];
+  l.page = parseInt(e.target.dataset.value, 10);
+  l.update();
+  document.querySelector("#page-count").textContent = e.target.dataset.value;
+  updateChevronStateLaporan(l);
+  renumberVisibleRowsLaporan(l);
 }
 
-/* =======================
-   DUMMY DATA: dummyTickets (10)
-   ======================= */
-const dummyTickets = [
-  {
-    no: 1,
-    tiket: "1974732",
-    nama: "Melania Meirelda Tamara",
-    judul: "Bantuan infrastruktur Jalan Desa",
-    kategori: "Pekerjaan Umum dan Penataan",
-    distribusi: "deputi_1",
-    disposisi: "Belum terdisposisi",
-    sumber: "TM",
-    status: "Proses verifikasi dan telaah",
-    dikirim: "02/11/2025",
-  },
-  {
-    no: 2,
-    tiket: "1974733",
-    nama: "Marlion Sh",
-    judul: "Permohonan Kepastian Politik dan Hukum Operasional",
-    kategori: "Politik dan Hukum",
-    distribusi: "deputi_3",
-    disposisi: "Belum terdisposisi",
-    sumber: "TM",
-    status: "Proses verifikasi dan telaah",
-    dikirim: "02/11/2025",
-  },
-  {
-    no: 3,
-    tiket: "1974736",
-    nama: "Maria N Sampouw",
-    judul: "Permohonan Agar Masuk DTKS",
-    kategori: "Sosial dan Kesejahteraan",
-    distribusi: "deputi_2",
-    disposisi: "Belum terdisposisi",
-    sumber: "Web",
-    status: "Proses verifikasi dan telaah",
-    dikirim: "01/11/2025",
-  },
-  {
-    no: 4,
-    tiket: "1974738",
-    nama: "Lie Mei Lin",
-    judul: "Kasus Penipuan",
-    kategori: "Politik dan Hukum",
-    distribusi: "deputi_3",
-    disposisi: "Belum terdisposisi",
-    sumber: "Email",
-    status: "Proses verifikasi dan telaah",
-    dikirim: "01/11/2025",
-  },
-  {
-    no: 5,
-    tiket: "1974739",
-    nama: "Muhammad Solihin",
-    judul: "Pembayaran Ganti Rugi Tanah",
-    kategori: "Pertanahan",
-    distribusi: "deputi_3",
-    disposisi: "Belum terdisposisi",
-    sumber: "TM",
-    status: "Proses verifikasi dan telaah",
-    dikirim: "31/08/2025",
-  },
-  {
-    no: 6,
-    tiket: "1974740",
-    nama: "Dewi Anggraini",
-    judul: "Bantuan Bedah Rumah",
-    kategori: "Sosial dan Kesejahteraan",
-    distribusi: "deputi_2",
-    disposisi: "Sudah terdisposisi",
-    sumber: "Web",
-    status: "Selesai",
-    dikirim: "28/08/2025",
-  },
-  {
-    no: 7,
-    tiket: "1974741",
-    nama: "Agus Saputra",
-    judul: "Perbaikan Drainase RW 05",
-    kategori: "Pekerjaan Umum dan Penataan",
-    distribusi: "deputi_1",
-    disposisi: "Sudah terdisposisi",
-    sumber: "TM",
-    status: "Selesai",
-    dikirim: "27/08/2025",
-  },
-  {
-    no: 8,
-    tiket: "1974742",
-    nama: "Siti Pratiwi",
-    judul: "Keberatan Proses Perizinan",
-    kategori: "Politik dan Hukum",
-    distribusi: "deputi_3",
-    disposisi: "Belum terdisposisi",
-    sumber: "Email",
-    status: "Ditolak",
-    dikirim: "25/08/2025",
-  },
-  {
-    no: 9,
-    tiket: "1974743",
-    nama: "Rina Kusuma",
-    judul: "Bantuan Penerangan Jalan Umum",
-    kategori: "Pekerjaan Umum dan Penataan",
-    distribusi: "deputi_1",
-    disposisi: "Sudah terdisposisi",
-    sumber: "Web",
-    status: "Selesai",
-    dikirim: "22/08/2025",
-  },
-  {
-    no: 10,
-    tiket: "1974744",
-    nama: "Andi Nugroho",
-    judul: "Perselisihan Batas Tanah",
-    kategori: "Pertanahan",
-    distribusi: "deputi_3",
-    disposisi: "Belum terdisposisi",
-    sumber: "TM",
-    status: "Proses verifikasi dan telaah",
-    dikirim: "20/08/2025",
-  },
-];
+window.setLaporanPageSize = setLaporanPageSize; // biar bisa dipanggil dari HTML
 
-/* =======================
-   RENDER <tr> UNTUK dummyTickets
-   ======================= */
-function renderTicketRows(rows) {
-  const tbody = document.querySelector("#advanced-table-laporan .table-tbody");
+/* ---------- utils ---------- */
+function $(sel, root = document) {
+  return root.querySelector(sel);
+}
+function parseDMY(s) {
+  if (!s) return NaN;
+  const [d, m, y] = s.split(/[\/\-]/).map(Number);
+  return new Date(y, (m || 1) - 1, d || 1).getTime();
+}
+
+const PREV_BTN = "#pagination-prev a.page-link";
+const NEXT_BTN = "#pagination-next a.page-link";
+
+/* ---------- render <tr> ---------- */
+function renderLaporanRows(rows) {
+  const tbody = $("#advanced-table-laporan .table-tbody");
   if (!tbody) return;
   tbody.innerHTML = rows
     .map(
       (r) => `
     <tr>
-      <td class="sort-nomor">${r.no}</td>
-      <td class="sort-nomor-tiket"><a href="#" class="text-blue">${r.tiket}</a></td>
-      <td class="sort-nama-lengkap">${r.nama}</td>
+      <td class="sort-no">${r.no}</td>
+      <td class="sort-tiket"><a href="#" class="text-blue">${r.tiket}</a></td>
+      <td class="sort-nama">${r.nama}</td>
       <td class="sort-judul">${r.judul}</td>
       <td class="sort-kategori">${r.kategori}</td>
       <td class="sort-distribusi">${r.distribusi}</td>
       <td class="sort-disposisi ${/Belum/.test(r.disposisi) ? "text-danger" : "text-success"}">${r.disposisi}</td>
-      <td class="sort-sumber"><span class="badge bg-primary-lt">${r.sumber}</span></td>
-      <td class="sort-status">${r.status}</td>
+      <td><span class="sort-sumber badge bg-primary-lt">${r.sumber}</span></td>
+      <td><span class="sort-status badge ${
+        window.statusToColor ? window.statusToColor(r.status) : "bg-secondary"
+      }">${r.status}</span></td>
       <td class="sort-dikirim">${r.dikirim}</td>
       <td>
         <div class="btn-list flex-nowrap">
@@ -209,17 +88,11 @@ function renderTicketRows(rows) {
     .join("");
 }
 
-/* =======================
-   EMPTY STATE (punyamu)
-   ======================= */
-function ensureEmptyRow() {
-  const tbody =
-    document.querySelector("#advanced-table-laporan .table-tbody") || document.querySelector(".table-tbody");
+function ensureEmptyRowLaporan() {
+  const tbody = $("#advanced-table-laporan .table-tbody");
   let emptyRow = tbody.querySelector("tr.empty-row");
   if (!emptyRow) {
-    const colCount =
-      document.querySelector("#advanced-table-laporan thead tr")?.children.length || advancedTable.headers.length || 1;
-
+    const colCount = $("#advanced-table-laporan thead tr")?.children.length || advancedTable.headers.length || 1;
     emptyRow = document.createElement("tr");
     emptyRow.className = "empty-row";
     const td = document.createElement("td");
@@ -227,412 +100,127 @@ function ensureEmptyRow() {
     td.className = "text-center text-muted p-4";
     td.innerHTML = `
       <div class="d-flex flex-column align-items-center gap-1">
-        <div style="font-size: 2rem; line-height: 1;">😕</div>
+        <div style="font-size:2rem;line-height:1;">😕</div>
         <div><strong>Tidak ada data</strong></div>
-        <div class="small">Coba ubah filter atau kata kunci pencarian.</div>
+        <div class="small">Coba ubah kata kunci pencarian.</div>
       </div>`;
     emptyRow.appendChild(td);
     tbody.appendChild(emptyRow);
   }
   return emptyRow;
 }
-function toggleEmptyRow(list) {
-  const emptyRow = ensureEmptyRow();
-  const hasNoItems = list.matchingItems.length === 0;
-  emptyRow.style.display = hasNoItems ? "" : "none";
 
-  const paginationEl =
-    document.querySelector("#advanced-table-pagination") ||
-    document.querySelector("#advanced-table-laporan .pagination") ||
-    document.querySelector(".pagination");
-  if (paginationEl) paginationEl.style.visibility = hasNoItems ? "hidden" : "visible";
+function toggleEmptyRowLaporan(list) {
+  const emptyRow = ensureEmptyRowLaporan();
+  emptyRow.style.display = list.matchingItems.length === 0 ? "" : "none";
+  const paginationEl = $("#advanced-table-laporan .card-footer .pagination");
+  if (paginationEl) paginationEl.style.visibility = list.matchingItems.length === 0 ? "hidden" : "visible";
 }
 
-/* =======================
-   UTIL TANGGAL & SORT
-   ======================= */
-function parseDMY(s) {
-  if (!s) return NaN;
-  const [d, m, y] = s.split(/[\/\-]/).map(Number);
-  return new Date(y, (m || 1) - 1, d || 1).getTime();
-}
-
-/* =======================
-   POPULATE & LOGIC FILTER (modal)
-   ======================= */
-// Isi opsi filter dari data
-function populateFilterOptionsFromData(rows) {
-  const katSel = document.getElementById("filter-kategori");
-  const statSel = document.getElementById("filter-status");
-  const distSel = document.getElementById("filter-distribusi");
-  const dispSel = document.getElementById("filter-disposisi");
-  const sumSel = document.getElementById("filter-sumber");
-  const fill = (sel, items, firstLabel) => {
-    if (!sel) return;
-    const opts = [...new Set(items)].sort();
-    sel.innerHTML =
-      `<option value="">${firstLabel}</option>` + opts.map((v) => `<option value="${v}">${v}</option>`).join("");
-  };
-  fill(
-    katSel,
-    rows.map((x) => x.kategori),
-    "Semua Kategori"
-  );
-  fill(
-    statSel,
-    rows.map((x) => x.status),
-    "Semua Status"
-  );
-  fill(
-    distSel,
-    rows.map((x) => x.distribusi),
-    "Semua Distribusi"
-  );
-  fill(
-    dispSel,
-    rows.map((x) => x.disposisi),
-    "Semua Disposisi"
-  );
-  fill(
-    sumSel,
-    rows.map((x) => x.sumber),
-    "Semua Sumber"
-  );
-}
-
-// Terapkan filter dari modal
-function applyFilters(list) {
-  const kategori = (document.getElementById("filter-kategori")?.value || "").trim();
-  const status = (document.getElementById("filter-status")?.value || "").trim();
-  const distribusi = (document.getElementById("filter-distribusi")?.value || "").trim();
-  const disposisi = (document.getElementById("filter-disposisi")?.value || "").trim();
-  const sumber = (document.getElementById("filter-sumber")?.value || "").trim();
-  const rangeVal = (document.getElementById("filter-date-range")?.value || "").trim();
-  const sortBy = document.getElementById("filter-sort")?.value || "terbaru";
-
-  let fromTs = -Infinity,
-    toTs = Infinity;
-  if (rangeVal && rangeVal.includes(" - ")) {
-    const [from, to] = rangeVal.split(" - ");
-    fromTs = parseDMY(from);
-    toTs = parseDMY(to);
-  }
-
-  list.filter((item) => {
-    const v = item.values();
-    if (kategori && v["sort-kategori"] !== kategori) return false;
-    if (status && v["sort-status"] !== status) return false;
-    if (distribusi && v["sort-distribusi"] !== distribusi) return false;
-    if (disposisi && v["sort-disposisi"] !== disposisi) return false;
-    if (sumber && v["sort-sumber"] !== sumber) return false;
-
-    const t = parseDMY(v["sort-dikirim"]);
-    if (!isNaN(fromTs) && t < fromTs) return false;
-    if (!isNaN(toTs) && t > toTs) return false;
-
-    return true;
+// Penomoran baris mengikuti halaman yang tampil (termasuk saat search/sort)
+function renumberVisibleRowsLaporan(list) {
+  const startOffset = list.i || 0; // 0-based index item pertama di halaman aktif
+  const tbody = document.querySelector("#advanced-table-laporan .table-tbody");
+  if (!tbody) return;
+  const rows = Array.from(tbody.querySelectorAll("tr:not(.empty-row)"));
+  rows.forEach((tr, idx) => {
+    const cell = tr.querySelector(".sort-nomor");
+    if (cell) cell.textContent = startOffset + idx;
   });
-
-  // sort by tanggal
-  const dir = sortBy === "terbaru" ? -1 : 1;
-  list.sort("sort-dikirim", {
-    sortFunction: (a, b) => dir * (parseDMY(a.values()["sort-dikirim"]) - parseDMY(b.values()["sort-dikirim"])),
-  });
-
-  toggleEmptyRow(list);
-  updateChevronState(list);
 }
 
-function resetFilters(list) {
-  [
-    "filter-kategori",
-    "filter-status",
-    "filter-distribusi",
-    "filter-disposisi",
-    "filter-sumber",
-    "filter-date-range",
-    "filter-sort",
-  ].forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) el.value = id === "filter-sort" ? "terbaru" : "";
-  });
+function updateChevronStateLaporan(list) {
+  const pageSize = list.page || 1;
+  const totalItems = list.matchingItems ? list.matchingItems.length : 0;
+  const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+  const current = Math.floor((list.i || 0) / pageSize) + 1; // 1-based
 
-  list.filter(); // clear
-  list.sort("sort-nomor", {
-    sortFunction: (a, b) => parseInt(a.values()["sort-nomor"]) - parseInt(b.values()["sort-nomor"]),
-  });
-  toggleEmptyRow(list);
-  updateChevronState(list);
-  updateFilterBadge();
+  const prevLi = document.querySelector("#pagination-prev .page-item");
+  const nextLi = document.querySelector("#pagination-next .page-item");
+  if (prevLi) prevLi.classList.toggle("disabled", current <= 1);
+  if (nextLi) nextLi.classList.toggle("disabled", current >= totalPages);
 }
 
-function getActiveFilterCount() {
-  // ambil nilai filter (kecuali 'Urutkan')
-  const kategori = (document.getElementById("filter-kategori")?.value || "").trim();
-  const status = (document.getElementById("filter-status")?.value || "").trim();
-  const distribusi = (document.getElementById("filter-distribusi")?.value || "").trim();
-  const disposisi = (document.getElementById("filter-disposisi")?.value || "").trim();
-  const sumber = (document.getElementById("filter-sumber")?.value || "").trim();
-  const rangeVal = (document.getElementById("filter-date-range")?.value || "").trim();
-
-  let count = 0;
-  if (kategori) count++;
-  if (status) count++;
-  if (distribusi) count++;
-  if (disposisi) count++;
-  if (sumber) count++;
-
-  // hitung date range kalau keduanya diisi (format "DD/MM/YYYY - DD/MM/YYYY")
-  if (rangeVal && rangeVal.includes(" - ")) {
-    const [from, to] = rangeVal.split(" - ");
-    if (from.trim() && to.trim()) count++;
-  }
-
-  console.log(count);
-  return count;
-}
-
-function updateFilterBadge() {
-  const n = getActiveFilterCount();
-  const badge = document.getElementById("filter-active-count");
-  if (!badge) return;
-  if (n > 0) {
-    badge.textContent = n;
-    badge.classList.remove("d-none");
-  } else {
-    badge.classList.add("d-none");
-  }
-
-  console.log(n);
-}
-
-// util close aman (pakai Bootstrap kalau ada, kalau tidak fallback)
-function closeModalSafe(modalId, focusEl) {
-  const modalEl = document.getElementById(modalId);
-  if (!modalEl) return;
-  if (window.bootstrap && window.bootstrap.Modal) {
-    bootstrap.Modal.getOrCreateInstance(modalEl).hide();
-  } else {
-    // fallback manual
-    if (focusEl && focusEl.focus) focusEl.focus({ preventScroll: true });
-    modalEl.classList.remove("show");
-    modalEl.setAttribute("aria-hidden", "true");
-    modalEl.style.display = "none";
-    document.body.classList.remove("modal-open");
-    document.querySelectorAll(".modal-backdrop").forEach((el) => el.remove());
-  }
-}
-
-/* =======================
-   INIT
-   ======================= */
-
-// -- Aksi teruskan Pengaduan ke instansi --
-document.addEventListener("DOMContentLoaded", function () {
-  const btnOpenForward = document.getElementById("btn-forward-open");
-
-  // Buka modal forward: sinkron opsi & default dari form Edit
-  btnOpenForward?.addEventListener("click", () => {
-    const edDistribusi = document.getElementById("ed-distribusi"); // select di modal edit
-    const fwInstansi = document.getElementById("fw-instansi");
-    const fwKet = document.getElementById("fw-keterangan");
-    const fwAnon = document.getElementById("fw-anon");
-
-    // isi pilihan instansi: salin dari ed-distribusi kalau ada, else fallback
-    if (fwInstansi) {
-      if (edDistribusi) {
-        fwInstansi.innerHTML = '<option value="" selected disabled>Pilih Instansi</option>' + edDistribusi.innerHTML;
-        fwInstansi.value = edDistribusi.value || "";
-      } else {
-        const fallback = ["deputi_1", "deputi_2", "deputi_3"];
-        fwInstansi.innerHTML =
-          '<option value="" selected disabled>Pilih Instansi</option>' +
-          fallback.map((v) => `<option value="${v}">${v}</option>`).join("");
-      }
-    }
-    if (fwKet) fwKet.value = "";
-    if (fwAnon) fwAnon.checked = false;
-  });
-
-  // Submit "Kirim ke Instansi"
-  document.getElementById("form-forward-instansi")?.addEventListener("submit", (e) => {
+// Klik prev/next → “klikkan” nomor halaman bawaan List.js
+function wirePrevNext() {
+  const prevA = $(PREV_BTN);
+  const nextA = $(NEXT_BTN);
+  prevA?.addEventListener("click", (e) => {
     e.preventDefault();
-    const tiket = document.getElementById("ed-tiket")?.value || ""; // ambil dari form edit
-    const instansi = document.getElementById("fw-instansi")?.value || "";
-    const ket = document.getElementById("fw-keterangan")?.value?.trim() || "";
-    const anonim = document.getElementById("fw-anon")?.checked || false;
-
-    if (!tiket || !instansi) {
-      console.warn("Tiket/instansi kosong");
-      closeModalSafe("modal-forward-instansi", document.getElementById("btn-forward-open"));
-      return;
-    }
-
-    // --- payload "yang akan dikirim" (simulasi) ---
-    const d = window.ticketDetails && window.ticketDetails[tiket] ? { ...window.ticketDetails[tiket] } : null;
-    let payload = { tiket, instansi, keterangan: ket, anonim, data: d };
-
-    // jika anonim, kosongkan identitas di payload
-    if (anonim && payload.data) {
-      ["nama", "nik", "nohp", "email", "alamat"].forEach((k) => (payload.data[k] = ""));
-    }
-    console.log("FORWARD PAYLOAD →", payload);
-
-    // --- update store + tabel ---
-    if (window.ticketDetails && window.ticketDetails[tiket]) {
-      window.ticketDetails[tiket].distribusi = instansi;
-      window.ticketDetails[tiket].disposisi = "Sudah terdisposisi";
-      if (ket) window.ticketDetails[tiket].catatanDisposisi = ket + (anonim ? " (anonim)" : "");
-    }
-
-    const list = window.tabler_list?.["advanced-table-laporan"];
-    const btnInRow =
-      document.querySelector(`.btn-edit[data-ticket="${tiket}"]`) ||
-      document.querySelector(`.btn-view[data-ticket="${tiket}"]`) ||
-      document.querySelector(`.btn-delete[data-ticket="${tiket}"]`);
-    const tr = btnInRow ? btnInRow.closest("tr") : null;
-    if (tr) {
-      const c1 = tr.querySelector(".sort-distribusi");
-      if (c1) c1.textContent = instansi;
-      const c2 = tr.querySelector(".sort-disposisi");
-      if (c2) {
-        c2.textContent = "Sudah terdisposisi";
-        c2.classList.remove("text-danger");
-      }
-    }
-    if (list) {
-      list.reIndex();
-      list.update();
-    }
-
-    toastTabler({
-      title: "Diteruskan",
-      message: `Tiket ${tiket} berhasil diteruskan ke ${instansi}${anonim ? " (anonim)" : ""}.`,
-      variant: "success",
-      delay: 3200,
-    });
-
-    // tutup modal aman
-    closeModalSafe("modal-forward-instansi", document.getElementById("btn-forward-open"));
+    document
+      .querySelector(".pagination-numbers .page-item.active")
+      ?.previousElementSibling?.querySelector("a.page-link")
+      ?.click();
   });
-});
+  nextA?.addEventListener("click", (e) => {
+    e.preventDefault();
+    document
+      .querySelector(".pagination-numbers .page-item.active")
+      ?.nextElementSibling?.querySelector("a.page-link")
+      ?.click();
+  });
+}
 
-// -- isi modal saat tombol hapus diklik --
-document.getElementById("advanced-table-laporan")?.addEventListener("click", (e) => {
-  const btn = e.target.closest('.btn-delete[data-bs-target="#modal-confirm-delete"]');
-  if (!btn) return;
+/* ================== INIT ================== */
+window.tabler_list = window.tabler_list || {};
 
-  const tiket = btn.dataset.ticket;
-  const tr = btn.closest("tr");
-  const nama = tr?.querySelector(".sort-nama-lengkap")?.textContent?.trim() || "";
+/* ---------- INIT ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+  // 1) Render awal dari dummy
+  const rows = window.laporanData || [];
+  renderLaporanRows(rows);
+  populateFilterOptionsFromData(rows);
 
-  // set konten modal
-  const modal = document.getElementById("modal-confirm-delete");
-  modal.querySelector("#confirm-ticket").textContent = tiket || "—";
-  modal.querySelector("#confirm-name").textContent = nama ? `atas nama ${nama}` : "";
-
-  // simpan tiket yg akan dihapus ke tombol confirm
-  modal.querySelector("#btn-confirm-delete").dataset.ticket = tiket || "";
-});
-
-// -- eksekusi hapus saat "Ya, hapus" ditekan --
-document.getElementById("btn-confirm-delete")?.addEventListener("click", () => {
-  const tiket = document.getElementById("btn-confirm-delete").dataset.ticket;
-  const list = window.tabler_list?.["advanced-table-laporan"];
-
-  if (tiket && list) {
-    const removed = list.remove("sort-nomor-tiket", tiket);
-    if (!removed || removed.length === 0) {
-      // fallback kalau valueName beda
-      document.querySelector(`.btn-delete[data-ticket="${tiket}"]`)?.closest("tr")?.remove();
-      list.reIndex();
-    }
-    list.update();
-    toggleEmptyRow(list);
-    updateChevronState(list);
-  }
-
-  // Fallback close modal jika tidak ada Bootstrap/shim
-  const m = document.getElementById("modal-confirm-delete");
-  if (m && m.classList.contains("show") && !(window.bootstrap && window.bootstrap.Modal)) {
-    // pindahkan fokus ke tombol Filter agar tidak ada aria-hidden warning
-    const opener = document.getElementById("btn-open-filter") || document.body;
-    if (opener && opener.focus) opener.focus({ preventScroll: true });
-
-    m.classList.remove("show");
-    m.setAttribute("aria-hidden", "true");
-    m.style.display = "none";
-    document.body.classList.remove("modal-open");
-    document.querySelectorAll(".modal-backdrop").forEach((el) => el.remove());
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  // 1) render data tickets
-  renderTicketRows(dummyTickets);
-  populateFilterOptionsFromData(dummyTickets);
-
-  // 2) init List.js
+  // 2) Init List.js
   const list = (window.tabler_list["advanced-table-laporan"] = new List("advanced-table-laporan", {
     sortClass: "table-sort",
     listClass: "table-tbody",
     page: 20,
     pagination: {
-      paginationClass: "pagination-numbers", // UL angka khusus
-      item: (value) => `<li class="page-item"><a class="page-link cursor-pointer">${value.page}</a></li>`,
-      innerWindow: 1,
-      outerWindow: 1,
+      paginationClass: "pagination-numbers",
+      item: (v) => `<li class="page-item"><a class="page-link cursor-pointer">${v.page}</a></li>`,
+      innerWindow: 0,
+      outerWindow: 0,
       left: 1,
-      right: 0,
+      right: 1,
     },
-    valueNames: advancedTable.headers.map((h) => h["data-sort"]),
+    valueNames: laporanTableConfig.headers.map((h) => h["data-sort"]),
   }));
 
-  // 3) prev/next (UL terpisah)
-  const prevA = document.querySelector("#pagination-prev a.page-link");
-  const nextA = document.querySelector("#pagination-next a.page-link");
-  if (prevA) {
-    prevA.addEventListener("click", (e) => {
-      e.preventDefault();
-      const pageSize = list.page || 1;
-      if (list.i <= 0) return;
-      list.i = Math.max(0, list.i - pageSize);
-      list.update();
-    });
-  }
-  if (nextA) {
-    nextA.addEventListener("click", (e) => {
-      e.preventDefault();
-      const pageSize = list.page || 1;
-      const total = list.matchingItems.length || 0;
-      const totalPages = Math.max(1, Math.ceil(total / pageSize));
-      const currentPage = Math.floor(list.i / pageSize) + 1;
-      if (currentPage >= totalPages) return;
-      list.i = Math.min((totalPages - 1) * pageSize, list.i + pageSize);
-      list.update();
-    });
-  }
-
-  // 4) search
-  const searchInput = document.querySelector("#advanced-table-laporan-search");
+  // 3) Hook search
+  const searchInput = $("#advanced-table-laporan-search");
   if (searchInput) {
     searchInput.addEventListener("input", () => {
       list.search(searchInput.value);
-      toggleEmptyRow(list);
-      updateChevronState(list);
-      updateFilterBadge();
+      toggleEmptyRowLaporan(list);
+      updateChevronStateLaporan(list);
+      renumberVisibleRowsLaporan(list);
+      // Tunggu layout microtask lalu sync dari DOM
+      queueMicrotask(() => {
+        updateChevronStateLaporan();
+        renumberVisibleRowsLaporan(list);
+      });
     });
   }
-
-  // 5) empty state & chevrons sinkron
+  // 5) Sync state
   list.on("updated", () => {
-    toggleEmptyRow(list);
-    updateChevronState(list);
+    toggleEmptyRowLaporan(list);
+    updateChevronStateLaporan(list);
+    renumberVisibleRowsLaporan(list);
   });
-  toggleEmptyRow(list);
-  updateChevronState(list);
 
-  // 6) Litepicker untuk date range (opsional)
+  // pasang prev/next kustom
+  wirePrevNext();
+
+  toggleEmptyRowLaporan(list);
+  updateChevronStateLaporan(list);
+  renumberVisibleRowsLaporan(list);
+  // microtask supaya pagination numbers sempat ter-render dulu
+  queueMicrotask(() => {
+    updateChevronStateLaporan();
+    renumberVisibleRowsLaporan(list);
+  });
+
   if (window.Litepicker) {
     new Litepicker({
       element: document.getElementById("filter-date-range"),
@@ -645,10 +233,6 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("btn-filter-apply")?.addEventListener("click", () => {
     applyFilters(list);
     updateFilterBadge(); // <-- update badge dulu
-
-    // close modal aman (tanpa Bootstrap)
-    const modalEl = document.getElementById("modal-filter-laporan");
-    const opener = document.getElementById("btn-open-filter");
   });
 
   document.getElementById("btn-filter-reset")?.addEventListener("click", () => {
@@ -657,8 +241,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // 8) helper reload data nanti
-  window.reloadTicketRows = function (rows) {
-    renderTicketRows(rows);
+  window.reloadLaporanRows = function (rows) {
+    renderLaporanRows(rows);
     populateFilterOptionsFromData(rows);
     list.reIndex();
     list.update();
@@ -667,15 +251,3 @@ document.addEventListener("DOMContentLoaded", function () {
   updateFilterBadge();
 });
 
-/* =======================
-   (Opsional) nomor urut mengikuti halaman
-   ======================= */
-function renumberVisibleRows(list) {
-  const tbody = document.querySelector("#advanced-table-laporan .table-tbody");
-  if (!tbody) return;
-  const rows = Array.from(tbody.querySelectorAll("tr:not(.empty-row)"));
-  rows.forEach((tr, idx) => {
-    const cell = tr.querySelector(".sort-nomor");
-    if (cell) cell.textContent = idx + 1 + list.i;
-  });
-}

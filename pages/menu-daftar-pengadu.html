@@ -420,6 +420,16 @@
                     <span class="nav-link-title">Kelola Pengaduan</span>
                   </a>
                 </li>
+                <!-- Menu Management User -->
+                <li class="nav-item">
+                  <a class="nav-link" href="../pages/menu-management-user.html">
+                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                      <!-- Download SVG icon from http://tabler.io/icons/icon/list -->
+                      <i class="ti ti-file-description"></i>
+                    </span>
+                    <span class="nav-link-title">Management User</span>
+                  </a>
+                </li>
               </ul>
               <!-- END NAVBAR MENU -->
             </div>
@@ -521,20 +531,7 @@
                       <ul class="pagination m-0" id="pagination-prev">
                         <li class="page-item">
                           <a class="page-link" href="#" aria-label="Previous">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="icon icon-1"
-                            >
-                              <path d="M15 6l-6 6l6 6" />
-                            </svg>
+                            <i class="ti ti-chevron-left"></i>
                           </a>
                         </li>
                       </ul>
@@ -546,20 +543,7 @@
                       <ul class="pagination m-0" id="pagination-next">
                         <li class="page-item">
                           <a class="page-link" href="#" aria-label="Next">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="icon icon-1"
-                            >
-                              <path d="M9 6l6 6l-6 6" />
-                            </svg>
+                            <i class="ti ti-chevron-right"></i>
                           </a>
                         </li>
                       </ul>
@@ -1083,7 +1067,12 @@
     <script src="/dist/js/chart-data/chart-map-data.js" defer></script>
     <script src="/dist/js/chart-data/chart-pie-deputi.js" defer></script>
     <script src="/dist/js/log-login.js" defer></script>
-    <script src="/dist/js/table-pengadu-data.js" defer></script>
+    <!-- <script src="/dist/js/table-pengadu-data.js" defer></script> -->
+    <!-- 1) generator data -->
+    <script src="/dist/js/dummy/pengadu-dummy-data.js"></script>
+
+    <!-- 2) logic tabel -->
+    <script src="/dist/js/table-pengadu-data.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const toggle = document.getElementById("edit-toggle");

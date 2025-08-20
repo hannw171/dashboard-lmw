@@ -1,6 +1,6 @@
 // ===== Detail data tambahan (contoh sederhana, bisa kamu ganti dari API) =====
 const ticketDetails = Object.fromEntries(
-  dummyTickets.map((t) => [
+  laporanData.map((t) => [
     t.tiket,
     {
       tiket: t.tiket,
