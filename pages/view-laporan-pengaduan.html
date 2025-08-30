@@ -420,177 +420,179 @@
       </div>
       <!-- END NAVBAR  -->
       <div class="page-wrapper">
-        <!-- BEGIN PAGE HEADER -->
-        <div class="page-header d-print-none" aria-label="Page header">
-          <div class="container-xl">
-            <div class="d-flex g-2 align-items-center justify-content-between">
-              <h2 class="page-title">Data Laporan/Aduan</h2>
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-input-laporan">
-                <i class="icon ti ti-pencil me-2"></i>Buat Laporan
-              </button>
-            </div>
-          </div>
-        </div>
-        <!-- END PAGE HEADER -->
         <!-- BEGIN PAGE BODY -->
         <div class="page-body">
           <div class="container-xl">
             <div class="card">
-              <div class="card-table">
-                <div class="card-header">
-                  <div class="row w-full">
-                    <div class="col-11">
-                      <div class="ms-auto d-flex flex-wrap btn-list">
-                        <div class="input-group input-group-flat w-full">
-                          <span class="input-group-text">
-                            <i class="ti ti-search"></i>
-                          </span>
-                          <input
-                            id="advanced-table-laporan-search"
-                            type="text"
-                            class="form-control"
-                            autocomplete="off"
-                            placeholder="Cari berdasarkan Nama, Nomor Tiket, Judul, dll."
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-1">
-                      <!-- Tombol Filter -->
-                      <button
-                        id="btn-open-filter"
-                        class="btn btn-outline-secondary position-relative"
-                        data-bs-toggle="modal"
-                        data-bs-target="#modal-filter-laporan"
-                      >
-                        <i class="ti ti-filter me-1"></i> Filter
-                        <span id="filter-active-count" class="badge bg-blue-lt bg-primary ms-2 d-none">0</span>
+              <div class="card-header">
+                <div class="d-flex align-items-center justify-content-between w-100">
+                  <h2 class="page-title">Detail Data Laporan/Aduan</h2>
+                  <div class="row">
+                    <div class="col">
+                      <a href="menu-kelola-pengaduan.html" class="btn btn-outline-secondary me-1">
+                        <i class="ti ti-chevron-left me-2"></i>Kembali ke Daftar Laporan
+                      </a>
+                      <a id="vw-edit-link" class="btn btn-outline-primary">
+                        <i class="ti ti-edit me-2"></i>Edit Laporan
+                      </a>
+                      <button class="btn btn-green" data-bs-toggle="modal" data-bs-target="#modal-persetujuan-analis">
+                        <i class="icon ti ti-pencil me-2"></i>Setujui/Perbaiki Analis
                       </button>
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <!-- Kolom kiri: semua detail dari modal-body -->
+                  <div class="col-lg-8 pe-2">
+                    <div class="row">
+                      <div class="col-lg-6 pe-2">
+                        <!-- INFO LAPORAN (kategori, distribusi, disposisi, sumber, dikirim, dll) -->
+                        <div class="card card-border mb-3">
+                          <div class="card-header"><strong>Info Laporan</strong></div>
+                          <div class="list-group list-group-flush" id="vw-sect-info">
+                            <div class="list-group-item">
+                              <div class="d-flex justify-content-between align-items-start">
+                                <div class="label me-4">Nomor Tiket:</div>
+                                <div class="text-end fw-bolder" style="max-width: 70%" id="vw-tiket-dup">-</div>
+                              </div>
+                            </div>
+                            <div class="list-group-item">
+                              <div class="d-flex justify-content-between align-items-start">
+                                <div class="label me-4">Kategori:</div>
+                                <div class="text-end badge bg-purple-lt" style="max-width: 70%" id="vw-kategori">-</div>
+                              </div>
+                            </div>
+                            <div class="list-group-item">
+                              <div class="d-flex justify-content-between align-items-start">
+                                <div class="label me-4">Judul Laporan:</div>
+                                <div class="text-end" style="max-width: 70%" id="vw-judul">-</div>
+                              </div>
+                            </div>
+                            <div class="list-group-item">
+                              <div class="d-flex justify-content-between align-items-start">
+                                <div class="label me-4">Status Laporan:</div>
+                                <div class="text-end" style="max-width: 70%" id="vw-status-badge">-</div>
+                              </div>
+                            </div>
+                            <div class="list-group-item">
+                              <div class="d-flex justify-content-between align-items-start">
+                                <div class="label me-4">Diposisi dari:</div>
+                                <div class="text-end" style="max-width: 70%" id="vw-distribusi">-</div>
+                              </div>
+                            </div>
+                            <div class="list-group-item">
+                              <div class="d-flex justify-content-between align-items-start">
+                                <div class="label me-4">Status Analisis:</div>
+                                <div class="text-end" style="max-width: 70%" id="vw-status-analisis">Pending</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-                <div id="advanced-table-laporan">
-                  <div class="table-responsive" style="min-height: 50vh; max-height: 58vh; overflow-y: auto">
-                    <table class="table table-selectable card-table table-vcenter text-nowrap datatable">
-                      <colgroup>
-                        <col style="width: 4%" />
-                        <!-- # -->
-                        <col style="width: 8%" />
-                        <!-- Nomor Tiket -->
-                        <col style="width: 16%" />
-                        <!-- Nama -->
-                        <col style="width: 20%" />
-                        <!-- Judul -->
-                        <col style="width: 12%" />
-                        <!-- Kategori -->
-                        <col style="width: 8%" />
-                        <!-- Distribusi -->
-                        <col style="width: 9%" />
-                        <!-- Disposisi -->
-                        <col style="width: 5%" />
-                        <!-- Sumber -->
-                        <col style="width: 12%" />
-                        <!-- Status -->
-                        <col style="width: 4%" />
-                        <!-- Dikirim -->
-                        <col style="width: 2%" />
-                        <!-- Aksi -->
-                      </colgroup>
-
-                      <thead class="sticky-top bg-white">
-                        <tr>
-                          <th class="w-1">
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-nomor">#</button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-nomor-tiket">
-                              Nomor Tiket
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-nama-lengkap">
-                              Nama Lengkap
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-judul">
-                              Judul Pengaduan
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-kategori">
-                              Kategori
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-distribusi">
-                              Distribusi
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-disposisi">
-                              Disposisi
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-sumber">
-                              Sumber
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-status">
-                              Status
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-dikirim">
-                              Dikirim
-                            </button>
-                          </th>
-                          <th class="w-1">Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody class="table-tbody"></tbody>
-                    </table>
-                  </div>
-
-                  <div class="card-footer d-flex align-items-center">
-                    <div class="dropdown">
-                      <a class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                        <span id="page-count" class="me-1">20</span>
-                        <span>records</span>
-                      </a>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" onclick="setPageListItems(event)" data-value="10">10 records</a>
-                        <a class="dropdown-item" onclick="setPageListItems(event)" data-value="20">20 records</a>
-                        <a class="dropdown-item" onclick="setPageListItems(event)" data-value="50">50 records</a>
-                        <a class="dropdown-item" onclick="setPageListItems(event)" data-value="100">100 records</a>
+                      <div class="col-lg-6">
+                        <!-- DETAIL ADUAN (uraian/ringkasan, lokasi/prov/kota, dsb) -->
+                        <div class="card card-border mb-3">
+                          <div class="card-header"><strong>Detail Aduan</strong></div>
+                          <div class="list-group list-group-flush" id="vw-sect-aduan">
+                            <div class="list-group-item">
+                              <div class="d-flex justify-content-between align-items-start">
+                                <div class="label me-4">Alamat Lengkap:</div>
+                                <div class="text-end" style="max-width: 70%" id="vw-alamat">-</div>
+                              </div>
+                            </div>
+                            <div class="list-group-item">
+                              <div class="d-flex justify-content-between align-items-start">
+                                <div class="label me-4">Dokumen Pendukung:</div>
+                                <div class="text-end" style="max-width: 70%" id="vw-dokumen">-</div>
+                              </div>
+                            </div>
+                            <div class="list-group-item">
+                              <div class="d-flex justify-content-between align-items-start">
+                                <div class="label me-4">Tanggal Kejadian:</div>
+                                <div class="text-end" style="max-width: 70%" id="vw-tgl-kejadian">Tidak Diisi</div>
+                              </div>
+                            </div>
+                            <div class="list-group-item">
+                              <div class="d-flex justify-content-between align-items-start">
+                                <div class="label me-4">Tanggapan:</div>
+                                <div class="text-end" style="max-width: 70%" id="vw-tanggapan">-</div>
+                              </div>
+                            </div>
+                            <div class="list-group-item">
+                              <div class="d-flex justify-content-between align-items-start">
+                                <div class="label me-4">Catatan Disposisi:</div>
+                                <div class="text-end" style="max-width: 70%" id="vw-catatan">-</div>
+                              </div>
+                            </div>
+                            <div class="list-group-item">
+                              <div class="d-flex justify-content-between align-items-start">
+                                <div class="label me-4">Analisis dari JF:</div>
+                                <div class="text-end" style="max-width: 70%" id="vw-analisis">-</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
-                    <!-- Pagination: prev | numbers (List.js) | next -->
-                    <div class="ms-auto d-flex align-items-center gap-2">
-                      <!-- PREV (tetap, tidak dihapus List.js) -->
-                      <ul class="pagination m-0" id="pagination-prev">
-                        <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Previous">
-                            <i class="ti ti-chevron-left"></i>
-                          </a>
-                        </li>
-                      </ul>
+                    <div class="card card-border mb-3">
+                      <div class="card-header"><strong>Detail Laporan</strong></div>
+                      <div class="p-3 text-start" id="vw-detail">-</div>
+                    </div>
 
-                      <!-- NUMBERS (ini yang diisi List.js) -->
-                      <ul class="pagination m-0 pagination-numbers"></ul>
+                    <!-- DATA PELAPOR (nama, nik, nohp, email, alamat, dsb) -->
+                    <div class="card card-border mb-3">
+                      <div class="card-header"><strong>Data Pelapor</strong></div>
+                      <div class="list-group list-group-flush" id="vw-sect-pelapor">
+                        <div class="list-group-item">
+                          <div class="d-flex justify-content-between align-items-start">
+                            <div class="label me-4">Nama Lengkap:</div>
+                            <div class="text-end" style="max-width: 70%" id="vw-nama">-</div>
+                          </div>
+                        </div>
+                        <div class="list-group-item">
+                          <div class="d-flex justify-content-between align-items-start">
+                            <div class="label me-4">NIK:</div>
+                            <div class="text-end" style="max-width: 70%" id="vw-nik">Tidak diisi</div>
+                          </div>
+                        </div>
+                        <div class="list-group-item">
+                          <div class="d-flex justify-content-between align-items-start">
+                            <div class="label me-4">Nomor Pengadu:</div>
+                            <div class="text-end" style="max-width: 70%" id="vw-nohp">-</div>
+                          </div>
+                        </div>
+                        <div class="list-group-item">
+                          <div class="d-flex justify-content-between align-items-start">
+                            <div class="label me-4">Email:</div>
+                            <div class="text-end" style="max-width: 70%" id="vw-email">Tidak diisi</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                      <!-- NEXT (tetap, tidak dihapus List.js) -->
-                      <ul class="pagination m-0" id="pagination-next">
-                        <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Next">
-                            <i class="ti ti-chevron-right"></i>
-                          </a>
-                        </li>
-                      </ul>
+                  <!-- Log Aduan (tetap) -->
+                  <div class="col-lg-4">
+                    <div class="card border">
+                      <div class="card-header"><strong>Log Aduan</strong></div>
+                      <div class="card-body p-0">
+                        <div class="table-responsive" style="max-height: 83vh; overflow-y: auto">
+                          <table class="table table-vcenter card-table table-sm mb-0">
+                            <thead>
+                              <tr>
+                                <th>Tanggal</th>
+                                <th>Aktivitas</th>
+                                <th>Oleh</th>
+                              </tr>
+                            </thead>
+                            <tbody id="vw-logs"></tbody>
+                          </table>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -601,273 +603,28 @@
         <!-- END PAGE BODY -->
 
         <!-- BEGIN PAGE MODALS -->
-        <!-- Modal Filter -->
-        <div class="modal fade" id="modal-filter-laporan" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-header sticky-top bg-body z-3 border-bottom">
-                <h5 class="modal-title">Filter Data Pengaduan</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body">
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <label class="form-label">Kategori</label>
-                    <select class="form-select" id="filter-kategori">
-                      <option value="">Semua Kategori</option>
-                      <option>Pekerjaan Umum dan Penataan</option>
-                      <option>Politik dan Hukum</option>
-                      <option>Sosial dan Kesejahteraan</option>
-                      <option>Pertanahan</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Status</label>
-                    <select class="form-select" id="filter-status">
-                      <option value="">Semua Status</option>
-                      <option>Proses verifikasi dan telaah</option>
-                      <option>Selesai</option>
-                      <option>Ditolak</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Distribusi</label>
-                    <select class="form-select" id="filter-distribusi">
-                      <option value="">Semua Distribusi</option>
-                      <option>deputi_1</option>
-                      <option>deputi_2</option>
-                      <option>deputi_3</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Disposisi</label>
-                    <select class="form-select" id="filter-disposisi">
-                      <option value="">Semua</option>
-                      <option>Belum terdisposisi</option>
-                      <option>Sudah terdisposisi</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Sumber</label>
-                    <select class="form-select" id="filter-sumber">
-                      <option value="">Semua Sumber</option>
-                      <option>TM</option>
-                      <option>Web</option>
-                      <option>Email</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Rentang Tanggal (Dikirim)</label>
-                    <input
-                      id="filter-date-range"
-                      type="text"
-                      class="form-control"
-                      placeholder="DD/MM/YYYY - DD/MM/YYYY"
-                      data-bs-toggle="datepicker"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Urutkan</label>
-                    <select class="form-select" id="filter-sort">
-                      <option value="terbaru" selected>Terbaru</option>
-                      <option value="terlama">Terlama</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer sticky-bottom bg-body z-3 border-top">
-                <button class="btn btn-link text-danger" id="btn-filter-reset">Reset</button>
-                <button class="btn btn-primary" id="btn-filter-apply" data-bs-dismiss="modal">Terapkan</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Danger Modal -->
-        <div class="modal fade" id="modal-confirm-delete" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-sm modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-status bg-danger"></div>
-              <div class="modal-header">
-                <h5 class="modal-title">Hapus data?</h5>
-                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body text-center py-4">
-                <i class="ti ti-alert-circle text-danger" style="font-size: 2rem"></i>
-                <div class="mt-2">Yakin ingin menghapus tiket <strong id="confirm-ticket">—</strong>?</div>
-                <div class="text-secondary small" id="confirm-name"></div>
-              </div>
-              <div class="modal-footer">
-                <button class="btn btn-link link-secondary" data-bs-dismiss="modal">Batal</button>
-                <button class="btn btn-danger" id="btn-confirm-delete" data-bs-dismiss="modal">Ya, hapus</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Modal Tambah Pengaduan -->
-        <div class="modal modal-blur fade" id="modal-input-laporan" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal modal-blur fade" id="modal-persetujuan-analis" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
             <div class="modal-content">
               <!-- HEADER sticky -->
               <div class="modal-header sticky-top bg-body z-3 border-bottom">
-                <h5 class="modal-title sticky-top">Tambah Pengaduan Baru</h5>
+                <h5 class="modal-title sticky-top">Persetujuan Analisis</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form>
                 <div class="modal-body">
                   <div class="row row-cols-2 g-4">
-                    <div>
-                      <label class="form-label">Nama Lengkap<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Nama Lengkap" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">NIK<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Nomor NIK" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">Sumber Pengaduan<span class="text-danger">*</span></label>
-                      <div>
-                        <select class="form-select">
-                          <option>Tatap Muka</option>
-                          <option>WhatsApp</option>
-                          <option>Email</option>
-                          <option>Surat</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div>
-                      <label class="form-label">Jenis Kelamin<span class="text-danger">*</span></label>
-                      <div>
-                        <select class="form-select">
-                          <option>Laki-laki</option>
-                          <option>Perempuan</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div>
-                      <label class="form-label">Email Pengadu</label>
-                      <input type="email" placeholder="Masukkan Email" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">Nomor HP Pengadu</label>
-                      <input type="number" placeholder="Masukkan Nomor HP" class="form-control" />
-                    </div>
                     <div class="col-12">
-                      <label class="form-label">Alamat Lengkap<span class="text-danger">*</span></label>
-                      <textarea placeholder="Masukkan Alamat" rows="3" class="form-control"></textarea>
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label">Judul Laporan<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Judul Laporan" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">Lokasi Kejadian<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Lokasi Kejadian" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">Tanggal Kejadian</label>
-                      <div>
-                        <div class="input-icon">
-                          <input class="form-control" placeholder="mm/dd/yyyy" id="datepicker-tgl-kejadian" value="" />
-                          <span class="input-icon-addon"
-                            ><!-- Download SVG icon from http://tabler.io/icons/icon/calendar -->
-                            <i class="icon ti ti-calendar"></i
-                          ></span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-12" id="field-kategori">
-                      <label class="form-label">Kategori<span class="text-danger">*</span></label>
-                      <select id="select-optgroups" class="form-select" placeholder="Pilih Kategori">
-                        <option value="" selected disabled hidden>Pilih Kategori</option>
-                        <optgroup
-                          label="Deputi Bidang Dukungan Kebijakan Perekonomian, Pariwisata dan Transformasi Digital"
-                        >
-                          <option value="Ekonomi dan Keuangan">Ekonomi dan Keuangan</option>
-                          <option value="Lingkungan Hidup dan Kehutanan">Lingkungan Hidup dan Kehutanan</option>
-                          <option value="Pekerjaan Umum dan Penataan Ruang">Pekerjaan Umum dan Penataan Ruang</option>
-                          <option value="Pertanian dan Peternakan">Pertanian dan Peternakan</option>
-                          <option value="Pemulihan Ekonomi Nasional">Pemulihan Ekonomi Nasional</option>
-                          <option value="Energi dan Sumber Daya Alam">Energi dan Sumber Daya Alam</option>
-                          <option value="Mudik">Mudik</option>
-                          <option value="Perairan">Perairan</option>
-                          <option value="Perhubungan">Perhubungan</option>
-                          <option value="Teknologi Informasi dan Komunikasi">Teknologi Informasi dan Komunikasi</option>
-                          <option value="Perlindungan Konsumen">Perlindungan Konsumen</option>
-                          <option value="Pariwisata dan Ekonomi Kreatif">Pariwisata dan Ekonomi Kreatif</option>
-                          <option value="Industri dan Perdagangan">Industri dan Perdagangan</option>
-                          <option value="Perumahan">Perumahan</option>
-                          <option value="Perpajakan">Perpajakan</option>
-                          <option value="Infrastruktur">Infrastruktur</option>
-                          <option value="Pembangunan Kewilayahan">Pembangunan Kewilayahan</option>
-                        </optgroup>
-                        <optgroup
-                          label="Deputi Bidang Dukungan Kebijakan Peningkatan Kesejahteraan dan Pembangunan Sumber Daya Manusia"
-                        >
-                          <option value="Agama">Agama</option>
-                          <option value="Corona Virus">Corona Virus</option>
-                          <option value="Kesehatan">Kesehatan</option>
-                          <option value="Kesetaraan Gender dan Sosial Inklusif">
-                            Kesetaraan Gender dan Sosial Inklusif
-                          </option>
-                          <option value="Pembangunan Desa, Daerah Tertinggal, dan Transmigrasi">
-                            Pembangunan Desa, Daerah Tertinggal, dan Transmigrasi
-                          </option>
-                          <option value="Pendidikan dan Kebudayaan">Pendidikan dan Kebudayaan</option>
-                          <option value="Sosial dan Kesejahteraan">Sosial dan Kesejahteraan</option>
-                          <option value="Kekerasan di Satuan Pendidikan (Sekolah, Kampus, Lembaga Khusus)">
-                            Kekerasan di Satuan Pendidikan (Sekolah, Kampus, Lembaga Khusus)
-                          </option>
-                          <option value="Penanggulangan Bencana">Penanggulangan Bencana</option>
-                          <option value="Ketenagakerjaan">Ketenagakerjaan</option>
-                          <option value="Pemberdayaan Masyarakat, Koperasi, dan UMKM">
-                            Pemberdayaan Masyarakat, Koperasi, dan UMKM
-                          </option>
-                          <option value="Kepemudaan dan Olahraga">Kepemudaan dan Olahraga</option>
-                          <option value="Keluarga Berencana">Keluarga Berencana</option>
-                          <option value="Pembangunan Keluarga">Pembangunan Keluarga</option>
-                        </optgroup>
-                        <optgroup label="Deputi Bidang Dukungan Kebijakan Pemerintahan dan Pemerataan Pembangunan">
-                          <option value="Ketentraman, Ketertiban Umum, dan Perlindungan Masyarakat">
-                            Ketentraman, Ketertiban Umum, dan Perlindungan Masyarakat
-                          </option>
-                          <option value="Politik dan Hukum">Politik dan Hukum</option>
-                          <option value="Politisasi ASN">Politisasi ASN</option>
-                          <option value="SP4N Lapor">SP4N Lapor</option>
-                          <option value="Netralitas ASN">Netralitas ASN</option>
-                          <option
-                            value="Pencegahan dan Pemberantasan Penyalahgunaan dan Peredaran Gelap Narkotika dan Prekursor Narkotika (P4GN)"
-                          >
-                            Pencegahan dan Pemberantasan Penyalahgunaan dan Peredaran Gelap Narkotika dan Prekursor
-                            Narkotika (P4GN)
-                          </option>
-                          <option value="Manajemen ASN">Manajemen ASN</option>
-                          <option value="Luar Negeri">Luar Negeri</option>
-                          <option value="Pertanahan">Pertanahan</option>
-                          <option value="Daerah Perbatasan">Daerah Perbatasan</option>
-                          <option value="Pelayanan Publik">Pelayanan Publik</option>
-                          <option value="TNI">TNI</option>
-                          <option value="Polri">Polri</option>
-                          <option value="Kependudukan">Kependudukan</option>
-                        </optgroup>
-                        <optgroup label="Deputi Bidang Administrasi">
-                          <option value="Topik Khusus">Topik Khusus</option>
-                          <option value="Topik Lainnya">Topik Lainnya</option>
-                          <option value="Bantuan Masyarakat">Bantuan Masyarakat</option>
-                        </optgroup>
-                      </select>
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label">Detail Laporan<span class="text-danger">*</span></label>
-                      <textarea placeholder="Isi Detail Laporan" rows="6" class="form-control"></textarea>
+                      <label class="form-label">Catatan (Opsional)</label>
+                      <textarea placeholder="Catatan Analis" rows="6" class="form-control"></textarea>
                     </div>
                   </div>
                 </div>
                 <div class="modal-footer">
                   <div class="text-end">
                     <a href="#" class="btn btn-1"> Cancel </a>
-                    <a href="#" class="btn btn-primary btn-2"> Save Changes </a>
+                    <a href="#" class="btn btn-warning btn-2"> Perbaiki </a>
+                    <a href="#" class="btn btn-success btn-2"> Setujui </a>
                   </div>
                 </div>
               </form>
@@ -1210,9 +967,7 @@
     <!-- 1) generator data -->
     <script src="/dist/js/dummy/laporan-dummy-data.js"></script>
     <!-- 2) logic tabel -->
-    <script src="/dist/js/table-laporan-filters.js"></script>
-    <script src="/dist/js/table-laporan-data.js"></script>
-    <script src="/dist/js/dummy/kelola-laporan-dummy-data.js" defer></script>
+    <script src="/dist/js/view-laporan-pengaduan.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const toggle = document.getElementById("edit-toggle");

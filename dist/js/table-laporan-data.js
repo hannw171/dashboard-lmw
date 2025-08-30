@@ -57,22 +57,22 @@ function renderLaporanRows(rows) {
       <td class="sort-distribusi">${r.distribusi}</td>
       <td class="sort-disposisi ${/Belum/.test(r.disposisi) ? "text-danger" : "text-success"}">${r.disposisi}</td>
       <td><span class="sort-sumber badge bg-primary-lt">${r.sumber}</span></td>
-      <td><span class="sort-status badge ${
-        window.statusToColor ? window.statusToColor(r.status) : "bg-secondary"
-      }">${r.status}</span></td>
+      <td><span class="sort-status badge ${window.statusToColor ? window.statusToColor(r.status) : "bg-secondary"}">${
+        r.status
+      }</span></td>
       <td class="sort-dikirim">${r.dikirim}</td>
       <td>
         <div class="btn-list flex-nowrap">
-          <button class="btn btn-icon btn-outline-secondary btn-view"
-                  data-bs-toggle="modal" data-bs-target="#modal-view-laporan"
-                  data-ticket="${r.tiket}" title="Lihat">
+          <a class="btn btn-icon btn-outline-secondary btn-view" 
+            href="view-laporan-pengaduan.html?tiket=${encodeURIComponent(r.tiket)}" 
+            title="Lihat">
             <i class="ti ti-eye"></i>
-          </button>
-          <button class="btn btn-icon btn-outline-secondary btn-edit"
-                  data-bs-toggle="modal" data-bs-target="#modal-edit-laporan"
-                  data-ticket="${r.tiket}" title="Edit">
+          </a>
+          <a class="btn btn-icon btn-outline-secondary btn-edit"
+            href="edit-laporan-pengaduan.html?tiket=${encodeURIComponent(r.tiket)}"
+            title="Edit">
             <i class="ti ti-pencil"></i>
-          </button>
+          </a>
             <button class="btn btn-icon btn-outline-danger btn-delete"
                 data-bs-toggle="modal"
                 data-bs-target="#modal-confirm-delete"
@@ -250,4 +250,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateFilterBadge();
 });
-
