@@ -8,8 +8,8 @@
   // Map status -> warna badge (samakan dengan style kamu)
   const STATUS_COLORS = {
     "Proses verifikasi dan telaah": "bg-blue text-blue-fg",
-    "Ditolak": "bg-red text-red-fg",
-    "Pending": "bg-yellow text-yellow-fg",
+    Ditolak: "bg-red text-red-fg",
+    Pending: "bg-yellow text-yellow-fg",
     "Penanganan Selesai": "bg-green text-green-fg",
     "Menunggu kelengkapan data dari pelapor": "bg-yellow text-yellow-fg",
     "Diteruskan kepada instansi yang berwenang": "bg-info text-info-fg",
@@ -106,8 +106,9 @@
     "Pending",
   ];
   const detailA = [
-    " pelapor menyampaikan kondisi jalan di daerah tempat kelahirannya saat ini sangat buruk dan banjir ketika musim hujan. alamat desa: sei kubung dusun iv, kel/desa sei penggantungan, kec. panai hilir, kab. labuhan batu, sumatera utara. letaknya 327 km dari kota medan, mayoritas penduduk petani. permohonan agar pemerintah memperbaiki jalan desa tersebut dan memperhatikan kesejahteraan penduduk desa tersebut. catatan: data dukung berupa softcopy dan hardcopy.",
+    "pelapor menyampaikan kondisi jalan di daerah tempat kelahirannya saat ini sangat buruk dan banjir ketika musim hujan. alamat desa: sei kubung dusun iv, kel/desa sei penggantungan, kec. panai hilir, kab. labuhan batu, sumatera utara. letaknya 327 km dari kota medan, mayoritas penduduk petani. permohonan agar pemerintah memperbaiki jalan desa tersebut dan memperhatikan kesejahteraan penduduk desa tersebut. catatan: data dukung berupa softcopy dan hardcopy.",
     "Pelaporan terkait kasus penipuan tahun 2012 sudah dilaporkan di Polres Metro Jakarta Utara, namun belum ada perkembangan kasusnya. berkas sudah masuk mailingroom dan sedang proses tindaklanjut di Deputi 3, Asdep WKPK.",
+    "Saya seorang karyawan yang bekerja di perusahaan retail, sudah bekerja kurang lebih 8 tahun 9 bulan status karyawan tetap, dan bulan april 2024 kemaren ada PHK di tempat saya bekerja dan saya salah satu dari sekian banyak yg di PHK, untuk di daerah saya ada sekitar 30 orang yang di PHK dan dijanjikan pesangon, dan kami sudah TTD surat pesangonnya tetapi sampai saat ini belum juga ada kejelasan, setiap perusahaan di tanya jawabannya selalu sabar, alasan PHK katanya untuk efesiensi. Saya dan beberapa teman juga sudah melaporkan ke Disnaker tetapi belum ada kabar mengenai laporan tersebut. Mohon bantuannya pak",
   ];
 
   // Util
@@ -145,10 +146,17 @@
       const status = pick(statusA, i * 23);
       const detail = pick(detailA, i * 2);
       const dikirim = dateToDDMMYYYY(randomDateWithin(60));
+      const nohp = "0821" + String(300000000 + Math.floor(Math.random() * 699999999)).slice(0, 7);
+      const alamat = "puri lestari blok f no. 48, kel. sukajaya, cibitung, kab. bekasi, jawa barat.";
+      const nik = "1210194906050000";
+
       rows.push({
         no: i,
         tiket: tiketFromIndex(i),
         nama,
+        nohp,
+        nik,
+        alamat,
         judul,
         kategori,
         distribusi,
@@ -157,6 +165,9 @@
         status,
         dikirim,
         detail,
+        petugas_analis: "ANALIS 1, S.Kom",
+        catatan_disposisi:
+          "Ini adalah contoh catatan disposisi yang lumayan panjang ya, buat gambaran aja kalo modelannya agak panjang gimana.",
       });
     }
     return rows;

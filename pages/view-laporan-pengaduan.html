@@ -424,7 +424,7 @@
         <div class="page-body">
           <div class="container-xl">
             <div class="card">
-              <div class="card-header">
+              <div class="card-header sticky-top bg-white" style="top: 56px">
                 <div class="d-flex align-items-center justify-content-between w-100">
                   <h2 class="page-title">Detail Data Laporan/Aduan</h2>
                   <div class="row">
@@ -447,7 +447,84 @@
                   <!-- Kolom kiri: semua detail dari modal-body -->
                   <div class="col-lg-8 pe-2">
                     <div class="row">
-                      <div class="col-lg-6 pe-2">
+                      <div class="col-lg-8">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <!-- DATA PELAPOR (nama, nik, nohp, email, alamat, dsb) -->
+                            <div class="card card-border mb-3">
+                              <div class="card-header"><strong>Data Pelapor</strong></div>
+                              <div class="list-group list-group-flush" id="vw-sect-pelapor">
+                                <div class="list-group-item">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                    <div class="label me-4">Nama Lengkap:</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-nama">-</div>
+                                  </div>
+                                </div>
+                                <div class="list-group-item">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                    <div class="label me-4">NIK:</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-nik">Tidak diisi</div>
+                                  </div>
+                                </div>
+                                <div class="list-group-item">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                    <div class="label me-4">Nomor Pengadu:</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-nohp">-</div>
+                                  </div>
+                                </div>
+                                <div class="list-group-item">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                    <div class="label me-4">Email:</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-email">Tidak diisi</div>
+                                  </div>
+                                </div>
+                                <div class="list-group-item">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                    <div class="label me-4">Alamat Lengkap:</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-alamat">-</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="card card-border mb-3">
+                              <div class="card-header"><strong>Detail Analis dan Disposisi</strong></div>
+                              <div class="list-group list-group-flush">
+                                <div class="list-group-item">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                    <div class="label me-4">Disposisi dari:</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-distribusi">-</div>
+                                  </div>
+                                </div>
+                                <div class="list-group-item">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                    <div class="label me-4">Petugas Analis:</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-petugas-analis">-</div>
+                                  </div>
+                                </div>
+                                <div class="list-group-item">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                    <div class="label me-4">Status Analisis:</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-status-analisis">Pending</div>
+                                  </div>
+                                </div>
+                                <div class="list-group-item">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                    <div class="label me-4">Catatan Disposisi:</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-catatan">-</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card card-border mb-3">
+                          <div class="card-header"><strong>Detail Laporan Lengkap </strong></div>
+                          <div class="p-3 text-start" id="vw-detail">-</div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 pe-2">
                         <!-- INFO LAPORAN (kategori, distribusi, disposisi, sumber, dikirim, dll) -->
                         <div class="card card-border mb-3">
                           <div class="card-header"><strong>Info Laporan</strong></div>
@@ -472,103 +549,45 @@
                             </div>
                             <div class="list-group-item">
                               <div class="d-flex justify-content-between align-items-start">
-                                <div class="label me-4">Status Laporan:</div>
-                                <div class="text-end" style="max-width: 70%" id="vw-status-badge">-</div>
-                              </div>
-                            </div>
-                            <div class="list-group-item">
-                              <div class="d-flex justify-content-between align-items-start">
-                                <div class="label me-4">Diposisi dari:</div>
-                                <div class="text-end" style="max-width: 70%" id="vw-distribusi">-</div>
-                              </div>
-                            </div>
-                            <div class="list-group-item">
-                              <div class="d-flex justify-content-between align-items-start">
-                                <div class="label me-4">Status Analisis:</div>
-                                <div class="text-end" style="max-width: 70%" id="vw-status-analisis">Pending</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-lg-6">
-                        <!-- DETAIL ADUAN (uraian/ringkasan, lokasi/prov/kota, dsb) -->
-                        <div class="card card-border mb-3">
-                          <div class="card-header"><strong>Detail Aduan</strong></div>
-                          <div class="list-group list-group-flush" id="vw-sect-aduan">
-                            <div class="list-group-item">
-                              <div class="d-flex justify-content-between align-items-start">
-                                <div class="label me-4">Alamat Lengkap:</div>
-                                <div class="text-end" style="max-width: 70%" id="vw-alamat">-</div>
-                              </div>
-                            </div>
-                            <div class="list-group-item">
-                              <div class="d-flex justify-content-between align-items-start">
-                                <div class="label me-4">Dokumen Pendukung:</div>
-                                <div class="text-end" style="max-width: 70%" id="vw-dokumen">-</div>
-                              </div>
-                            </div>
-                            <div class="list-group-item">
-                              <div class="d-flex justify-content-between align-items-start">
                                 <div class="label me-4">Tanggal Kejadian:</div>
                                 <div class="text-end" style="max-width: 70%" id="vw-tgl-kejadian">Tidak Diisi</div>
                               </div>
                             </div>
                             <div class="list-group-item">
-                              <div class="d-flex justify-content-between align-items-start">
-                                <div class="label me-4">Tanggapan:</div>
-                                <div class="text-end" style="max-width: 70%" id="vw-tanggapan">-</div>
-                              </div>
-                            </div>
-                            <div class="list-group-item">
-                              <div class="d-flex justify-content-between align-items-start">
-                                <div class="label me-4">Catatan Disposisi:</div>
-                                <div class="text-end" style="max-width: 70%" id="vw-catatan">-</div>
-                              </div>
-                            </div>
-                            <div class="list-group-item">
-                              <div class="d-flex justify-content-between align-items-start">
-                                <div class="label me-4">Analisis dari JF:</div>
-                                <div class="text-end" style="max-width: 70%" id="vw-analisis">-</div>
+                              <div class="d-flex flex-column justify-content-between align-items-start">
+                                <div class="label me-4 mb-3">Dokumen Pendukung:</div>
+                                <div class="text-end" style="max-width: 70%" id="vw-dokumen">
+                                  <!-- item akan diinject via JS -->
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
+
+                      <div class="col-lg-4"></div>
                     </div>
 
+                    <!-- DETAIL ADUAN (uraian/ringkasan, lokasi/prov/kota, dsb) -->
                     <div class="card card-border mb-3">
-                      <div class="card-header"><strong>Detail Laporan</strong></div>
-                      <div class="p-3 text-start" id="vw-detail">-</div>
-                    </div>
-
-                    <!-- DATA PELAPOR (nama, nik, nohp, email, alamat, dsb) -->
-                    <div class="card card-border mb-3">
-                      <div class="card-header"><strong>Data Pelapor</strong></div>
-                      <div class="list-group list-group-flush" id="vw-sect-pelapor">
+                      <div class="card-header"><strong>Detail Aduan</strong></div>
+                      <div class="list-group list-group-flush" id="vw-sect-aduan">
                         <div class="list-group-item">
                           <div class="d-flex justify-content-between align-items-start">
-                            <div class="label me-4">Nama Lengkap:</div>
-                            <div class="text-end" style="max-width: 70%" id="vw-nama">-</div>
+                            <div class="label me-4">Status Laporan:</div>
+                            <div class="text-end" style="max-width: 70%" id="vw-status-badge">-</div>
                           </div>
                         </div>
                         <div class="list-group-item">
                           <div class="d-flex justify-content-between align-items-start">
-                            <div class="label me-4">NIK:</div>
-                            <div class="text-end" style="max-width: 70%" id="vw-nik">Tidak diisi</div>
+                            <div class="label me-4">Tanggapan:</div>
+                            <div class="text-end" style="max-width: 70%" id="vw-tanggapan">-</div>
                           </div>
                         </div>
                         <div class="list-group-item">
                           <div class="d-flex justify-content-between align-items-start">
-                            <div class="label me-4">Nomor Pengadu:</div>
-                            <div class="text-end" style="max-width: 70%" id="vw-nohp">-</div>
-                          </div>
-                        </div>
-                        <div class="list-group-item">
-                          <div class="d-flex justify-content-between align-items-start">
-                            <div class="label me-4">Email:</div>
-                            <div class="text-end" style="max-width: 70%" id="vw-email">Tidak diisi</div>
+                            <div class="label me-4">Analisis dari JF:</div>
+                            <div class="text-end" style="max-width: 70%" id="vw-analisis">-</div>
                           </div>
                         </div>
                       </div>
@@ -580,7 +599,7 @@
                     <div class="card border">
                       <div class="card-header"><strong>Log Aduan</strong></div>
                       <div class="card-body p-0">
-                        <div class="table-responsive" style="max-height: 83vh; overflow-y: auto">
+                        <div class="table-responsive" style="max-height: 78vh; overflow-y: auto">
                           <table class="table table-vcenter card-table table-sm mb-0">
                             <thead>
                               <tr>
@@ -631,6 +650,26 @@
             </div>
           </div>
         </div>
+
+        <!-- MODAL PREVIEW FILE -->
+        <div class="modal fade" id="modal-file-preview" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal-file-preview-title">Preview</h5>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div id="modal-file-preview-body" class="text-center"></div>
+              </div>
+              <div class="modal-footer">
+                <a id="modal-file-preview-download" class="btn btn-outline-secondary" href="#" download>Unduh</a>
+                <button class="btn" data-bs-dismiss="modal">Tutup</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- END PAGE MODALS -->
 
         <!--  BEGIN FOOTER  -->
@@ -1022,7 +1061,6 @@
 
     <!-- Toast container -->
     <div id="toast-placement" class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1080"></div>
-
     <!-- END PAGE SCRIPTS -->
   </body>
 </html>
