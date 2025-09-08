@@ -613,6 +613,140 @@
                 </div>
               </div>
 
+              <!-- QUICK SHOW: Laporan Baru Didisposisi -->
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="h3 card-title fw-bolder">Laporan Baru Didisposisi</h3>
+                    <div class="ms-auto btn-list">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-outline-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal-laporan-terdisposisi"
+                      >
+                        <i class="ti ti-list-search"></i> Lihat Semua
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="card-table">
+                    <div class="table-responsive scrollable">
+                      <!-- Tabler datatable: cukup pakai class "datatable" -->
+                      <table class="table card-table table-vcenter text-nowrap datatable" data-order='[[6,"desc"]]'>
+                        <thead>
+                          <tr>
+                            <th class="w-1">#</th>
+                            <th>Nomor Tiket</th>
+                            <th>Nama Lengkap</th>
+                            <th>Judul Pengaduan</th>
+                            <th>Kategori</th>
+                            <th>Distribusi</th>
+                            <th>Tgl Disposisi</th>
+                            <th>Sumber</th>
+                            <th>Status</th>
+                            <th class="w-1">Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- Row 1 -->
+                          <tr>
+                            <td>1</td>
+                            <td><a href="#" class="text-blue">1974007</a></td>
+                            <td>Rina Pratiwi</td>
+                            <td>Perbaikan Drainase RW</td>
+                            <td>Pekerjaan Umum dan Penataan</td>
+                            <td>Deputi 1</td>
+                            <td>12/07/2025</td>
+                            <td><span class="badge bg-primary-lt">WhatsApp</span></td>
+                            <td><span class="badge bg-indigo-lt">Sudah terdisposisi</span></td>
+                            <td>
+                              <button class="btn btn-icon btn-outline-secondary" title="Lihat">
+                                <i class="ti ti-eye"></i>
+                              </button>
+                            </td>
+                          </tr>
+
+                          <!-- Row 2 -->
+                          <tr>
+                            <td>2</td>
+                            <td><a href="#" class="text-blue">1974006</a></td>
+                            <td>Agus Setiawan</td>
+                            <td>Sengketa Batas Tanah</td>
+                            <td>Pertanahan</td>
+                            <td>Deputi 3</td>
+                            <td>12/07/2025</td>
+                            <td><span class="badge bg-primary-lt">Tatap Muka</span></td>
+                            <td><span class="badge bg-indigo-lt">Sudah terdisposisi</span></td>
+                            <td>
+                              <button class="btn btn-icon btn-outline-secondary" title="Lihat">
+                                <i class="ti ti-eye"></i>
+                              </button>
+                            </td>
+                          </tr>
+
+                          <!-- Row 3 -->
+                          <tr>
+                            <td>3</td>
+                            <td><a href="#" class="text-blue">1974005</a></td>
+                            <td>Dewi Kusuma</td>
+                            <td>Penerangan Jalan Umum</td>
+                            <td>Infrastruktur</td>
+                            <td>Deputi 2</td>
+                            <td>11/07/2025</td>
+                            <td><span class="badge bg-primary-lt">Surat</span></td>
+                            <td><span class="badge bg-indigo-lt">Sudah terdisposisi</span></td>
+                            <td>
+                              <button class="btn btn-icon btn-outline-secondary" title="Lihat">
+                                <i class="ti ti-eye"></i>
+                              </button>
+                            </td>
+                          </tr>
+
+                          <!-- Row 4 -->
+                          <tr>
+                            <td>4</td>
+                            <td><a href="#" class="text-blue">1974004</a></td>
+                            <td>Yusuf Ramadhan</td>
+                            <td>Pelayanan Administrasi Kependudukan</td>
+                            <td>Kependudukan</td>
+                            <td>Deputi 4</td>
+                            <td>11/07/2025</td>
+                            <td><span class="badge bg-primary-lt">Web</span></td>
+                            <td><span class="badge bg-indigo-lt">Sudah terdisposisi</span></td>
+                            <td>
+                              <button class="btn btn-icon btn-outline-secondary" title="Lihat">
+                                <i class="ti ti-eye"></i>
+                              </button>
+                            </td>
+                          </tr>
+
+                          <!-- Row 5 -->
+                          <tr>
+                            <td>5</td>
+                            <td><a href="#" class="text-blue">1974003</a></td>
+                            <td>Andi Nugroho</td>
+                            <td>Perbaikan Jembatan Lingkungan</td>
+                            <td>Pekerjaan Umum dan Penataan</td>
+                            <td>Deputi 1</td>
+                            <td>10/07/2025</td>
+                            <td><span class="badge bg-primary-lt">WhatsApp</span></td>
+                            <td><span class="badge bg-indigo-lt">Sudah terdisposisi</span></td>
+                            <td>
+                              <button class="btn btn-icon btn-outline-secondary" title="Lihat">
+                                <i class="ti ti-eye"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- /table-responsive -->
+                  </div>
+                  <!-- /card-table -->
+                </div>
+              </div>
+
               <div class="col-sm-6 col-lg-3">
                 <div class="card card-md">
                   <div class="card-body">
@@ -1258,6 +1392,288 @@
             </div>
           </div>
         </div>
+
+        <div class="modal modal-blur fade" id="modal-laporan-terdisposisi" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Laporan Baru Didisposisi — Semua</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div class="modal-body">
+                <div class="card">
+                  <div class="card-table">
+                    <div class="card-header">
+                      <div class="row w-full">
+                        <div class="col">
+                          <h3 class="card-title mb-0">Daftar Laporan</h3>
+                          <p class="text-secondary m-0">Semua laporan yang sudah didisposisi</p>
+                        </div>
+                        <div class="col-md-auto col-sm-12">
+                          <div class="ms-auto d-flex flex-wrap btn-list">
+                            <div class="input-group input-group-flat w-auto">
+                              <span class="input-group-text"><i class="ti ti-search"></i></span>
+                              <input
+                                id="advanced-table-laporan-terdisposisi-search"
+                                type="text"
+                                class="form-control"
+                                autocomplete="off"
+                                placeholder="Cari laporan..."
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div id="advanced-table-laporan-terdisposisi">
+                      <div class="table-responsive" style="max-height: 60vh; overflow-y: auto">
+                        <table class="table table-vcenter table-selectable">
+                          <thead class="sticky-top bg-white">
+                            <tr>
+                              <th class="w-1">
+                                <button class="table-sort d-flex justify-content-between" data-sort="sort-no">#</button>
+                              </th>
+                              <th>
+                                <button class="table-sort d-flex justify-content-between" data-sort="sort-tiket">
+                                  Nomor Tiket
+                                </button>
+                              </th>
+                              <th>
+                                <button class="table-sort d-flex justify-content-between" data-sort="sort-nama">
+                                  Nama Lengkap
+                                </button>
+                              </th>
+                              <th>
+                                <button class="table-sort d-flex justify-content-between" data-sort="sort-judul">
+                                  Judul Pengaduan
+                                </button>
+                              </th>
+                              <th>
+                                <button class="table-sort d-flex justify-content-between" data-sort="sort-kategori">
+                                  Kategori
+                                </button>
+                              </th>
+                              <th class="w-1">
+                                <button class="table-sort d-flex justify-content-between" data-sort="sort-distribusi">
+                                  Distribusi
+                                </button>
+                              </th>
+                              <th class="w-1">
+                                <button class="table-sort d-flex justify-content-between" data-sort="sort-tgl">
+                                  Tgl Disposisi
+                                </button>
+                              </th>
+                              <th class="w-1">
+                                <button class="table-sort d-flex justify-content-between" data-sort="sort-sumber">
+                                  Sumber
+                                </button>
+                              </th>
+                              <th class="w-1">
+                                <button class="table-sort d-flex justify-content-between" data-sort="sort-status">
+                                  Status
+                                </button>
+                              </th>
+                              <th class="w-1 text-center">Aksi</th>
+                            </tr>
+                          </thead>
+
+                          <tbody class="table-tbody">
+                            <!-- Contoh baris: perhatikan class sort-* agar bisa disort List.js -->
+                            <tr>
+                              <td class="sort-no">1</td>
+                              <td class="sort-tiket"><a href="#" class="text-blue">1974007</a></td>
+                              <td class="sort-nama">Rina Pratiwi</td>
+                              <td class="sort-judul">Perbaikan Drainase RW</td>
+                              <td class="sort-kategori">Pekerjaan Umum dan Penataan</td>
+                              <td class="sort-distribusi">Deputi 1</td>
+                              <td class="sort-tgl">12/07/2025</td>
+                              <td class="sort-sumber"><span class="badge bg-primary-lt">WhatsApp</span></td>
+                              <td class="sort-status"><span class="badge bg-indigo-lt">Sudah terdisposisi</span></td>
+                              <td class="text-center">
+                                <button class="btn btn-icon btn-outline-secondary" title="Lihat">
+                                  <i class="ti ti-eye"></i>
+                                </button>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td class="sort-no">2</td>
+                              <td class="sort-tiket"><a href="#" class="text-blue">1974006</a></td>
+                              <td class="sort-nama">Agus Setiawan</td>
+                              <td class="sort-judul">Sengketa Batas Tanah</td>
+                              <td class="sort-kategori">Pertanahan</td>
+                              <td class="sort-distribusi">Deputi 3</td>
+                              <td class="sort-tgl">12/07/2025</td>
+                              <td class="sort-sumber"><span class="badge bg-primary-lt">Tatap Muka</span></td>
+                              <td class="sort-status"><span class="badge bg-indigo-lt">Sudah terdisposisi</span></td>
+                              <td class="text-center">
+                                <button class="btn btn-icon btn-outline-secondary"><i class="ti ti-eye"></i></button>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td class="sort-no">3</td>
+                              <td class="sort-tiket"><a href="#" class="text-blue">1974005</a></td>
+                              <td class="sort-nama">Dewi Kusuma</td>
+                              <td class="sort-judul">Penerangan Jalan Umum</td>
+                              <td class="sort-kategori">Infrastruktur</td>
+                              <td class="sort-distribusi">Deputi 2</td>
+                              <td class="sort-tgl">11/07/2025</td>
+                              <td class="sort-sumber"><span class="badge bg-primary-lt">Surat</span></td>
+                              <td class="sort-status"><span class="badge bg-indigo-lt">Sudah terdisposisi</span></td>
+                              <td class="text-center">
+                                <button class="btn btn-icon btn-outline-secondary"><i class="ti ti-eye"></i></button>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td class="sort-no">4</td>
+                              <td class="sort-tiket"><a href="#" class="text-blue">1974004</a></td>
+                              <td class="sort-nama">Yusuf Ramadhan</td>
+                              <td class="sort-judul">Pelayanan Administrasi Kependudukan</td>
+                              <td class="sort-kategori">Kependudukan</td>
+                              <td class="sort-distribusi">Deputi 4</td>
+                              <td class="sort-tgl">11/07/2025</td>
+                              <td class="sort-sumber"><span class="badge bg-primary-lt">Web</span></td>
+                              <td class="sort-status"><span class="badge bg-indigo-lt">Sudah terdisposisi</span></td>
+                              <td class="text-center">
+                                <button class="btn btn-icon btn-outline-secondary"><i class="ti ti-eye"></i></button>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td class="sort-no">5</td>
+                              <td class="sort-tiket"><a href="#" class="text-blue">1974003</a></td>
+                              <td class="sort-nama">Andi Nugroho</td>
+                              <td class="sort-judul">Perbaikan Jembatan Lingkungan</td>
+                              <td class="sort-kategori">Pekerjaan Umum dan Penataan</td>
+                              <td class="sort-distribusi">Deputi 1</td>
+                              <td class="sort-tgl">10/07/2025</td>
+                              <td class="sort-sumber"><span class="badge bg-primary-lt">WhatsApp</span></td>
+                              <td class="sort-status"><span class="badge bg-indigo-lt">Sudah terdisposisi</span></td>
+                              <td class="text-center">
+                                <button class="btn btn-icon btn-outline-secondary"><i class="ti ti-eye"></i></button>
+                              </td>
+                            </tr>
+
+                            <!-- tambahkan baris lain sesuai kebutuhan -->
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="card-footer d-flex align-items-center">
+                        <div class="dropdown">
+                          <a class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                            <span id="page-count-laporan-terdisposisi" class="me-1">20</span>
+                            <span>records</span>
+                          </a>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" onclick="setPageListItemsLaporanTerdisposisi(event)" data-value="1">1 records</a>
+                            <a class="dropdown-item" onclick="setPageListItemsLaporanTerdisposisi(event)" data-value="10">10 records</a>
+                            <a class="dropdown-item" onclick="setPageListItemsLaporanTerdisposisi(event)" data-value="20">20 records</a>
+                            <a class="dropdown-item" onclick="setPageListItemsLaporanTerdisposisi(event)" data-value="50">50 records</a>
+                            <a class="dropdown-item" onclick="setPageListItemsLaporanTerdisposisi(event)" data-value="100">100 records</a>
+                          </div>
+                        </div>
+
+                        <!-- biarkan kosong; List.js akan mengisi -->
+                        <ul class="pagination m-0 ms-auto"></ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /modal-body -->
+            </div>
+          </div>
+
+          <script>
+            // Konfigurasi kolom untuk List.js (sesuai dengan header & class sort-* di atas)
+            const advancedTableLaporanTerdisposisi = {
+              headers: [
+                { "data-sort": "sort-no", name: "#" },
+                { "data-sort": "sort-tiket", name: "Nomor Tiket" },
+                { "data-sort": "sort-nama", name: "Nama Lengkap" },
+                { "data-sort": "sort-judul", name: "Judul Pengaduan" },
+                { "data-sort": "sort-kategori", name: "Kategori" },
+                { "data-sort": "sort-distribusi", name: "Distribusi" },
+                { "data-sort": "sort-tgl", name: "Tgl Disposisi" },
+                { "data-sort": "sort-sumber", name: "Sumber" },
+                { "data-sort": "sort-status", name: "Status" },
+              ],
+            };
+
+            // Page size dropdown
+            const setPageListItemsLaporanTerdisposisi = (e) => {
+              window.tabler_list["advanced-table-laporan-terdisposisi"].page = parseInt(e.target.dataset.value, 10);
+              window.tabler_list["advanced-table-laporan-terdisposisi"].update();
+              document.querySelector("#page-count-laporan-terdisposisi").textContent = e.target.dataset.value;
+            };
+
+            window.tabler_list = window.tabler_list || {};
+            document.addEventListener("DOMContentLoaded", function () {
+              const list = (window.tabler_list["advanced-table-laporan-terdisposisi"] = new List("advanced-table-laporan-terdisposisi", {
+                sortClass: "table-sort",
+                listClass: "table-tbody",
+                page: 20,
+                pagination: {
+                  item: (v) => `<li class="page-item"><a class="page-link cursor-pointer">${v.page}</a></li>`,
+                  innerWindow: 1,
+                  outerWindow: 1,
+                  left: 0,
+                  right: 0,
+                },
+                // penting: ini harus cocok dengan class sort-* di tbody
+                valueNames: advancedTableLaporanTerdisposisi.headers.map((h) => h["data-sort"]),
+              }));
+
+              // search
+              const searchInput = document.querySelector("#advanced-table-laporan-terdisposisi-search");
+              if (searchInput) {
+                searchInput.addEventListener("input", () => {
+                  list.search(searchInput.value);
+                  toggleEmptyRow(list);
+                });
+              }
+
+              // empty state helper
+              function ensureEmptyRow() {
+                const tbody = document.querySelector("#advanced-table-laporan-terdisposisi .table-tbody");
+                let emptyRow = tbody.querySelector("tr.empty-row");
+                if (!emptyRow) {
+                  const colCount = document.querySelector("#advanced-table-laporan-terdisposisi thead tr")?.children.length || 1;
+                  emptyRow = document.createElement("tr");
+                  emptyRow.className = "empty-row";
+                  const td = document.createElement("td");
+                  td.colSpan = colCount;
+                  td.className = "text-center text-muted p-4";
+                  td.innerHTML = `
+          <div class="d-flex flex-column align-items-center gap-1">
+            <div style="font-size:2rem;line-height:1;">😕</div>
+            <div><strong>Tidak ada data</strong></div>
+            <div class="small">Coba ubah kata kunci pencarian.</div>
+          </div>`;
+                  emptyRow.appendChild(td);
+                  tbody.appendChild(emptyRow);
+                }
+                return emptyRow;
+              }
+              function toggleEmptyRow(list) {
+                const emptyRow = ensureEmptyRow();
+                const noItems = list.matchingItems.length === 0;
+                emptyRow.style.display = noItems ? "" : "none";
+                const paginationEl = document.querySelector("#advanced-table-laporan-terdisposisi .pagination");
+                if (paginationEl) paginationEl.style.visibility = noItems ? "hidden" : "visible";
+              }
+
+              list.on("updated", () => toggleEmptyRow(list));
+              toggleEmptyRow(list);
+            });
+          </script>
+        </div>
+
         <!-- END PAGE MODALS -->
 
         <!--  BEGIN FOOTER  -->
