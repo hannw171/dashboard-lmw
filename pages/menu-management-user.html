@@ -437,7 +437,7 @@
                 <div class="card-header">
                   <div class="row w-full align-items-center">
                     <div class="col">
-                      <button id="btn-add-user" class="btn btn-primary">
+                      <button id="btn-add-user" class="btn btn-primary" data-bs-target="#modal-tambah-user" data-bs-toggle="modal">
                         <i class="ti ti-user-plus me-1"></i> Tambah User
                       </button>
                     </div>
@@ -500,7 +500,41 @@
                           <th class="w-1">Aksi</th>
                         </tr>
                       </thead>
-                      <tbody class="table-tbody" id="tbl-user-tbody"></tbody>
+                      <tbody class="table-tbody" id="tbl-user-tbody">
+                        <!-- Kalo data kosong -->
+                        <!-- <tr>
+                          <td colspan="7" class="text-center text-muted p-4">
+                            <div class="d-flex flex-column align-items-center gap-1">
+                              <div style="font-size: 2rem; line-height: 1">😕</div>
+                              <div><strong>Tidak ada data</strong></div>
+                              <div class="small">Coba ubah filter atau kata kunci pencarian.</div>
+                            </div>
+                          </td>
+                        </tr> -->
+                        <tr data-id="${u.id}">
+                          <td class="sort-no">1</td>
+                          <td class="sort-nama">Nama</td>
+                          <td class="sort-email"><a href="mailto:email@example.com">email@example.com</a></td>
+                          <td class="sort-role"><span class="badge bg-blue-lt">role_user</span></td>
+                          <td class="sort-jabatan">jabatan | -</td>
+                          <td class="sort-unit">unit | -</td>
+                          <td>
+                            <div class="btn-list flex-nowrap">
+                              <button
+                                class="btn btn-1 btn-outline-primary btn-edit"
+                                title="Edit"
+                                data-bs-target="#modal-edit-user"
+                                data-bs-toggle="modal"
+                              >
+                                <i class="ti ti-pencil"></i>
+                              </button>
+                              <button class="btn btn-1 btn-outline-danger btn-del" title="Hapus" data-bs-target="#modal-delete-user" data-bs-toggle="modal">
+                                <i class="ti ti-trash"></i>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
                   </div>
 
@@ -528,7 +562,10 @@
                       </ul>
 
                       <!-- NUMBERS (ini yang diisi List.js) -->
-                      <ul class="pagination m-0 pagination-numbers"></ul>
+                      <ul class="pagination m-0 pagination-numbers">
+                        <li class="page-item active"><a class="page-link cursor-pointer">1</a></li>
+                        <li class="page-item"><a class="page-link cursor-pointer">2</a></li>
+                      </ul>
 
                       <!-- NEXT (tetap, tidak dihapus List.js) -->
                       <ul class="pagination m-0" id="user-pagination-next">
@@ -548,9 +585,93 @@
         <!-- END PAGE BODY -->
 
         <!-- BEGIN PAGE MODALS -->
-        <!-- Modal EDIT / TAMBAH -->
+        <!-- Modal Tambah -->
+        <div class="modal fade" id="modal-tambah-user" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="tambah-user-title">Tambah User</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <form id="form-tambah-user">
+                <div class="modal-body">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Nama</label>
+                      <input type="text" id="ed-nama" class="form-control" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Email</label>
+                      <input type="email" id="ed-email" class="form-control" required />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Role</label>
+                      <select id="ed-role" class="form-select">
+                        <option>superadmin</option>
+                        <option>deputi_1</option>
+                        <option>deputi_2</option>
+                        <option>deputi_3</option>
+                        <option>deputi_4</option>
+                        <option>asdep</option>
+                        <option>analis</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Jabatan</label>
+                      <input type="text" id="ed-jabatan" class="form-control" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Deputi</label>
+                      <select id="ed-deputi" class="form-select">
+                        <option>Admin</option>
+                        <option>
+                          Deputi Bidang Dukungan Kebijakan Perekonomian, Pariwisata, dan Transformasi Digital
+                        </option>
+                        <option>
+                          Deputi Bidang Dukungan Kebijakan Peningkatan Kesejahteraan Dan Pembangunan Sumber Daya Manusia
+                        </option>
+                        <option>Deputi Bidang Dukungan Kebijakan Pemerintahan dan Pemerataan Pembangunan</option>
+                        <option>Deputi Bidang Administrasi</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Unit</label>
+                      <select id="ed-unit" class="form-select">
+                        <option>Admin</option>
+                        <option>Asisten Deputi Ekonomi, Keuangan, dan Transformasi Digital</option>
+                        <option>Asisten Deputi Industri, Perdagangan, Pariwisata, dan Ekonomi Kreatif</option>
+                        <option>Asisten Deputi Infrastruktur, Sumber Daya Alam, dan Pembangunan Kewilayahan</option>
+                        <option>Asisten Deputi Pengentasan Kemiskinan dan Pembangunan Desa</option>
+                        <option>Asisten Deputi Kesehatan, Gizi, dan Pembangunan Keluarga</option>
+                        <option>Asisten Deputi Pemberdayaan Masyarakat dan Penanggulangan Bencana</option>
+                        <option>Asisten Deputi Pendidikan, Agama, Kebudayaan, Pemuda, dan Olahraga</option>
+                        <option>Asisten Deputi Hubungan Luar Negeri dan Pertahanan</option>
+                        <option>Asisten Deputi Politik, Keamanan, Hukum, dan Hak Asasi Manusia</option>
+                        <option>Asisten Deputi Tata Kelola Pemerintahan dan Percepatan Pembangunan Daerah</option>
+                        <option>Biro Tata Usaha dan Sumber Daya Manusia</option>
+                        <option>Biro Perencanaan dan Keuangan</option>
+                        <option>Biro Umum</option>
+                        <option>Biro Protokol dan Kerumahtanggaan</option>
+                        <option>Biro Pers, Media, dan Informasi</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn" type="button" data-bs-dismiss="modal">Batal</button>
+                  <button class="btn btn-primary" id="btn-save-user" type="submit">Simpan</button>
+                </div>
+                <input type="hidden" id="ed-id" />
+              </form>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Modal EDIT -->
         <div class="modal fade" id="modal-edit-user" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-scrollable">
+          <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="edit-user-title">Edit User</h5>
@@ -995,8 +1116,8 @@
     <script src="../dist/js/demo.js" defer></script>
     <!-- END DEMO SCRIPTS -->
     <!-- BEGIN PAGE SCRIPTS -->
-    <script src="../dist/js/dummy/management-user-dummy-data.js" defer></script>
-    <script src="../dist/js/table-management-user-data.js" defer></script>
+    <!-- <script src="../dist/js/dummy/management-user-dummy-data.js" defer></script> -->
+    <!-- <script src="../dist/js/table-management-user-data.js" defer></script> -->
 
     <!-- END PAGE SCRIPTS -->
   </body>

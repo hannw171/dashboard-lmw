@@ -510,7 +510,46 @@
                           <th class="w-1"></th>
                         </tr>
                       </thead>
-                      <tbody class="table-tbody"></tbody>
+                      <tbody class="table-tbody">
+                        <!-- Kalo data kosong -->
+                        <!-- <tr>
+                          <td colspan="7" class="text-center text-muted p-4">
+                            <div class="d-flex flex-column align-items-center gap-1">
+                              <div style="font-size: 2rem; line-height: 1">😕</div>
+                              <div><strong>Tidak ada data</strong></div>
+                              <div class="small">Coba ubah filter atau kata kunci pencarian.</div>
+                            </div>
+                          </td>
+                        </tr> -->
+
+                        <!-- Kalo data ada -->
+                        <tr>
+                          <td class="sort-nomor">1</td>
+                          <td class="sort-nama-lengkap">Budi Santoso</td>
+                          <td class="sort-nik">3302139125812471</td>
+                          <td class="sort-nohp">081234567890</td>
+                          <td class="sort-email">budisantoso1@example.com</td>
+                          <td class="sort-alamat">Jl. Merdeka</td>
+                          <td>
+                            <div class="btn-list flex-nowrap">
+                              <a
+                                href="#"
+                                class="btn btn-1 btn-outline-primary"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modal-ktp-pelapor"
+                                ><i class="ti ti-id me-2"></i>View KTP</a
+                              >
+                              <button
+                                class="btn btn-primary"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modal-input-laporan"
+                              >
+                                <i class="ti ti-pencil me-2"></i>Buat Laporan
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
                   </div>
                   <div class="card-footer d-flex align-items-center">
@@ -537,7 +576,10 @@
                       </ul>
 
                       <!-- NUMBERS (ini yang diisi List.js) -->
-                      <ul class="pagination m-0 pagination-numbers"></ul>
+                      <ul class="pagination m-0 pagination-numbers">
+                        <li class="page-item active"><a class="page-link cursor-pointer">1</a></li>
+                        <li class="page-item"><a class="page-link cursor-pointer">2</a></li>
+                      </ul>
 
                       <!-- NEXT (tetap, tidak dihapus List.js) -->
                       <ul class="pagination m-0" id="pagination-next">
@@ -722,6 +764,25 @@
                   </div>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====== Modal Preview: KTP_Pelapor.pdf ====== -->
+        <div class="modal fade" id="modal-ktp-pelapor" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Preview — KTP_Pelapor.pdf</h5>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+              </div>
+              <div class="modal-body">
+                <img src="files/KTP_Pelapor.jpg" alt="KTP_Pelapor.jpg" class="img-fluid rounded" />
+              </div>
+              <div class="modal-footer">
+                <a class="btn btn-outline-secondary" href="files/KTP_Pelapor.jpg" download>Unduh KTP_Pelapor.pdf</a>
+                <button class="btn" data-bs-dismiss="modal">Tutup</button>
+              </div>
             </div>
           </div>
         </div>
@@ -1069,10 +1130,10 @@
     <script src="/dist/js/log-login.js" defer></script>
     <!-- <script src="/dist/js/table-pengadu-data.js" defer></script> -->
     <!-- 1) generator data -->
-    <script src="/dist/js/dummy/pengadu-dummy-data.js"></script>
+    <!-- <script src="/dist/js/dummy/pengadu-dummy-data.js"></script> -->
 
     <!-- 2) logic tabel -->
-    <script src="/dist/js/table-pengadu-data.js"></script>
+    <!-- <script src="/dist/js/table-pengadu-data.js"></script> -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const toggle = document.getElementById("edit-toggle");

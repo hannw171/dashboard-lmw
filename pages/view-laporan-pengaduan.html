@@ -432,7 +432,7 @@
                       <a href="menu-kelola-pengaduan.html" class="btn btn-outline-secondary me-1">
                         <i class="ti ti-chevron-left me-2"></i>Kembali ke Daftar Laporan
                       </a>
-                      <a id="vw-edit-link" class="btn btn-outline-primary">
+                      <a id="vw-edit-link" href="edit-laporan-pengaduan.html?tiket=1974322" class="btn btn-outline-primary">
                         <i class="ti ti-edit me-2"></i>Edit Laporan
                       </a>
                       <button class="btn btn-green" data-bs-toggle="modal" data-bs-target="#modal-persetujuan-analis">
@@ -457,31 +457,31 @@
                                 <div class="list-group-item">
                                   <div class="d-flex justify-content-between align-items-start">
                                     <div class="label me-4">Nama Lengkap:</div>
-                                    <div class="text-end" style="max-width: 70%" id="vw-nama">-</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-nama">Budi Santosa</div>
                                   </div>
                                 </div>
                                 <div class="list-group-item">
                                   <div class="d-flex justify-content-between align-items-start">
                                     <div class="label me-4">NIK:</div>
-                                    <div class="text-end" style="max-width: 70%" id="vw-nik">Tidak diisi</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-nik">1210194906050000 | Tidak diisi</div>
                                   </div>
                                 </div>
                                 <div class="list-group-item">
                                   <div class="d-flex justify-content-between align-items-start">
                                     <div class="label me-4">Nomor Pengadu:</div>
-                                    <div class="text-end" style="max-width: 70%" id="vw-nohp">-</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-nohp">0821123456789 | -</div>
                                   </div>
                                 </div>
                                 <div class="list-group-item">
                                   <div class="d-flex justify-content-between align-items-start">
                                     <div class="label me-4">Email:</div>
-                                    <div class="text-end" style="max-width: 70%" id="vw-email">Tidak diisi</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-email">H@mail.com | tidak diisi</div>
                                   </div>
                                 </div>
                                 <div class="list-group-item">
                                   <div class="d-flex justify-content-between align-items-start">
                                     <div class="label me-4">Alamat Lengkap:</div>
-                                    <div class="text-end" style="max-width: 70%" id="vw-alamat">-</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-alamat">puri lestari blok f no. 48, kel. sukajaya, cibitung, kab. bekasi, jawa barat. | -</div>
                                   </div>
                                 </div>
                               </div>
@@ -494,13 +494,15 @@
                                 <div class="list-group-item">
                                   <div class="d-flex justify-content-between align-items-start">
                                     <div class="label me-4">Disposisi dari:</div>
-                                    <div class="text-end" style="max-width: 70%" id="vw-distribusi">-</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-distribusi">deputi_1</div>
                                   </div>
                                 </div>
                                 <div class="list-group-item">
                                   <div class="d-flex justify-content-between align-items-start">
                                     <div class="label me-4">Petugas Analis:</div>
-                                    <div class="text-end" style="max-width: 70%" id="vw-petugas-analis">-</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-petugas-analis">
+                                      ANALIS 1, S.Kom
+                                    </div>
                                   </div>
                                 </div>
                                 <div class="list-group-item">
@@ -512,7 +514,10 @@
                                 <div class="list-group-item">
                                   <div class="d-flex justify-content-between align-items-start">
                                     <div class="label me-4">Catatan Disposisi:</div>
-                                    <div class="text-end" style="max-width: 70%" id="vw-catatan">-</div>
+                                    <div class="text-end" style="max-width: 70%" id="vw-catatan">
+                                      Ini adalah contoh catatan disposisi yang lumayan panjang ya, buat gambaran aja
+                                      kalo modelannya agak panjang gimana.
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -521,7 +526,15 @@
                         </div>
                         <div class="card card-border mb-3">
                           <div class="card-header"><strong>Detail Laporan Lengkap </strong></div>
-                          <div class="p-3 text-start" id="vw-detail">-</div>
+                          <div class="p-3 text-start" id="vw-detail">
+                            Saya seorang karyawan yang bekerja di perusahaan retail, sudah bekerja kurang lebih 8 tahun
+                            9 bulan status karyawan tetap, dan bulan april 2024 kemaren ada PHK di tempat saya bekerja
+                            dan saya salah satu dari sekian banyak yg di PHK, untuk di daerah saya ada sekitar 30 orang
+                            yang di PHK dan dijanjikan pesangon, dan kami sudah TTD surat pesangonnya tetapi sampai saat
+                            ini belum juga ada kejelasan, setiap perusahaan di tanya jawabannya selalu sabar, alasan PHK
+                            katanya untuk efesiensi. Saya dan beberapa teman juga sudah melaporkan ke Disnaker tetapi
+                            belum ada kabar mengenai laporan tersebut. Mohon bantuannya pak
+                          </div>
                         </div>
                       </div>
                       <div class="col-lg-4 pe-2">
@@ -532,32 +545,75 @@
                             <div class="list-group-item">
                               <div class="d-flex justify-content-between align-items-start">
                                 <div class="label me-4">Nomor Tiket:</div>
-                                <div class="text-end fw-bolder" style="max-width: 70%" id="vw-tiket-dup">-</div>
+                                <div class="text-end fw-bolder" style="max-width: 70%" id="vw-tiket-dup">1974322</div>
                               </div>
                             </div>
                             <div class="list-group-item">
                               <div class="d-flex justify-content-between align-items-start">
                                 <div class="label me-4">Kategori:</div>
-                                <div class="text-end badge bg-purple-lt" style="max-width: 70%" id="vw-kategori">-</div>
+                                <div class="text-end badge bg-purple-lt" style="max-width: 70%" id="vw-kategori">
+                                  Pekerjaan Umum dan Penataan
+                                </div>
                               </div>
                             </div>
                             <div class="list-group-item">
                               <div class="d-flex justify-content-between align-items-start">
                                 <div class="label me-4">Judul Laporan:</div>
-                                <div class="text-end" style="max-width: 70%" id="vw-judul">-</div>
+                                <div class="text-end" style="max-width: 70%" id="vw-judul">
+                                  Bantuan infrastruktur Jalan Desa
+                                </div>
                               </div>
                             </div>
                             <div class="list-group-item">
                               <div class="d-flex justify-content-between align-items-start">
                                 <div class="label me-4">Tanggal Kejadian:</div>
-                                <div class="text-end" style="max-width: 70%" id="vw-tgl-kejadian">Tidak Diisi</div>
+                                <div class="text-end" style="max-width: 70%" id="vw-tgl-kejadian">
+                                  17/08/2025 | Tidak Diisi
+                                </div>
                               </div>
                             </div>
                             <div class="list-group-item">
                               <div class="d-flex flex-column justify-content-between align-items-start">
                                 <div class="label me-4 mb-3">Dokumen Pendukung:</div>
                                 <div class="text-end" style="max-width: 70%" id="vw-dokumen">
-                                  <!-- item akan diinject via JS -->
+                                  <!-- ====== Daftar Dokumen (label nama file + tombol Preview) ====== -->
+                                  <div class="space-y-2">
+                                    <!-- File 1: PDF (punya modal dengan <iframe>) -->
+                                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                                      <span><i class="ti ti-file me-2"></i> KTP_Pelapor.pdf</span>
+                                      <a
+                                        class="btn btn-sm btn-outline-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modal-ktp-pelapor"
+                                      >
+                                        <i class="ti ti-eye"></i> Preview
+                                      </a>
+                                    </div>
+
+                                    <!-- File 2: DOCX (tidak ada preview native, tampilkan pesan) -->
+                                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                                      <span><i class="ti ti-file me-2"></i> Surat_Permohonan.docx</span>
+                                      <a
+                                        class="btn btn-sm btn-outline-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modal-surat-permohonan"
+                                      >
+                                        <i class="ti ti-eye"></i> Preview
+                                      </a>
+                                    </div>
+
+                                    <!-- File 3: JPG (punya modal dengan <img>) -->
+                                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                                      <span><i class="ti ti-file me-2"></i> Foto_Lokasi.jpg</span>
+                                      <a
+                                        class="btn btn-sm btn-outline-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modal-foto-lokasi"
+                                      >
+                                        <i class="ti ti-eye"></i> Preview
+                                      </a>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -575,7 +631,9 @@
                         <div class="list-group-item">
                           <div class="d-flex justify-content-between align-items-start">
                             <div class="label me-4">Status Laporan:</div>
-                            <div class="text-end" style="max-width: 70%" id="vw-status-badge">-</div>
+                            <div class="text-end" style="max-width: 70%" id="vw-status-badge">
+                              Proses verifikasi dan telaah
+                            </div>
                           </div>
                         </div>
                         <div class="list-group-item">
@@ -608,7 +666,138 @@
                                 <th>Oleh</th>
                               </tr>
                             </thead>
-                            <tbody id="vw-logs"></tbody>
+                            <tbody id="vw-logs">
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Proses verifikasi & telaah</td>
+                                <td>Admin</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Pengaduan dikirim</td>
+                                <td>Pengguna</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Proses verifikasi & telaah</td>
+                                <td>Admin</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Pengaduan dikirim</td>
+                                <td>Pengguna</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Proses verifikasi & telaah</td>
+                                <td>Admin</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Pengaduan dikirim</td>
+                                <td>Pengguna</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Proses verifikasi & telaah</td>
+                                <td>Admin</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Pengaduan dikirim</td>
+                                <td>Pengguna</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Proses verifikasi & telaah</td>
+                                <td>Admin</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Pengaduan dikirim</td>
+                                <td>Pengguna</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Proses verifikasi & telaah</td>
+                                <td>Admin</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Pengaduan dikirim</td>
+                                <td>Pengguna</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Proses verifikasi & telaah</td>
+                                <td>Admin</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Pengaduan dikirim</td>
+                                <td>Pengguna</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Proses verifikasi & telaah</td>
+                                <td>Admin</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Pengaduan dikirim</td>
+                                <td>Pengguna</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Proses verifikasi & telaah</td>
+                                <td>Admin</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Pengaduan dikirim</td>
+                                <td>Pengguna</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Proses verifikasi & telaah</td>
+                                <td>Admin</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Pengaduan dikirim</td>
+                                <td>Pengguna</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Proses verifikasi & telaah</td>
+                                <td>Admin</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Pengaduan dikirim</td>
+                                <td>Pengguna</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Proses verifikasi & telaah</td>
+                                <td>Admin</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Pengaduan dikirim</td>
+                                <td>Pengguna</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Proses verifikasi & telaah</td>
+                                <td>Admin</td>
+                              </tr>
+                              <tr>
+                                <td>17/08/2025</td>
+                                <td>Pengaduan dikirim</td>
+                                <td>Pengguna</td>
+                              </tr>
+                            </tbody>
                           </table>
                         </div>
                       </div>
@@ -652,18 +841,64 @@
         </div>
 
         <!-- MODAL PREVIEW FILE -->
-        <div class="modal fade" id="modal-file-preview" tabindex="-1" aria-hidden="true">
+        <!-- ====== Modal Preview: KTP_Pelapor.pdf ====== -->
+        <div class="modal fade" id="modal-ktp-pelapor" tabindex="-1" aria-hidden="true">
           <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="modal-file-preview-title">Preview</h5>
-                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">Preview — KTP_Pelapor.pdf</h5>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
               </div>
               <div class="modal-body">
-                <div id="modal-file-preview-body" class="text-center"></div>
+                <iframe
+                  src="files/KTP_Pelapor.pdf"
+                  style="width: 100%; height: 70vh; border: 0; border-radius: 0.5rem"
+                ></iframe>
               </div>
               <div class="modal-footer">
-                <a id="modal-file-preview-download" class="btn btn-outline-secondary" href="#" download>Unduh</a>
+                <a class="btn btn-outline-secondary" href="files/KTP_Pelapor.pdf" download>Unduh KTP_Pelapor.pdf</a>
+                <button class="btn" data-bs-dismiss="modal">Tutup</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====== Modal Preview: Surat_Permohonan.docx ====== -->
+        <div class="modal fade" id="modal-surat-permohonan" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Preview — Surat_Permohonan.docx</h5>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+              </div>
+              <div class="modal-body text-center my-4">
+                <i class="ti ti-file-description" style="font-size: 2rem"></i>
+                <div class="mt-2"><strong>Preview tidak tersedia untuk tipe ini.</strong></div>
+                <div class="text-secondary">Gunakan tombol <em>Unduh</em> untuk membuka di aplikasi terkait.</div>
+              </div>
+              <div class="modal-footer">
+                <a class="btn btn-outline-secondary" href="files/Surat_Permohonan.docx" download
+                  >Unduh Surat_Permohonan.docx</a
+                >
+                <button class="btn" data-bs-dismiss="modal">Tutup</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====== Modal Preview: Foto_Lokasi.jpg ====== -->
+        <div class="modal fade" id="modal-foto-lokasi" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Preview — Foto_Lokasi.jpg</h5>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img src="files/Foto_Lokasi.jpg" alt="Foto_Lokasi.jpg" class="img-fluid rounded" />
+              </div>
+              <div class="modal-footer">
+                <a class="btn btn-outline-secondary" href="files/Foto_Lokasi.jpg" download>Unduh Foto_Lokasi.jpg</a>
                 <button class="btn" data-bs-dismiss="modal">Tutup</button>
               </div>
             </div>
@@ -1004,9 +1239,9 @@
     <!-- END DEMO SCRIPTS -->
     <!-- BEGIN PAGE SCRIPTS -->
     <!-- 1) generator data -->
-    <script src="/dist/js/dummy/laporan-dummy-data.js"></script>
+    <!-- <script src="/dist/js/dummy/laporan-dummy-data.js"></script> -->
     <!-- 2) logic tabel -->
-    <script src="/dist/js/view-laporan-pengaduan.js"></script>
+    <!-- <script src="/dist/js/view-laporan-pengaduan.js"></script> -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const toggle = document.getElementById("edit-toggle");
