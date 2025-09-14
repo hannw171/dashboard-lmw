@@ -20,12 +20,9 @@
     <link href="../dist/css/tabler.css" rel="stylesheet" />
     <link href="../dist/css/addon-css.css" rel="stylesheet" />
     <link href="../dist/css/tabler-icons.min.css" rel="stylesheet" />
-    <link href="../dist/libs/tom-select/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet" />
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PLUGINS STYLES -->
-    <link href="../dist/css/tabler-vendors.css" rel="stylesheet" />
     <link href="../dist/css/tabler-themes.css" rel="stylesheet" />
-    <link href="../dist/css/litepicker.css" rel="stylesheet" />
     <!-- END PLUGINS STYLES -->
     <!-- BEGIN DEMO STYLES -->
     <link href="../dist/css/demo.css" rel="stylesheet" />
@@ -387,13 +384,32 @@
                   <a class="nav-link" href="../pages/menu-daftar-pengadu.html">
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                       <!-- Download SVG icon from http://tabler.io/icons/icon/list -->
-                      <i class="ti ti-list"></i>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-list"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M9 6l11 0" />
+                        <path d="M9 12l11 0" />
+                        <path d="M9 18l11 0" />
+                        <path d="M5 6l0 .01" />
+                        <path d="M5 12l0 .01" />
+                        <path d="M5 18l0 .01" />
+                      </svg>
                     </span>
                     <span class="nav-link-title">Daftar Pengadu</span>
                   </a>
                 </li>
                 <!-- Menu Kelola Aduan -->
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a class="nav-link" href="../pages/menu-kelola-pengaduan.html">
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                       <!-- Download SVG icon from http://tabler.io/icons/icon/list -->
@@ -403,7 +419,7 @@
                   </a>
                 </li>
                 <!-- Menu Aduan Yang Diteruskan -->
-                <li class="nav-item">
+                <li class="nav-item active">
                   <a class="nav-link" href="../pages/menu-daftar-aduan-yang-diteruskan.html">
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                       <!-- Download SVG icon from http://tabler.io/icons/icon/list -->
@@ -433,11 +449,10 @@
         <!-- BEGIN PAGE HEADER -->
         <div class="page-header d-print-none" aria-label="Page header">
           <div class="container-xl">
-            <div class="d-flex g-2 align-items-center justify-content-between">
-              <h2 class="page-title">Data Laporan/Aduan</h2>
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-input-laporan">
-                <i class="icon ti ti-pencil me-2"></i>Buat Laporan
-              </button>
+            <div class="row g-2 align-items-center">
+              <div class="col">
+                <h2 class="page-title">Daftar Laporan Diteruskan ke Instansi Lain</h2>
+              </div>
             </div>
           </div>
         </div>
@@ -449,73 +464,37 @@
               <div class="card-table">
                 <div class="card-header">
                   <div class="row w-full">
-                    <div class="col-11">
+                    <div class="col-sm-12">
                       <div class="ms-auto d-flex flex-wrap btn-list">
                         <div class="input-group input-group-flat w-full">
                           <span class="input-group-text">
                             <i class="ti ti-search"></i>
                           </span>
                           <input
-                            id="advanced-table-laporan-search"
+                            id="advanced-table-pengadu-search"
                             type="text"
                             class="form-control"
                             autocomplete="off"
-                            placeholder="Cari berdasarkan Nama, Nomor Tiket, Judul, dll."
+                            placeholder="Cari Pengadu berdasarkan Nama, NIK, atau Nomor HP"
                           />
                         </div>
                       </div>
                     </div>
-                    <div class="col-1">
-                      <!-- Tombol Filter -->
-                      <button
-                        id="btn-open-filter"
-                        class="btn btn-outline-secondary position-relative"
-                        data-bs-toggle="modal"
-                        data-bs-target="#modal-filter-laporan"
-                      >
-                        <i class="ti ti-filter me-1"></i> Filter
-                        <span id="filter-active-count" class="badge bg-blue-lt bg-primary ms-2 d-none">0</span>
-                      </button>
-                    </div>
                   </div>
                 </div>
-
-                <div id="advanced-table-laporan">
+                <div id="advanced-table-pengadu">
                   <div class="table-responsive" style="min-height: 50vh; max-height: 58vh; overflow-y: auto">
                     <table class="table table-selectable card-table table-vcenter text-nowrap datatable">
-                      <colgroup>
-                        <col style="width: 4%" />
-                        <!-- # -->
-                        <col style="width: 8%" />
-                        <!-- Nomor Tiket -->
-                        <col style="width: 16%" />
-                        <!-- Nama -->
-                        <col style="width: 20%" />
-                        <!-- Judul -->
-                        <col style="width: 12%" />
-                        <!-- Kategori -->
-                        <col style="width: 8%" />
-                        <!-- Distribusi -->
-                        <col style="width: 9%" />
-                        <!-- Disposisi -->
-                        <col style="width: 5%" />
-                        <!-- Sumber -->
-                        <col style="width: 12%" />
-                        <!-- Status -->
-                        <col style="width: 4%" />
-                        <!-- Dikirim -->
-                        <col style="width: 2%" />
-                        <!-- Aksi -->
-                      </colgroup>
-
                       <thead class="sticky-top bg-white">
                         <tr>
                           <th class="w-1">
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-nomor">#</button>
+                            <button class="table-sort d-flex justify-content-between" data-sort="sort-nomor">
+                              #
+                            </button>
                           </th>
-                          <th>
+                          <th class="w-1">
                             <button class="table-sort d-flex justify-content-between" data-sort="sort-nomor-tiket">
-                              Nomor Tiket
+                              No. Tiket
                             </button>
                           </th>
                           <th>
@@ -524,282 +503,50 @@
                             </button>
                           </th>
                           <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-judul">
-                              Judul Pengaduan
+                            <button class="table-sort d-flex justify-content-between" data-sort="sort-instansi-tujuan">
+                              Instansi Tujuan
                             </button>
                           </th>
                           <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-kategori">
-                              Kategori
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-distribusi">
-                              Distribusi
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-disposisi">
-                              Disposisi
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-sumber">
-                              Sumber
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-status">
-                              Status
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-dikirim">
-                              Dikirim
+                            <button class="table-sort d-flex justify-content-between" data-sort="sort-tanggal-diteruskan">
+                              Tanggal Diteruskan
                             </button>
                           </th>
                           <th class="w-1">Aksi</th>
                         </tr>
                       </thead>
                       <tbody class="table-tbody">
-                        <tr>
-                          <td class="sort-no">1</td>
-                          <td class="sort-tiket"><a href="#" class="text-blue">1974322</a></td>
-                          <td class="sort-nama">Budi Santoso</td>
-                          <td class="sort-judul">Bantuan infrastruktur Jalan Desa</td>
-                          <td class="sort-kategori">Pekerjaan Umum dan Penataan</td>
-                          <td class="sort-distribusi">deputi_1</td>
-                          <td class="sort-disposisi text-danger">Belum terdisposisi</td>
-                          <td><span class="sort-sumber badge bg-primary-lt">TM</span></td>
-                          <td><span class="sort-status badge bg-blue text-blue-fg">Proses verifikasi dan telaah</span></td>
-                          <td class="sort-dikirim">17/08/2025</td>
-                          <td>
-                            <div class="btn-list flex-nowrap">
-                              <a
-                                class="btn btn-icon btn-outline-secondary btn-view"
-                                href="view-laporan-pengaduan.html?tiket=1974322"
-                                title="Lihat"
-                              >
-                                <i class="ti ti-eye"></i>
-                              </a>
-                              <a
-                                class="btn btn-icon btn-outline-secondary btn-edit"
-                                href="edit-laporan-pengaduan.html?tiket=1974322"
-                                title="Edit"
-                              >
-                                <i class="ti ti-pencil"></i>
-                              </a>
-                              <button
-                                class="btn btn-icon btn-outline-danger btn-delete"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modal-confirm-delete"
-                                data-ticket="1974322"
-                                title="Hapus"
-                              >
-                                <i class="ti ti-trash"></i>
-                              </button>
+                        <!-- Kalo data kosong -->
+                        <!-- <tr>
+                          <td colspan="7" class="text-center text-muted p-4">
+                            <div class="d-flex flex-column align-items-center gap-1">
+                              <div style="font-size: 2rem; line-height: 1">😕</div>
+                              <div><strong>Tidak ada data</strong></div>
+                              <div class="small">Coba ubah filter atau kata kunci pencarian.</div>
                             </div>
                           </td>
-                        </tr>
+                        </tr> -->
+
+                        <!-- Kalo data ada -->
                         <tr>
-                          <td class="sort-no">2</td>
-                          <td class="sort-tiket"><a href="#" class="text-blue">1974322</a></td>
-                          <td class="sort-nama">Budi Santoso</td>
-                          <td class="sort-judul">Bantuan infrastruktur Jalan Desa</td>
-                          <td class="sort-kategori">Pekerjaan Umum dan Penataan</td>
-                          <td class="sort-distribusi">deputi_1</td>
-                          <td class="sort-disposisi text-success">Sudah terdisposisi</td>
-                          <td><span class="sort-sumber badge bg-primary-lt">Web</span></td>
-                          <td><span class="sort-status badge bg-red text-red-fg">Ditolak</span></td>
-                          <td class="sort-dikirim">17/08/2025</td>
+                          <td class="sort-nomor">1</td>
+                          <td class="sort-nomor-tiket">1464892</td>
+                          <td class="sort-nama-lengkap">Budi Santoso</td>
+                          <td class="sort-instansi-tujuan">Pemerintah Provinsi DKI Jakarta</td>
+                          <td class="sort-tanggal-diteruskan">17/08/2025 09:00</td>
                           <td>
                             <div class="btn-list flex-nowrap">
                               <a
-                                class="btn btn-icon btn-outline-secondary btn-view"
-                                href="view-laporan-pengaduan.html?tiket=1974322"
-                                title="Lihat"
+                                href="detail-tindak-lanjut-aduan.html"
+                                class="btn btn-1 btn-outline-primary"
+                                ><i class="ti ti-eye me-2"></i>Detail Tindak Lanjut</a
                               >
-                                <i class="ti ti-eye"></i>
-                              </a>
-                              <a
-                                class="btn btn-icon btn-outline-secondary btn-edit"
-                                href="edit-laporan-pengaduan.html?tiket=1974322"
-                                title="Edit"
-                              >
-                                <i class="ti ti-pencil"></i>
-                              </a>
-                              <button
-                                class="btn btn-icon btn-outline-danger btn-delete"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modal-confirm-delete"
-                                data-ticket="1974322"
-                                title="Hapus"
-                              >
-                                <i class="ti ti-trash"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="sort-no">1</td>
-                          <td class="sort-tiket"><a href="#" class="text-blue">1974322</a></td>
-                          <td class="sort-nama">Budi Santoso</td>
-                          <td class="sort-judul">Bantuan infrastruktur Jalan Desa</td>
-                          <td class="sort-kategori">Pekerjaan Umum dan Penataan</td>
-                          <td class="sort-distribusi">deputi_1</td>
-                          <td class="sort-disposisi text-danger">Belum terdisposisi</td>
-                          <td><span class="sort-sumber badge bg-primary-lt">Email</span></td>
-                          <td><span class="sort-status badge bg-yellow text-yellow-fg">Pending</span></td>
-                          <td class="sort-dikirim">17/08/2025</td>
-                          <td>
-                            <div class="btn-list flex-nowrap">
-                              <a
-                                class="btn btn-icon btn-outline-secondary btn-view"
-                                href="view-laporan-pengaduan.html?tiket=1974322"
-                                title="Lihat"
-                              >
-                                <i class="ti ti-eye"></i>
-                              </a>
-                              <a
-                                class="btn btn-icon btn-outline-secondary btn-edit"
-                                href="edit-laporan-pengaduan.html?tiket=1974322"
-                                title="Edit"
-                              >
-                                <i class="ti ti-pencil"></i>
-                              </a>
-                              <button
-                                class="btn btn-icon btn-outline-danger btn-delete"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modal-confirm-delete"
-                                data-ticket="1974322"
-                                title="Hapus"
-                              >
-                                <i class="ti ti-trash"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="sort-no">2</td>
-                          <td class="sort-tiket"><a href="#" class="text-blue">1974322</a></td>
-                          <td class="sort-nama">Budi Santoso</td>
-                          <td class="sort-judul">Bantuan infrastruktur Jalan Desa</td>
-                          <td class="sort-kategori">Pekerjaan Umum dan Penataan</td>
-                          <td class="sort-distribusi">deputi_1</td>
-                          <td class="sort-disposisi text-success">Sudah terdisposisi</td>
-                          <td><span class="sort-sumber badge bg-primary-lt">TM</span></td>
-                          <td><span class="sort-status badge bg-green text-green-fg">Penanganan Selesai</span></td>
-                          <td class="sort-dikirim">17/08/2025</td>
-                          <td>
-                            <div class="btn-list flex-nowrap">
-                              <a
-                                class="btn btn-icon btn-outline-secondary btn-view"
-                                href="view-laporan-pengaduan.html?tiket=1974322"
-                                title="Lihat"
-                              >
-                                <i class="ti ti-eye"></i>
-                              </a>
-                              <a
-                                class="btn btn-icon btn-outline-secondary btn-edit"
-                                href="edit-laporan-pengaduan.html?tiket=1974322"
-                                title="Edit"
-                              >
-                                <i class="ti ti-pencil"></i>
-                              </a>
-                              <button
-                                class="btn btn-icon btn-outline-danger btn-delete"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modal-confirm-delete"
-                                data-ticket="1974322"
-                                title="Hapus"
-                              >
-                                <i class="ti ti-trash"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="sort-no">1</td>
-                          <td class="sort-tiket"><a href="#" class="text-blue">1974322</a></td>
-                          <td class="sort-nama">Budi Santoso</td>
-                          <td class="sort-judul">Bantuan infrastruktur Jalan Desa</td>
-                          <td class="sort-kategori">Pekerjaan Umum dan Penataan</td>
-                          <td class="sort-distribusi">deputi_1</td>
-                          <td class="sort-disposisi text-danger">Belum terdisposisi</td>
-                          <td><span class="sort-sumber badge bg-primary-lt">Web</span></td>
-                          <td><span class="sort-status badge bg-yellow text-yellow-fg">Menunggu kelengkapan data dari pelapor</span></td>
-                          <td class="sort-dikirim">17/08/2025</td>
-                          <td>
-                            <div class="btn-list flex-nowrap">
-                              <a
-                                class="btn btn-icon btn-outline-secondary btn-view"
-                                href="view-laporan-pengaduan.html?tiket=1974322"
-                                title="Lihat"
-                              >
-                                <i class="ti ti-eye"></i>
-                              </a>
-                              <a
-                                class="btn btn-icon btn-outline-secondary btn-edit"
-                                href="edit-laporan-pengaduan.html?tiket=1974322"
-                                title="Edit"
-                              >
-                                <i class="ti ti-pencil"></i>
-                              </a>
-                              <button
-                                class="btn btn-icon btn-outline-danger btn-delete"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modal-confirm-delete"
-                                data-ticket="1974322"
-                                title="Hapus"
-                              >
-                                <i class="ti ti-trash"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="sort-no">2</td>
-                          <td class="sort-tiket"><a href="#" class="text-blue">1974322</a></td>
-                          <td class="sort-nama">Budi Santoso</td>
-                          <td class="sort-judul">Bantuan infrastruktur Jalan Desa</td>
-                          <td class="sort-kategori">Pekerjaan Umum dan Penataan</td>
-                          <td class="sort-distribusi">deputi_1</td>
-                          <td class="sort-disposisi text-success">Sudah terdisposisi</td>
-                          <td><span class="sort-sumber badge bg-primary-lt">TM</span></td>
-                          <td><span class="sort-status badge bg-teal text-teal-fg">Diteruskan kepada instansi yang berwenang</span></td>
-                          <td class="sort-dikirim">17/08/2025</td>
-                          <td>
-                            <div class="btn-list flex-nowrap">
-                              <a
-                                class="btn btn-icon btn-outline-secondary btn-view"
-                                href="view-laporan-pengaduan.html?tiket=1974322"
-                                title="Lihat"
-                              >
-                                <i class="ti ti-eye"></i>
-                              </a>
-                              <a
-                                class="btn btn-icon btn-outline-secondary btn-edit"
-                                href="edit-laporan-pengaduan.html?tiket=1974322"
-                                title="Edit"
-                              >
-                                <i class="ti ti-pencil"></i>
-                              </a>
-                              <button
-                                class="btn btn-icon btn-outline-danger btn-delete"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modal-confirm-delete"
-                                data-ticket="1974322"
-                                title="Hapus"
-                              >
-                                <i class="ti ti-trash"></i>
-                              </button>
                             </div>
                           </td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
-
                   <div class="card-footer d-flex align-items-center">
                     <div class="dropdown">
                       <a class="btn dropdown-toggle" data-bs-toggle="dropdown">
@@ -813,9 +560,7 @@
                         <a class="dropdown-item" onclick="setPageListItems(event)" data-value="100">100 records</a>
                       </div>
                     </div>
-
-                    <!-- Pagination: prev | numbers (List.js) | next -->
-                    <div class="ms-auto d-flex align-items-center gap-2">
+                    <ul class="pagination m-0 ms-auto">
                       <!-- PREV (tetap, tidak dihapus List.js) -->
                       <ul class="pagination m-0" id="pagination-prev">
                         <li class="page-item">
@@ -839,7 +584,7 @@
                           </a>
                         </li>
                       </ul>
-                    </div>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -847,283 +592,6 @@
           </div>
         </div>
         <!-- END PAGE BODY -->
-
-        <!-- BEGIN PAGE MODALS -->
-        <!-- Modal Filter -->
-        <div class="modal fade" id="modal-filter-laporan" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-header sticky-top bg-body z-3 border-bottom">
-                <h5 class="modal-title">Filter Data Pengaduan</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body">
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <label class="form-label">Kategori</label>
-                    <select class="form-select" id="filter-kategori">
-                      <option value="">Semua Kategori</option>
-                      <option>Pekerjaan Umum dan Penataan</option>
-                      <option>Politik dan Hukum</option>
-                      <option>Sosial dan Kesejahteraan</option>
-                      <option>Pertanahan</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Status</label>
-                    <select class="form-select" id="filter-status">
-                      <option value="">Semua Status</option>
-                      <option>Proses verifikasi dan telaah</option>
-                      <option>Selesai</option>
-                      <option>Ditolak</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Distribusi</label>
-                    <select class="form-select" id="filter-distribusi">
-                      <option value="">Semua Distribusi</option>
-                      <option>deputi_1</option>
-                      <option>deputi_2</option>
-                      <option>deputi_3</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Disposisi</label>
-                    <select class="form-select" id="filter-disposisi">
-                      <option value="">Semua</option>
-                      <option>Belum terdisposisi</option>
-                      <option>Sudah terdisposisi</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Sumber</label>
-                    <select class="form-select" id="filter-sumber">
-                      <option value="">Semua Sumber</option>
-                      <option>TM</option>
-                      <option>Web</option>
-                      <option>Email</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Rentang Tanggal (Dikirim)</label>
-                    <input
-                      id="filter-date-range"
-                      type="text"
-                      class="form-control"
-                      placeholder="DD/MM/YYYY - DD/MM/YYYY"
-                      data-bs-toggle="datepicker"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Urutkan</label>
-                    <select class="form-select" id="filter-sort">
-                      <option value="terbaru" selected>Terbaru</option>
-                      <option value="terlama">Terlama</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer sticky-bottom bg-body z-3 border-top">
-                <button class="btn btn-link text-danger" id="btn-filter-reset">Reset</button>
-                <button class="btn btn-primary" id="btn-filter-apply" data-bs-dismiss="modal">Terapkan</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Danger Modal -->
-        <div class="modal fade" id="modal-confirm-delete" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-sm modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-status bg-danger"></div>
-              <div class="modal-header">
-                <h5 class="modal-title">Hapus data?</h5>
-                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body text-center py-4">
-                <i class="ti ti-alert-circle text-danger" style="font-size: 2rem"></i>
-                <div class="mt-2">Yakin ingin menghapus tiket <strong id="confirm-ticket">—</strong>?</div>
-                <div class="text-secondary small" id="confirm-name"></div>
-              </div>
-              <div class="modal-footer">
-                <button class="btn btn-link link-secondary" data-bs-dismiss="modal">Batal</button>
-                <button class="btn btn-danger" id="btn-confirm-delete" data-bs-dismiss="modal">Ya, hapus</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Modal Tambah Pengaduan -->
-        <div class="modal modal-blur fade" id="modal-input-laporan" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <!-- HEADER sticky -->
-              <div class="modal-header sticky-top bg-body z-3 border-bottom">
-                <h5 class="modal-title sticky-top">Tambah Pengaduan Baru</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <form>
-                <div class="modal-body">
-                  <div class="row row-cols-2 g-4">
-                    <div>
-                      <label class="form-label">Nama Lengkap<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Nama Lengkap" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">NIK<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Nomor NIK" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">Sumber Pengaduan<span class="text-danger">*</span></label>
-                      <div>
-                        <select class="form-select">
-                          <option>Tatap Muka</option>
-                          <option>WhatsApp</option>
-                          <option>Email</option>
-                          <option>Surat</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div>
-                      <label class="form-label">Jenis Kelamin<span class="text-danger">*</span></label>
-                      <div>
-                        <select class="form-select">
-                          <option>Laki-laki</option>
-                          <option>Perempuan</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div>
-                      <label class="form-label">Email Pengadu</label>
-                      <input type="email" placeholder="Masukkan Email" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">Nomor HP Pengadu</label>
-                      <input type="number" placeholder="Masukkan Nomor HP" class="form-control" />
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label">Alamat Lengkap<span class="text-danger">*</span></label>
-                      <textarea placeholder="Masukkan Alamat" rows="3" class="form-control"></textarea>
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label">Judul Laporan<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Judul Laporan" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">Lokasi Kejadian<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Lokasi Kejadian" class="form-control" />
-                    </div>
-                    <div>
-                      <label class="form-label">Tanggal Kejadian</label>
-                      <div>
-                        <div class="input-icon">
-                          <input class="form-control" placeholder="mm/dd/yyyy" id="datepicker-tgl-kejadian" value="" />
-                          <span class="input-icon-addon"
-                            ><!-- Download SVG icon from http://tabler.io/icons/icon/calendar -->
-                            <i class="icon ti ti-calendar"></i
-                          ></span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-12" id="field-kategori">
-                      <label class="form-label">Kategori<span class="text-danger">*</span></label>
-                      <select id="select-optgroups" class="form-select" placeholder="Pilih Kategori">
-                        <option value="" selected disabled hidden>Pilih Kategori</option>
-                        <optgroup
-                          label="Deputi Bidang Dukungan Kebijakan Perekonomian, Pariwisata dan Transformasi Digital"
-                        >
-                          <option value="Ekonomi dan Keuangan">Ekonomi dan Keuangan</option>
-                          <option value="Lingkungan Hidup dan Kehutanan">Lingkungan Hidup dan Kehutanan</option>
-                          <option value="Pekerjaan Umum dan Penataan Ruang">Pekerjaan Umum dan Penataan Ruang</option>
-                          <option value="Pertanian dan Peternakan">Pertanian dan Peternakan</option>
-                          <option value="Pemulihan Ekonomi Nasional">Pemulihan Ekonomi Nasional</option>
-                          <option value="Energi dan Sumber Daya Alam">Energi dan Sumber Daya Alam</option>
-                          <option value="Mudik">Mudik</option>
-                          <option value="Perairan">Perairan</option>
-                          <option value="Perhubungan">Perhubungan</option>
-                          <option value="Teknologi Informasi dan Komunikasi">Teknologi Informasi dan Komunikasi</option>
-                          <option value="Perlindungan Konsumen">Perlindungan Konsumen</option>
-                          <option value="Pariwisata dan Ekonomi Kreatif">Pariwisata dan Ekonomi Kreatif</option>
-                          <option value="Industri dan Perdagangan">Industri dan Perdagangan</option>
-                          <option value="Perumahan">Perumahan</option>
-                          <option value="Perpajakan">Perpajakan</option>
-                          <option value="Infrastruktur">Infrastruktur</option>
-                          <option value="Pembangunan Kewilayahan">Pembangunan Kewilayahan</option>
-                        </optgroup>
-                        <optgroup
-                          label="Deputi Bidang Dukungan Kebijakan Peningkatan Kesejahteraan dan Pembangunan Sumber Daya Manusia"
-                        >
-                          <option value="Agama">Agama</option>
-                          <option value="Corona Virus">Corona Virus</option>
-                          <option value="Kesehatan">Kesehatan</option>
-                          <option value="Kesetaraan Gender dan Sosial Inklusif">
-                            Kesetaraan Gender dan Sosial Inklusif
-                          </option>
-                          <option value="Pembangunan Desa, Daerah Tertinggal, dan Transmigrasi">
-                            Pembangunan Desa, Daerah Tertinggal, dan Transmigrasi
-                          </option>
-                          <option value="Pendidikan dan Kebudayaan">Pendidikan dan Kebudayaan</option>
-                          <option value="Sosial dan Kesejahteraan">Sosial dan Kesejahteraan</option>
-                          <option value="Kekerasan di Satuan Pendidikan (Sekolah, Kampus, Lembaga Khusus)">
-                            Kekerasan di Satuan Pendidikan (Sekolah, Kampus, Lembaga Khusus)
-                          </option>
-                          <option value="Penanggulangan Bencana">Penanggulangan Bencana</option>
-                          <option value="Ketenagakerjaan">Ketenagakerjaan</option>
-                          <option value="Pemberdayaan Masyarakat, Koperasi, dan UMKM">
-                            Pemberdayaan Masyarakat, Koperasi, dan UMKM
-                          </option>
-                          <option value="Kepemudaan dan Olahraga">Kepemudaan dan Olahraga</option>
-                          <option value="Keluarga Berencana">Keluarga Berencana</option>
-                          <option value="Pembangunan Keluarga">Pembangunan Keluarga</option>
-                        </optgroup>
-                        <optgroup label="Deputi Bidang Dukungan Kebijakan Pemerintahan dan Pemerataan Pembangunan">
-                          <option value="Ketentraman, Ketertiban Umum, dan Perlindungan Masyarakat">
-                            Ketentraman, Ketertiban Umum, dan Perlindungan Masyarakat
-                          </option>
-                          <option value="Politik dan Hukum">Politik dan Hukum</option>
-                          <option value="Politisasi ASN">Politisasi ASN</option>
-                          <option value="SP4N Lapor">SP4N Lapor</option>
-                          <option value="Netralitas ASN">Netralitas ASN</option>
-                          <option
-                            value="Pencegahan dan Pemberantasan Penyalahgunaan dan Peredaran Gelap Narkotika dan Prekursor Narkotika (P4GN)"
-                          >
-                            Pencegahan dan Pemberantasan Penyalahgunaan dan Peredaran Gelap Narkotika dan Prekursor
-                            Narkotika (P4GN)
-                          </option>
-                          <option value="Manajemen ASN">Manajemen ASN</option>
-                          <option value="Luar Negeri">Luar Negeri</option>
-                          <option value="Pertanahan">Pertanahan</option>
-                          <option value="Daerah Perbatasan">Daerah Perbatasan</option>
-                          <option value="Pelayanan Publik">Pelayanan Publik</option>
-                          <option value="TNI">TNI</option>
-                          <option value="Polri">Polri</option>
-                          <option value="Kependudukan">Kependudukan</option>
-                        </optgroup>
-                        <optgroup label="Deputi Bidang Administrasi">
-                          <option value="Topik Khusus">Topik Khusus</option>
-                          <option value="Topik Lainnya">Topik Lainnya</option>
-                          <option value="Bantuan Masyarakat">Bantuan Masyarakat</option>
-                        </optgroup>
-                      </select>
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label">Detail Laporan<span class="text-danger">*</span></label>
-                      <textarea placeholder="Isi Detail Laporan" rows="6" class="form-control"></textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <div class="text-end">
-                    <a href="#" class="btn btn-1"> Cancel </a>
-                    <a href="#" class="btn btn-primary btn-2"> Save Changes </a>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!-- END PAGE MODALS -->
-
         <!--  BEGIN FOOTER  -->
         <footer class="footer footer-transparent d-print-none">
           <div class="container-xl">
@@ -1443,79 +911,19 @@
       </form>
     </div>
     <!-- BEGIN PAGE LIBRARIES -->
+    <script src="../dist/libs/apexcharts/dist/apexcharts.min.js?1753892832" defer></script>
+    <script src="../dist/libs/jsvectormap/dist/jsvectormap.min.js?1753892832" defer></script>
+    <script src="../dist/libs/jsvectormap/dist/maps/world.js?1753892832" defer></script>
+    <script src="../dist/libs/jsvectormap/dist/maps/world-merc.js?1753892832" defer></script>
     <!-- END PAGE LIBRARIES -->
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script src="../dist/js/tabler.min.js" defer></script>
     <script src="../dist/libs/list.js/dist/list.min.js" defer></script>
-    <script src="../dist/libs/litepicker/dist/litepicker.js" defer></script>
-    <script src="../dist/libs/tom-select/dist/js/tom-select.base.min.js" defer></script>
-    <script src="/dist/js/toast-trial.js" defer></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
     <!-- BEGIN DEMO SCRIPTS -->
     <script src="../dist/js/demo.js" defer></script>
     <!-- END DEMO SCRIPTS -->
     <!-- BEGIN PAGE SCRIPTS -->
-    <!-- 1) generator data -->
-    <!-- <script src="/dist/js/dummy/laporan-dummy-data.js"></script> -->
-    <!-- 2) logic tabel -->
-    <!-- <script src="/dist/js/table-laporan-filters.js"></script> -->
-    <!-- <script src="/dist/js/table-laporan-data.js"></script> -->
-    <!-- <script src="/dist/js/dummy/kelola-laporan-dummy-data.js" defer></script> -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const toggle = document.getElementById("edit-toggle");
-        const footer = document.getElementById("form-footer");
-        const form = document.getElementById("profile-form");
-
-        // Semua kontrol yang ingin dikunci saat non-edit
-        const controls = form.querySelectorAll(
-          "input.form-control, textarea.form-control, select.form-select, .form-check-input"
-        );
-
-        function applyEditState(editing) {
-          // tampil/hidden tombol
-          footer.classList.toggle("d-none", !editing);
-
-          // enable/disable semua kontrol (kecuali toggle)
-          controls.forEach((el) => {
-            if (el === toggle) return; // jangan nonaktifkan toggle sendiri
-            el.disabled = !editing; // kunci saat bukan mode edit
-          });
-        }
-
-        // set kondisi awal
-        applyEditState(toggle.checked);
-
-        // update saat toggle berubah
-        toggle.addEventListener("change", () => applyEditState(toggle.checked));
-      });
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        window.Litepicker &&
-          new Litepicker({
-            element: document.getElementById("datepicker-tgl-kejadian"),
-            format: "MM/DD/YYYY", // ubah format sesuai kebutuhan
-            buttonText: {
-              previousMonth: `<!-- Download SVG icon from http://tabler.io/icons/icon/chevron-left -->
-	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M15 6l-6 6l6 6" /></svg>`,
-              nextMonth: `<!-- Download SVG icon from http://tabler.io/icons/icon/chevron-right -->
-	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M9 6l6 6l-6 6" /></svg>`,
-            },
-          });
-      });
-    </script>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const tbl = document.querySelector("#advanced-table-laporan table");
-        if (tbl) tbl.classList.remove("text-nowrap");
-      });
-    </script>
-
-    <!-- Toast container -->
-    <div id="toast-placement" class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1080"></div>
-
     <!-- END PAGE SCRIPTS -->
   </body>
 </html>

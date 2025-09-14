@@ -20,12 +20,9 @@
     <link href="../dist/css/tabler.css" rel="stylesheet" />
     <link href="../dist/css/addon-css.css" rel="stylesheet" />
     <link href="../dist/css/tabler-icons.min.css" rel="stylesheet" />
-    <link href="../dist/libs/tom-select/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet" />
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PLUGINS STYLES -->
-    <link href="../dist/css/tabler-vendors.css" rel="stylesheet" />
     <link href="../dist/css/tabler-themes.css" rel="stylesheet" />
-    <link href="../dist/css/litepicker.css" rel="stylesheet" />
     <!-- END PLUGINS STYLES -->
     <!-- BEGIN DEMO STYLES -->
     <link href="../dist/css/demo.css" rel="stylesheet" />
@@ -387,7 +384,26 @@
                   <a class="nav-link" href="../pages/menu-daftar-pengadu.html">
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                       <!-- Download SVG icon from http://tabler.io/icons/icon/list -->
-                      <i class="ti ti-list"></i>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-list"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M9 6l11 0" />
+                        <path d="M9 12l11 0" />
+                        <path d="M9 18l11 0" />
+                        <path d="M5 6l0 .01" />
+                        <path d="M5 12l0 .01" />
+                        <path d="M5 18l0 .01" />
+                      </svg>
                     </span>
                     <span class="nav-link-title">Daftar Pengadu</span>
                   </a>
@@ -403,7 +419,7 @@
                   </a>
                 </li>
                 <!-- Menu Aduan Yang Diteruskan -->
-                <li class="nav-item">
+                <li class="nav-item active">
                   <a class="nav-link" href="../pages/menu-daftar-aduan-yang-diteruskan.html">
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                       <!-- Download SVG icon from http://tabler.io/icons/icon/list -->
@@ -413,7 +429,7 @@
                   </a>
                 </li>
                 <!-- Menu Management User -->
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a class="nav-link" href="../pages/menu-management-user.html">
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                       <!-- Download SVG icon from http://tabler.io/icons/icon/list -->
@@ -430,373 +446,123 @@
       </div>
       <!-- END NAVBAR  -->
       <div class="page-wrapper">
-        <!-- BEGIN PAGE HEADER -->
-        <div class="page-header d-print-none" aria-label="Page header">
-          <div class="container-xl">
-            <div class="d-flex g-2 align-items-center justify-content-between">
-              <h2 class="page-title">Manajemen User</h2>
-            </div>
-          </div>
-        </div>
-        <!-- END PAGE HEADER -->
         <!-- BEGIN PAGE BODY -->
         <div class="page-body">
           <div class="container-xl">
-            <div class="card">
-              <div class="card-table">
-                <div class="card-header">
-                  <div class="row w-full align-items-center">
+            <!-- ===== Card: Tindak Lanjut untuk Tiket ===== -->
+            <div class="card shadow-sm mb-3">
+              <div class="card-header sticky-top bg-white" style="top: 56px">
+                <div class="d-flex align-items-center justify-content-between w-100">
+                  <h2 class="page-title">Tindak Lanjut untuk Tiket #9230987</h2>
+                  <div class="row">
                     <div class="col">
-                      <button id="btn-add-user" class="btn btn-primary" data-bs-target="#modal-tambah-user" data-bs-toggle="modal">
-                        <i class="ti ti-user-plus me-1"></i> Tambah User
-                      </button>
-                    </div>
-                    <div class="col">
-                      <div class="input-group input-group-flat">
-                        <span class="input-group-text"><i class="ti ti-search"></i></span>
-                        <input
-                          id="advanced-table-manage-user-search"
-                          type="text"
-                          class="form-control"
-                          placeholder="Cari user (nama, email, role, jabatan, unit)"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div id="advanced-table-user">
-                  <div class="table-responsive" style="min-height: 50vh; max-height: 58vh; overflow-y: auto">
-                    <table class="table card-table table-vcenter datatable">
-                      <colgroup>
-                        <col style="width: 4%" />
-                        <col style="width: 18%" />
-                        <col style="width: 22%" />
-                        <col style="width: 12%" />
-                        <col style="width: 24%" />
-                        <col style="width: 12%" />
-                        <col style="width: 8%" />
-                      </colgroup>
-                      <thead class="sticky-top bg-white">
-                        <tr>
-                          <th class="w-1">
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-no">#</button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-nama">
-                              Nama
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-email">
-                              Email
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-role">
-                              Role
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-jabatan">
-                              Jabatan
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table-sort d-flex justify-content-between" data-sort="sort-unit">
-                              Unit
-                            </button>
-                          </th>
-                          <th class="w-1">Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody class="table-tbody" id="tbl-user-tbody">
-                        <!-- Kalo data kosong -->
-                        <!-- <tr>
-                          <td colspan="7" class="text-center text-muted p-4">
-                            <div class="d-flex flex-column align-items-center gap-1">
-                              <div style="font-size: 2rem; line-height: 1">😕</div>
-                              <div><strong>Tidak ada data</strong></div>
-                              <div class="small">Coba ubah filter atau kata kunci pencarian.</div>
-                            </div>
-                          </td>
-                        </tr> -->
-                        <tr data-id="${u.id}">
-                          <td class="sort-no">1</td>
-                          <td class="sort-nama">Nama</td>
-                          <td class="sort-email"><a href="mailto:email@example.com">email@example.com</a></td>
-                          <td class="sort-role"><span class="badge bg-blue-lt">role_user</span></td>
-                          <td class="sort-jabatan">jabatan | -</td>
-                          <td class="sort-unit">unit | -</td>
-                          <td>
-                            <div class="btn-list flex-nowrap">
-                              <button
-                                class="btn btn-1 btn-outline-primary btn-edit"
-                                title="Edit"
-                                data-bs-target="#modal-edit-user"
-                                data-bs-toggle="modal"
-                              >
-                                <i class="ti ti-pencil"></i>
-                              </button>
-                              <button class="btn btn-1 btn-outline-danger btn-del" title="Hapus" data-bs-target="#modal-delete-user" data-bs-toggle="modal">
-                                <i class="ti ti-trash"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <div class="card-footer d-flex align-items-center">
-                    <div class="dropdown">
-                      <a class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                        <span id="user-page-count" class="me-1">20</span> <span>records</span>
+                      <a href="menu-daftar-aduan-yang-diteruskan.html" class="btn btn-outline-secondary me-1">
+                        <i class="ti ti-chevron-left me-2"></i>Kembali ke Daftar Laporan yang Diteruskan
                       </a>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" onclick="setUserPageSize(event)" data-value="10">10 records</a>
-                        <a class="dropdown-item" onclick="setUserPageSize(event)" data-value="20">20 records</a>
-                        <a class="dropdown-item" onclick="setUserPageSize(event)" data-value="50">50 records</a>
-                        <a class="dropdown-item" onclick="setUserPageSize(event)" data-value="100">100 records</a>
-                      </div>
                     </div>
-
-                    <ul class="pagination m-0 ms-auto">
-                      <!-- PREV (tetap, tidak dihapus List.js) -->
-                      <ul class="pagination m-0" id="user-pagination-prev">
-                        <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Previous">
-                            <i class="ti ti-chevron-left"></i>
-                          </a>
-                        </li>
-                      </ul>
-
-                      <!-- NUMBERS (ini yang diisi List.js) -->
-                      <ul class="pagination m-0 pagination-numbers">
-                        <li class="page-item active"><a class="page-link cursor-pointer">1</a></li>
-                        <li class="page-item"><a class="page-link cursor-pointer">2</a></li>
-                      </ul>
-
-                      <!-- NEXT (tetap, tidak dihapus List.js) -->
-                      <ul class="pagination m-0" id="user-pagination-next">
-                        <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Next">
-                            <i class="ti ti-chevron-right"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </ul>
                   </div>
                 </div>
+              </div>
+              <div class="card-body">
+                <h2 class="fw-bold mb-2">Ahmad abdul rohman</h2>
+
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="badge bg-success-lt text-success">
+                    <i class="ti ti-brand-whatsapp me-1"></i>Whatsapp
+                  </span>
+                  <span class="badge bg-blue-lt text-blue"> Terdisposisi ke Dinas Lingkungan Hidup Kota Padang </span>
+                </div>
+
+                <a href="#" class="h3 d-inline-block mb-1 text-decoration-none">Laporan pribadi</a>
+
+                <div class="text-secondary small mb-3">
+                  https://cdn.qontak.com/uploads/message/file/3e446dcc1-a50a-45a3-bf45-6eb6426b00fc/laporan.pdf
+                </div>
+
+                <div class="d-flex flex-wrap gap-2">
+                  <a class="btn btn-outline-primary" target="_blank" href="https://cdn.qontak.com/.../laporan.pdf">
+                    <i class="ti ti-file-text me-1"></i> Lihat Dokumen Pengaduan
+                  </a>
+                  <a
+                    class="btn btn-outline-secondary"
+                    target="_blank"
+                    href="https://cdn.qontak.com/.../laporan.pdf"
+                    download
+                  >
+                    <i class="ti ti-download me-1"></i> Unduh
+                  </a>
+                </div>
+
+                <!-- ===== Section: Riwayat Tindak Lanjut (Log) ===== -->
+                <section id="riwayat-tindak-lanjut" class="mt-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <h3 class="me-auto mb-0">Riwayat Tindak Lanjut</h3>
+                  </div>
+
+                  <!-- Log item 1 -->
+                  <div class="card mb-2">
+                    <div class="card-body d-flex align-items-start">
+                      <div class="me-auto">
+                        <div class="fw-bold mb-1">
+                          Lapor Mas Wapres <span class="text-secondary">→</span> Lapor Mas Wapres
+                        </div>
+                        <div class="text-secondary">
+                          Laporan didisposisikan ke
+                          <a href="#" class="text-body">Lapor Mas Wapres</a>
+                          oleh
+                          <a href="#" class="text-body">Lapor Mas Wapres</a>
+                        </div>
+                      </div>
+                      <div class="text-secondary small ms-3">08-09-2025 15:53:50</div>
+                    </div>
+                  </div>
+
+                  <!-- Log item 2 -->
+                  <div class="card mb-2">
+                    <div class="card-body d-flex align-items-start">
+                      <div class="me-auto">
+                        <div class="fw-bold mb-1">
+                          Pemerintah Kota Padang <span class="text-secondary">→</span> Dinas Lingkungan Hidup Kota
+                          Padang
+                        </div>
+                        <div class="text-secondary">
+                          Laporan didisposisikan ke
+                          <a href="#" class="text-body">Dinas Lingkungan Hidup Kota Padang</a>
+                          oleh
+                          <a href="#" class="text-body">Pemerintah Kota Padang</a>
+                        </div>
+                      </div>
+                      <div class="text-secondary small ms-3">08-09-2025 15:56:58</div>
+                    </div>
+                  </div>
+
+                  <!-- Log item 3 (punya deskripsi + lampiran) -->
+                  <div class="card mb-2">
+                    <div class="card-body">
+                      <div class="d-flex">
+                        <div class="me-auto">
+                          <div class="fw-bold mb-1">Pemerintah Kota Padang</div>
+                          <div class="text-body">sudah diselesaikan begini</div>
+                          <div class="mt-2">
+                            <a
+                              class="badge bg-red-lt text-red text-decoration-none"
+                              href="/files/test-page.pdf"
+                              target="_blank"
+                            >
+                              <i class="ti ti-file me-1"></i> test-page.pdf
+                            </a>
+                          </div>
+                        </div>
+                        <div class="text-secondary small ms-3">08-09-2025 15:58:34</div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
             </div>
           </div>
         </div>
         <!-- END PAGE BODY -->
-
-        <!-- BEGIN PAGE MODALS -->
-        <!-- Modal Tambah -->
-        <div class="modal fade" id="modal-tambah-user" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="tambah-user-title">Tambah User</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <form id="form-tambah-user">
-                <div class="modal-body">
-                  <div class="row g-3">
-                    <div class="col-md-6">
-                      <label class="form-label">Nama</label>
-                      <input type="text" id="ed-nama" class="form-control" required />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Email</label>
-                      <input type="email" id="ed-email" class="form-control" required />
-                    </div>
-
-                    <div class="col-md-6">
-                      <label class="form-label">Role</label>
-                      <select id="ed-role" class="form-select">
-                        <option>superadmin</option>
-                        <option>deputi_1</option>
-                        <option>deputi_2</option>
-                        <option>deputi_3</option>
-                        <option>deputi_4</option>
-                        <option>asdep</option>
-                        <option>analis</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Jabatan</label>
-                      <input type="text" id="ed-jabatan" class="form-control" />
-                    </div>
-
-                    <div class="col-md-6">
-                      <label class="form-label">Deputi</label>
-                      <select id="ed-deputi" class="form-select">
-                        <option>Admin</option>
-                        <option>
-                          Deputi Bidang Dukungan Kebijakan Perekonomian, Pariwisata, dan Transformasi Digital
-                        </option>
-                        <option>
-                          Deputi Bidang Dukungan Kebijakan Peningkatan Kesejahteraan Dan Pembangunan Sumber Daya Manusia
-                        </option>
-                        <option>Deputi Bidang Dukungan Kebijakan Pemerintahan dan Pemerataan Pembangunan</option>
-                        <option>Deputi Bidang Administrasi</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Unit</label>
-                      <select id="ed-unit" class="form-select">
-                        <option>Admin</option>
-                        <option>Asisten Deputi Ekonomi, Keuangan, dan Transformasi Digital</option>
-                        <option>Asisten Deputi Industri, Perdagangan, Pariwisata, dan Ekonomi Kreatif</option>
-                        <option>Asisten Deputi Infrastruktur, Sumber Daya Alam, dan Pembangunan Kewilayahan</option>
-                        <option>Asisten Deputi Pengentasan Kemiskinan dan Pembangunan Desa</option>
-                        <option>Asisten Deputi Kesehatan, Gizi, dan Pembangunan Keluarga</option>
-                        <option>Asisten Deputi Pemberdayaan Masyarakat dan Penanggulangan Bencana</option>
-                        <option>Asisten Deputi Pendidikan, Agama, Kebudayaan, Pemuda, dan Olahraga</option>
-                        <option>Asisten Deputi Hubungan Luar Negeri dan Pertahanan</option>
-                        <option>Asisten Deputi Politik, Keamanan, Hukum, dan Hak Asasi Manusia</option>
-                        <option>Asisten Deputi Tata Kelola Pemerintahan dan Percepatan Pembangunan Daerah</option>
-                        <option>Biro Tata Usaha dan Sumber Daya Manusia</option>
-                        <option>Biro Perencanaan dan Keuangan</option>
-                        <option>Biro Umum</option>
-                        <option>Biro Protokol dan Kerumahtanggaan</option>
-                        <option>Biro Pers, Media, dan Informasi</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn" type="button" data-bs-dismiss="modal">Batal</button>
-                  <button class="btn btn-primary" id="btn-save-user" type="submit">Simpan</button>
-                </div>
-                <input type="hidden" id="ed-id" />
-              </form>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Modal EDIT -->
-        <div class="modal fade" id="modal-edit-user" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="edit-user-title">Edit User</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <form id="form-edit-user">
-                <div class="modal-body">
-                  <div class="row g-3">
-                    <div class="col-md-6">
-                      <label class="form-label">Nama</label>
-                      <input type="text" id="ed-nama" class="form-control" required />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Email</label>
-                      <input type="email" id="ed-email" class="form-control" required />
-                    </div>
-
-                    <div class="col-md-6">
-                      <label class="form-label"
-                        >Password <span class="text-secondary small">(kosongkan jika tidak mengubah)</span></label
-                      >
-                      <input type="password" id="ed-pass" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Konfirmasi Password</label>
-                      <input type="password" id="ed-pass2" class="form-control" />
-                    </div>
-
-                    <div class="col-md-6">
-                      <label class="form-label">Role</label>
-                      <select id="ed-role" class="form-select">
-                        <option>superadmin</option>
-                        <option>deputi_1</option>
-                        <option>deputi_2</option>
-                        <option>deputi_3</option>
-                        <option>deputi_4</option>
-                        <option>asdep</option>
-                        <option>analis</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Jabatan</label>
-                      <input type="text" id="ed-jabatan" class="form-control" />
-                    </div>
-
-                    <div class="col-md-6">
-                      <label class="form-label">Deputi</label>
-                      <select id="ed-deputi" class="form-select">
-                        <option>Admin</option>
-                        <option>
-                          Deputi Bidang Dukungan Kebijakan Perekonomian, Pariwisata, dan Transformasi Digital
-                        </option>
-                        <option>
-                          Deputi Bidang Dukungan Kebijakan Peningkatan Kesejahteraan Dan Pembangunan Sumber Daya Manusia
-                        </option>
-                        <option>Deputi Bidang Dukungan Kebijakan Pemerintahan dan Pemerataan Pembangunan</option>
-                        <option>Deputi Bidang Administrasi</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Unit</label>
-                      <select id="ed-unit" class="form-select">
-                        <option>Admin</option>
-                        <option>Asisten Deputi Ekonomi, Keuangan, dan Transformasi Digital</option>
-                        <option>Asisten Deputi Industri, Perdagangan, Pariwisata, dan Ekonomi Kreatif</option>
-                        <option>Asisten Deputi Infrastruktur, Sumber Daya Alam, dan Pembangunan Kewilayahan</option>
-                        <option>Asisten Deputi Pengentasan Kemiskinan dan Pembangunan Desa</option>
-                        <option>Asisten Deputi Kesehatan, Gizi, dan Pembangunan Keluarga</option>
-                        <option>Asisten Deputi Pemberdayaan Masyarakat dan Penanggulangan Bencana</option>
-                        <option>Asisten Deputi Pendidikan, Agama, Kebudayaan, Pemuda, dan Olahraga</option>
-                        <option>Asisten Deputi Hubungan Luar Negeri dan Pertahanan</option>
-                        <option>Asisten Deputi Politik, Keamanan, Hukum, dan Hak Asasi Manusia</option>
-                        <option>Asisten Deputi Tata Kelola Pemerintahan dan Percepatan Pembangunan Daerah</option>
-                        <option>Biro Tata Usaha dan Sumber Daya Manusia</option>
-                        <option>Biro Perencanaan dan Keuangan</option>
-                        <option>Biro Umum</option>
-                        <option>Biro Protokol dan Kerumahtanggaan</option>
-                        <option>Biro Pers, Media, dan Informasi</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn" type="button" data-bs-dismiss="modal">Batal</button>
-                  <button class="btn btn-primary" id="btn-save-user" type="submit">Simpan</button>
-                </div>
-                <input type="hidden" id="ed-id" />
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <!-- Modal DANGER: Hapus -->
-        <div class="modal fade" id="modal-delete-user" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-sm modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-status bg-danger"></div>
-              <div class="modal-header">
-                <h5 class="modal-title">Hapus user?</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body text-center py-4">
-                <i class="ti ti-alert-circle text-danger" style="font-size: 2rem"></i>
-                <div class="mt-2">Apakah yakin ingin menghapus <strong id="del-name">—</strong>?</div>
-                <div class="text-secondary small" id="del-email">—</div>
-              </div>
-              <div class="modal-footer">
-                <button class="btn btn-link link-secondary" data-bs-dismiss="modal">Batal</button>
-                <button class="btn btn-danger" id="btn-confirm-del" data-bs-dismiss="modal">Ya, hapus</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- END PAGE MODALS -->
-
         <!--  BEGIN FOOTER  -->
         <footer class="footer footer-transparent d-print-none">
           <div class="container-xl">
@@ -1116,19 +882,19 @@
       </form>
     </div>
     <!-- BEGIN PAGE LIBRARIES -->
+    <script src="../dist/libs/apexcharts/dist/apexcharts.min.js?1753892832" defer></script>
+    <script src="../dist/libs/jsvectormap/dist/jsvectormap.min.js?1753892832" defer></script>
+    <script src="../dist/libs/jsvectormap/dist/maps/world.js?1753892832" defer></script>
+    <script src="../dist/libs/jsvectormap/dist/maps/world-merc.js?1753892832" defer></script>
     <!-- END PAGE LIBRARIES -->
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script src="../dist/js/tabler.min.js" defer></script>
     <script src="../dist/libs/list.js/dist/list.min.js" defer></script>
-    <script src="/dist/js/toast-trial.js" defer></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
     <!-- BEGIN DEMO SCRIPTS -->
     <script src="../dist/js/demo.js" defer></script>
     <!-- END DEMO SCRIPTS -->
     <!-- BEGIN PAGE SCRIPTS -->
-    <!-- <script src="../dist/js/dummy/management-user-dummy-data.js" defer></script> -->
-    <!-- <script src="../dist/js/table-management-user-data.js" defer></script> -->
-
     <!-- END PAGE SCRIPTS -->
   </body>
 </html>
