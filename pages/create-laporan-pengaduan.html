@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Tambah Pengaduan Baru - LaporMasWapres!</title>
     <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href=".../dist/libs/jsvectormap/dist/jsvectormap.css" rel="stylesheet" />
+    <link href="../dist/libs/dropzone/dist/dropzone.css" rel="stylesheet" />
     <!-- END PAGE LEVEL STYLES -->
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -299,9 +299,21 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12 mb-4">
                     <label class="form-label">Detail Laporan<span class="text-danger">*</span></label>
                     <textarea placeholder="Isi Detail Laporan" rows="6" class="form-control" required></textarea>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Upload Lampiran</label>
+                    <div class="dropzone" id="dropzone-multiple">
+                      <div class="fallback">
+                        <input name="file" type="file" multiple />
+                      </div>
+                      <div class="dz-message">
+                        <h3 class="dropzone-msg-title">Drop file atau klik untuk upload</h3>
+                        <span class="dropzone-msg-desc">-mungkin bisa ditulis keterangan max berapa MB-</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="card-footer d-flex justify-content-end gap-2">
@@ -381,11 +393,26 @@
     <script src="../dist/js/tabler.min.js" defer></script>
     <script src="../dist/libs/list.js/dist/list.min.js" defer></script>
     <script src="../dist/libs/litepicker/dist/litepicker.js" defer></script>
-    <script src="../dist/libs/tom-select/dist/js/tom-select.base.min.js" defer></script>
+    <script src="../dist/libs/dropzone/dist/dropzone-min.js" defer></script>
+    <script src="../dist/libs/tom-select/dist/js/tom-select.complete.min.js" defer></script>
     <script src="/dist/js/toast-trial.js" defer></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE SCRIPTS -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Matikan autodiscover biar kita kontrol inisialisasinya
+        if (window.Dropzone) {
+          Dropzone.autoDiscover = false;
+          new Dropzone("#dropzone-multiple", {
+            url: "./", // ganti sesuai endpoint untuk upload
+            paramName: "file",
+            uploadMultiple: true,
+          });
+        }
+      });
+    </script>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Datepicker (same as on the modal)
@@ -400,30 +427,13 @@
           });
 
         // Tom Select on kategori (keperluan UX)
-        if (window.TomSelect) {
+        window.TomSelect &&
           new TomSelect("#select-optgroups", {
             plugins: { dropdown_input: {} },
             create: false,
             allowEmptyOption: true,
             sortField: { field: "text", direction: "asc" },
           });
-        }
-
-        // Handle submit demo (prevent default)
-        const form = document.getElementById("form-tambah-pengaduan");
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-          // TODO: integrate with your submit logic / API
-          if (window.createToast) {
-            window.createToast({
-              title: "Sukses",
-              body: "Laporan berhasil disimpan (dummy). Integrasikan ke API Anda.",
-              type: "success",
-            });
-          } else {
-            alert("Laporan berhasil disimpan (dummy). Integrasikan ke API Anda.");
-          }
-        });
       });
     </script>
     <!-- END PAGE SCRIPTS -->
