@@ -11,6 +11,15 @@
   overflow: hidden;
 }
 
+/* 2-line clamp dengan ellipsis */
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;  /* dukungan luas (Chromium/Safari/Firefox baru) */
+  line-clamp: 2;          /* sintaks standar, aman dibiarkan */
+  overflow: hidden;
+}
+
 #field-kategori .ts-control{
   padding: .5625rem .75rem;     /* vertikal .5rem biar dapet total 44px */
 }
