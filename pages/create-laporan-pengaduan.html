@@ -171,138 +171,98 @@
               <div class="card">
                 <div class="card-body">
                   <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+                    <!-- Contoh input text dengan error -->
                     <div>
                       <label class="form-label">Nama Lengkap<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Nama Lengkap" class="form-control" required />
+                      <input type="text" placeholder="Masukkan Nama Lengkap" class="form-control is-invalid" required />
+                      <div class="invalid-feedback">Nama Lengkap wajib diisi.</div>
                     </div>
+
                     <div>
                       <label class="form-label">NIK<span class="text-danger">*</span></label>
                       <input type="text" placeholder="Masukkan Nomor NIK" class="form-control" required />
+                      <div class="invalid-feedback">NIK harus 16 digit.</div>
                     </div>
+
+                    <!-- Contoh select dengan error -->
                     <div>
                       <label class="form-label">Sumber Pengaduan<span class="text-danger">*</span></label>
-                      <select class="form-select" required>
+                      <select class="form-select is-invalid" required>
                         <option value="" disabled selected>Pilih Sumber</option>
                         <option>Tatap Muka</option>
                         <option>WhatsApp</option>
                         <option>Email</option>
                         <option>Surat</option>
                       </select>
+                      <div class="invalid-feedback">Sumber pengaduan wajib dipilih.</div>
                     </div>
 
                     <div>
                       <label class="form-label">Email Pengadu</label>
                       <input type="email" placeholder="Masukkan Email" class="form-control" />
+                      <div class="invalid-feedback">Format email tidak valid.</div>
                     </div>
+
                     <div>
                       <label class="form-label">Nomor HP Pengadu</label>
                       <input type="tel" placeholder="Masukkan Nomor HP" class="form-control" />
+                      <div class="invalid-feedback">Nomor HP tidak valid.</div>
                     </div>
+
                     <div class="col-12">
                       <label class="form-label">Alamat Lengkap<span class="text-danger">*</span></label>
                       <textarea placeholder="Masukkan Alamat" rows="3" class="form-control" required></textarea>
+                      <div class="invalid-feedback">Alamat wajib diisi.</div>
                     </div>
+
                     <div class="col-12">
                       <label class="form-label">Judul Laporan<span class="text-danger">*</span></label>
                       <input type="text" placeholder="Masukkan Judul Laporan" class="form-control" required />
+                      <div class="invalid-feedback">Judul laporan wajib diisi.</div>
                     </div>
+
+                    <!-- Contoh date picker dengan error -->
                     <div>
-                      <label class="form-label">Lokasi Kejadian<span class="text-danger">*</span></label>
-                      <input type="text" placeholder="Masukkan Lokasi Kejadian" class="form-control" required />
+                      <label class="form-label">Tanggal Kejadian</label>
+                      <div class="input-icon">
+                        <input class="form-control is-invalid" placeholder="mm/dd/yyyy" id="datepicker-tgl-kejadian" />
+                        <span class="input-icon-addon"><i class="icon ti ti-calendar"></i></span>
+                      </div>
+                      <div class="invalid-feedback">Tanggal kejadian tidak valid.</div>
                     </div>
+
                     <div>
                       <label class="form-label">Tanggal Kejadian</label>
                       <div class="input-icon">
                         <input class="form-control" placeholder="mm/dd/yyyy" id="datepicker-tgl-kejadian" />
                         <span class="input-icon-addon"><i class="icon ti ti-calendar"></i></span>
                       </div>
+                      <div class="invalid-feedback">Tanggal kejadian tidak valid.</div>
                     </div>
+
                     <div class="col-12" id="field-kategori">
                       <label class="form-label">Kategori<span class="text-danger">*</span></label>
-                      <select id="select-optgroups" class="form-select" placeholder="Pilih Kategori" required>
+                      <select id="select-optgroups" class="form-select" required>
                         <option value="" selected disabled hidden>Pilih Kategori</option>
-                        <!-- ==== OPTIONS COPIED FROM MODAL ==== -->
-                        <optgroup
-                          label="Deputi Bidang Dukungan Kebijakan Perekonomian, Pariwisata dan Transformasi Digital"
-                        >
-                          <option value="Ekonomi dan Keuangan">Ekonomi dan Keuangan</option>
-                          <option value="Lingkungan Hidup dan Kehutanan">Lingkungan Hidup dan Kehutanan</option>
-                          <option value="Pekerjaan Umum dan Penataan Ruang">Pekerjaan Umum dan Penataan Ruang</option>
-                          <option value="Pertanian dan Peternakan">Pertanian dan Peternakan</option>
-                          <option value="Pemulihan Ekonomi Nasional">Pemulihan Ekonomi Nasional</option>
-                          <option value="Energi dan Sumber Daya Alam">Energi dan Sumber Daya Alam</option>
-                          <option value="Mudik">Mudik</option>
-                          <option value="Perairan">Perairan</option>
-                          <option value="Perhubungan">Perhubungan</option>
-                          <option value="Teknologi Informasi dan Komunikasi">Teknologi Informasi dan Komunikasi</option>
-                          <option value="Perlindungan Konsumen">Perlindungan Konsumen</option>
-                          <option value="Pariwisata dan Ekonomi Kreatif">Pariwisata dan Ekonomi Kreatif</option>
-                          <option value="Industri dan Perdagangan">Industri dan Perdagangan</option>
-                          <option value="Perumahan">Perumahan</option>
-                          <option value="Perpajakan">Perpajakan</option>
-                          <option value="Infrastruktur">Infrastruktur</option>
-                          <option value="Pembangunan Kewilayahan">Pembangunan Kewilayahan</option>
-                        </optgroup>
-                        <optgroup
-                          label="Deputi Bidang Dukungan Kebijakan Peningkatan Kesejahteraan dan Pembangunan Sumber Daya Manusia"
-                        >
-                          <option value="Agama">Agama</option>
-                          <option value="Corona Virus">Corona Virus</option>
-                          <option value="Kesehatan">Kesehatan</option>
-                          <option value="Kesetaraan Gender dan Sosial Inklusif">
-                            Kesetaraan Gender dan Sosial Inklusif
-                          </option>
-                          <option value="Pembangunan Desa, Daerah Tertinggal, dan Transmigrasi">
-                            Pembangunan Desa, Daerah Tertinggal, dan Transmigrasi
-                          </option>
-                          <option value="Pendidikan dan Kebudayaan">Pendidikan dan Kebudayaan</option>
-                          <option value="Sosial dan Kesejahteraan">Sosial dan Kesejahteraan</option>
-                          <option value="Kekerasan di Satuan Pendidikan (Sekolah, Kampus, Lembaga Khusus)">
-                            Kekerasan di Satuan Pendidikan (Sekolah, Kampus, Lembaga Khusus)
-                          </option>
-                          <option value="Penanggulangan Bencana">Penanggulangan Bencana</option>
-                          <option value="Ketenagakerjaan">Ketenagakerjaan</option>
-                          <option value="Pemberdayaan Masyarakat, Koperasi, dan UMKM">
-                            Pemberdayaan Masyarakat, Koperasi, dan UMKM
-                          </option>
-                          <option value="Kepemudaan dan Olahraga">Kepemudaan dan Olahraga</option>
-                          <option value="Keluarga Berencana">Keluarga Berencana</option>
-                          <option value="Pembangunan Keluarga">Pembangunan Keluarga</option>
-                        </optgroup>
-                        <optgroup label="Deputi Bidang Dukungan Kebijakan Pemerintahan dan Pemerataan Pembangunan">
-                          <option value="Ketentraman, Ketertiban Umum, dan Perlindungan Masyarakat">
-                            Ketentraman, Ketertiban Umum, dan Perlindungan Masyarakat
-                          </option>
-                          <option value="Politik dan Hukum">Politik dan Hukum</option>
-                          <option value="Politisasi ASN">Politisasi ASN</option>
-                          <option value="SP4N Lapor">SP4N Lapor</option>
-                          <option value="Netralitas ASN">Netralitas ASN</option>
-                          <option
-                            value="Pencegahan dan Pemberantasan Penyalahgunaan dan Peredaran Gelap Narkotika dan Prekursor Narkotika (P4GN)"
-                          >
-                            P4GN
-                          </option>
-                          <option value="Manajemen ASN">Manajemen ASN</option>
-                          <option value="Luar Negeri">Luar Negeri</option>
-                          <option value="Pertanahan">Pertanahan</option>
-                          <option value="Daerah Perbatasan">Daerah Perbatasan</option>
-                          <option value="Pelayanan Publik">Pelayanan Publik</option>
-                          <option value="TNI">TNI</option>
-                          <option value="Polri">Polri</option>
-                          <option value="Kependudukan">Kependudukan</option>
-                        </optgroup>
-                        <optgroup label="Deputi Bidang Administrasi">
-                          <option value="Topik Khusus">Topik Khusus</option>
-                          <option value="Topik Lainnya">Topik Lainnya</option>
-                          <option value="Bantuan Masyarakat">Bantuan Masyarakat</option>
-                        </optgroup>
+                        <!-- opsi kategori -->
                       </select>
+                      <div class="invalid-feedback">Kategori wajib dipilih.</div>
                     </div>
                   </div>
-                  <div class="col-12 mb-4">
+
+                  <!-- Contoh textarea dengan error -->
+                  <div class="col-12">
                     <label class="form-label">Detail Laporan<span class="text-danger">*</span></label>
-                    <textarea placeholder="Isi Detail Laporan" rows="6" class="form-control" required></textarea>
+                    <textarea
+                      placeholder="Isi Detail Laporan"
+                      rows="6"
+                      class="form-control is-invalid"
+                      required
+                    ></textarea>
+                    <!-- khusus detail laporan ada class mb-3 buat ngasih jarak sama upload file -->
+                    <div class="invalid-feedback mb-3">Detail laporan wajib diisi.</div>
                   </div>
+
                   <div class="col-12">
                     <label class="form-label">Upload Lampiran</label>
                     <div class="dropzone" id="dropzone-multiple">
@@ -311,11 +271,12 @@
                       </div>
                       <div class="dz-message">
                         <h3 class="dropzone-msg-title">Drop file atau klik untuk upload</h3>
-                        <span class="dropzone-msg-desc">-mungkin bisa ditulis keterangan max berapa MB-</span>
+                        <span class="dropzone-msg-desc">Maksimal 10 MB</span>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="card-footer d-flex justify-content-end gap-2">
                   <a href="menu-kelola-pengaduan.html" class="btn btn-1">Batal</a>
                   <button type="submit" class="btn btn-primary btn-2">Simpan</button>
