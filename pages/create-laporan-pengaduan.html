@@ -170,22 +170,24 @@
             <form id="form-tambah-pengaduan">
               <div class="card">
                 <div class="card-body">
-                  <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
-                    <!-- Contoh input text dengan error -->
-                    <div>
+                  <!-- BARIS 1: 3 kolom -->
+                  <div class="row g-4 mb-4">
+                    <!-- Nama Lengkap -->
+                    <div class="col-12 col-md-6">
                       <label class="form-label">Nama Lengkap<span class="text-danger">*</span></label>
                       <input type="text" placeholder="Masukkan Nama Lengkap" class="form-control is-invalid" required />
                       <div class="invalid-feedback">Nama Lengkap wajib diisi.</div>
                     </div>
 
-                    <div>
+                    <!-- NIK -->
+                    <div class="col-12 col-md-3">
                       <label class="form-label">NIK<span class="text-danger">*</span></label>
                       <input type="text" placeholder="Masukkan Nomor NIK" class="form-control" required />
                       <div class="invalid-feedback">NIK harus 16 digit.</div>
                     </div>
 
-                    <!-- Contoh select dengan error -->
-                    <div>
+                    <!-- Sumber Pengaduan -->
+                    <div class="col-12 col-md-3">
                       <label class="form-label">Sumber Pengaduan<span class="text-danger">*</span></label>
                       <select class="form-select is-invalid" required>
                         <option value="" disabled selected>Pilih Sumber</option>
@@ -196,7 +198,10 @@
                       </select>
                       <div class="invalid-feedback">Sumber pengaduan wajib dipilih.</div>
                     </div>
+                  </div>
 
+                  <!-- BARIS 2+ : tetap 2 kolom -->
+                  <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
                     <div>
                       <label class="form-label">Email Pengadu</label>
                       <input type="email" placeholder="Masukkan Email" class="form-control" />
@@ -221,7 +226,7 @@
                       <div class="invalid-feedback">Judul laporan wajib diisi.</div>
                     </div>
 
-                    <!-- Contoh date picker dengan error -->
+                    <!-- Datepicker 1 (dengan contoh error) -->
                     <div>
                       <label class="form-label">Tanggal Kejadian</label>
                       <div class="input-icon">
@@ -231,10 +236,11 @@
                       <div class="invalid-feedback">Tanggal kejadian tidak valid.</div>
                     </div>
 
+                    <!-- Datepicker 2 -->
                     <div>
                       <label class="form-label">Tanggal Kejadian</label>
                       <div class="input-icon">
-                        <input class="form-control" placeholder="mm/dd/yyyy" id="datepicker-tgl-kejadian" />
+                        <input class="form-control" placeholder="mm/dd/yyyy" id="datepicker-tgl-kejadian-2" />
                         <span class="input-icon-addon"><i class="icon ti ti-calendar"></i></span>
                       </div>
                       <div class="invalid-feedback">Tanggal kejadian tidak valid.</div>
@@ -250,7 +256,7 @@
                     </div>
                   </div>
 
-                  <!-- Contoh textarea dengan error -->
+                  <!-- Textarea detail (full width) -->
                   <div class="col-12">
                     <label class="form-label">Detail Laporan<span class="text-danger">*</span></label>
                     <textarea
@@ -259,10 +265,10 @@
                       class="form-control is-invalid"
                       required
                     ></textarea>
-                    <!-- khusus detail laporan ada class mb-3 buat ngasih jarak sama upload file -->
                     <div class="invalid-feedback mb-3">Detail laporan wajib diisi.</div>
                   </div>
 
+                  <!-- Dropzone -->
                   <div class="col-12">
                     <label class="form-label">Upload Lampiran</label>
                     <div class="dropzone" id="dropzone-multiple">
